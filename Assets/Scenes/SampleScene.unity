@@ -366,6 +366,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2526908065511854751, guid: ac251a853f094fb4e84ded34974d31b4,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e6ea9a75a4429a43b93fb0540467195,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac251a853f094fb4e84ded34974d31b4, type: 3}
 --- !u!1 &554676298
@@ -418,6 +424,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7050973948052857256, guid: fbfcb60747d4283439eb9a7c543100dd,
+        type: 3}
+      propertyPath: m_Importance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050973948052857256, guid: fbfcb60747d4283439eb9a7c543100dd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050973948052857256, guid: fbfcb60747d4283439eb9a7c543100dd,
+        type: 3}
+      propertyPath: m_BoxSize.y
+      value: 30.725008
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050973948052857256, guid: fbfcb60747d4283439eb9a7c543100dd,
+        type: 3}
+      propertyPath: m_BoxOffset.y
+      value: 5.362504
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050973948052857256, guid: fbfcb60747d4283439eb9a7c543100dd,
+        type: 3}
+      propertyPath: m_BoxSize.z
+      value: 30.259539
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050973948052857256, guid: fbfcb60747d4283439eb9a7c543100dd,
+        type: 3}
+      propertyPath: m_BoxOffset.z
+      value: 9.870231
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050973948052857256, guid: fbfcb60747d4283439eb9a7c543100dd,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050973948052857256, guid: fbfcb60747d4283439eb9a7c543100dd,
+        type: 3}
+      propertyPath: m_UseOcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7050973948052857257, guid: fbfcb60747d4283439eb9a7c543100dd,
         type: 3}
       propertyPath: m_Name
@@ -891,6 +937,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3362927078548321882, guid: 14887ea343dff1449b75bc6e36ca2274,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362927078548321882, guid: 14887ea343dff1449b75bc6e36ca2274,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3362927078548321883, guid: 14887ea343dff1449b75bc6e36ca2274,
         type: 3}
       propertyPath: m_Name
@@ -1157,6 +1213,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Shadows.m_Type
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3199384787454048299, guid: ae15ac01ae594a44ca0d48ac5ad4a18f,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae15ac01ae594a44ca0d48ac5ad4a18f, type: 3}
