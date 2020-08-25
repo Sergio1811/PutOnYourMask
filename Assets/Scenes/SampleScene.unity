@@ -2317,6 +2317,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4246888618074657702, guid: 4f5259403ee5ad042af512bbd16bd948,
+        type: 3}
+      propertyPath: m_ShowToolkit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246888618074657702, guid: 4f5259403ee5ad042af512bbd16bd948,
+        type: 3}
+      propertyPath: m_ShowCustomSorter
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4246888618074657703, guid: 4f5259403ee5ad042af512bbd16bd948,
         type: 3}
       propertyPath: m_LocalPosition.x
