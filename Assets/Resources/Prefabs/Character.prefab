@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3867198500528316546}
   - component: {fileID: 8650775207397455233}
   - component: {fileID: 5263796419959834279}
-  - component: {fileID: 8850589077775655159}
   m_Layer: 0
   m_Name: Character
   m_TagString: Character
@@ -60,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 51e4bb6ab02fe3746966b365b619a360, type: 2}
+  - {fileID: 2100000, guid: 4106860eb531e344abf65857f34836da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,19 +94,3 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!111 &8850589077775655159
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8624461254737901093}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 66e2a930ffbf28d45bad57fe7ebf374e, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 66e2a930ffbf28d45bad57fe7ebf374e, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0

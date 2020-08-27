@@ -24,6 +24,19 @@ public class InputManager : MonoBehaviour
     float currentZoom;
     #endregion
 
+    #region SwipeParameters
+    public System.Action<SwipeAction> onSwipe;
+    public System.Action<SwipeAction> onLongPress;
+
+    [Range(0f, 200f)]
+    public float minSwipeLength = 100f;
+
+    public float longPressDuration = 0.5f;
+
+    Vector2 currentSwipe;
+    SwipeAction currentSwipeAction = new SwipeAction();
+    #endregion
+
     public static InputManager Instance 
     {
         get {
@@ -52,6 +65,7 @@ public class InputManager : MonoBehaviour
 
         originalPos = Camera.transform.position;
 
+        /*
         if (Camera.orthographic)
         {
             Camera.orthographicSize = maxZoom;
@@ -59,12 +73,15 @@ public class InputManager : MonoBehaviour
         else
         {
             Camera.fieldOfView = maxZoom;
-        }
+        }*/
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        DetectSwipe();
+
         //Update Plane
         if (Input.touchCount >= 1)
         {
@@ -235,6 +252,8 @@ public class InputManager : MonoBehaviour
         return null;
     }
 
+    #region ZoomManager 
+
     public void Zoom()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0) //Zoom in
@@ -365,4 +384,153 @@ public class InputManager : MonoBehaviour
         return Vector3.zero;
     }
 
+    #endregion
+
+    #region SwipeManager
+
+    public void DetectSwipe()
+    {
+
+        if (Input.touches.Length > 0)
+        {
+            Touch t = Input.touches[0];
+
+            if (t.phase == TouchPhase.Began)
+            {
+                ResetCurrentSwipeAction(t);
+            }
+
+            if (t.phase == TouchPhase.Moved || t.phase == TouchPhase.Stationary)
+            {
+                UpdateCurrentSwipeAction(t);
+                if (!currentSwipeAction.longPress && currentSwipeAction.duration > longPressDuration && currentSwipeAction.longestDistance < minSwipeLength)
+                {
+                    currentSwipeAction.direction = SwipeDirection.None; // Invalidate current swipe action
+                    currentSwipeAction.longPress = true;
+                    if (onLongPress != null)
+                    {
+                        onLongPress(currentSwipeAction); // Fire event
+                    }
+                    return;
+                }
+            }
+
+            if (t.phase == TouchPhase.Ended)
+            {
+                UpdateCurrentSwipeAction(t);
+
+                // Make sure it was a legit swipe, not a tap, or long press
+                if (currentSwipeAction.distance < minSwipeLength || currentSwipeAction.longPress) // Didnt swipe enough or this is a long press
+                {
+                    currentSwipeAction.direction = SwipeDirection.None; // Invalidate current swipe action
+                    return;
+                }
+
+                if (onSwipe != null)
+                {
+                    onSwipe(currentSwipeAction); // Fire event
+                }
+            }
+        }
+    }
+
+    void ResetCurrentSwipeAction(Touch t)
+    {
+        currentSwipeAction.duration = 0f;
+        currentSwipeAction.distance = 0f;
+        currentSwipeAction.longestDistance = 0f;
+        currentSwipeAction.longPress = false;
+        currentSwipeAction.startPosition = new Vector2(t.position.x, t.position.y);
+        currentSwipeAction.startTime = Time.time;
+        currentSwipeAction.endPosition = currentSwipeAction.startPosition;
+        currentSwipeAction.endTime = currentSwipeAction.startTime;
+    }
+
+    void UpdateCurrentSwipeAction(Touch t)
+    {
+        currentSwipeAction.endPosition = new Vector2(t.position.x, t.position.y);
+        currentSwipeAction.endTime = Time.time;
+        currentSwipeAction.duration = currentSwipeAction.endTime - currentSwipeAction.startTime;
+        currentSwipe = currentSwipeAction.endPosition - currentSwipeAction.startPosition;
+        currentSwipeAction.rawDirection = currentSwipe;
+        currentSwipeAction.direction = GetSwipeDirection(currentSwipe);
+        currentSwipeAction.distance = Vector2.Distance(currentSwipeAction.startPosition, currentSwipeAction.endPosition);
+        if (currentSwipeAction.distance > currentSwipeAction.longestDistance) // If new distance is longer than previously longest
+        {
+            currentSwipeAction.longestDistance = currentSwipeAction.distance; // Update longest distance
+        }
+    }
+
+    SwipeDirection GetSwipeDirection(Vector2 direction)
+    {
+        var angle = Vector2.Angle(Vector2.up, direction.normalized); // Degrees
+        var swipeDirection = SwipeDirection.None;
+
+        if (direction.x > 0) // Right
+        {
+            if (angle < 22.5f) // 0.0 - 22.5
+            {
+                swipeDirection = SwipeDirection.Up;
+            }
+
+            else if (angle < 112.5f) // 67.5 - 112.5
+            {
+                swipeDirection = SwipeDirection.Right;
+            }
+
+            else if (angle < 180.0f) // 157.5 - 180.0
+            {
+                swipeDirection = SwipeDirection.Down;
+            }
+        }
+        else // Left
+        {
+            if (angle < 22.5f) // 0.0 - 22.5
+            {
+                swipeDirection = SwipeDirection.Up;
+            }
+
+            else if (angle < 112.5f) // 67.5 - 112.5
+            {
+                swipeDirection = SwipeDirection.Left;
+            }
+
+            else if (angle < 180.0f) // 157.5 - 180.0
+            {
+                swipeDirection = SwipeDirection.Down;
+            }
+        }
+
+        return swipeDirection;
+    }
+
+    #endregion
+}
+
+public struct SwipeAction
+{
+    public SwipeDirection direction;
+    public Vector2 rawDirection;
+    public Vector2 startPosition;
+    public Vector2 endPosition;
+    public float startTime;
+    public float endTime;
+    public float duration;
+    public bool longPress;
+    public float distance;
+    public float longestDistance;
+
+    public override string ToString()
+    {
+        return string.Format("[SwipeAction: {0}, From {1}, To {2}, Delta {3}, Time {4:0.00}s]", direction, rawDirection, startPosition, endPosition, duration);
+    }
+}
+
+public enum SwipeDirection
+{
+    None, // Basically means an invalid swipe
+    Up,
+    Right,
+    Down,
+    Left,
 }
