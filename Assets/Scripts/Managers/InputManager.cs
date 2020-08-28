@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     Vector3 dragAndDropScreenSpace;
     Vector3 dragAndDropOffset;
     bool dragAndDropAllowed = false;
+    Vector3 dragOriginalPosition;
     #endregion
 
     #region PinchParameters
@@ -136,7 +137,7 @@ public class InputManager : MonoBehaviour
 #endif
     }
 
-    public void DragAndDrop(GameObject objectToDrag)
+    public void DragAndDrop(GameObject objectToDrag, bool returnToPos)
     {
 
 #if UNITY_EDITOR || UNITY_STANDALONE
@@ -148,6 +149,7 @@ public class InputManager : MonoBehaviour
             {
                 if (WhatAmIClicking() == objectToDrag) //Object to drag is correct
                 {
+                    dragOriginalPosition = objectToDrag.transform.position;
                     dragAndDropScreenSpace = Camera.WorldToScreenPoint(objectToDrag.transform.position); //take screenpos of the object
                     dragAndDropOffset = objectToDrag.transform.position - Camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragAndDropScreenSpace.z)); //Calculate offset to have a good visual perception of the drag
                     dragAndDropAllowed = true;
@@ -161,10 +163,14 @@ public class InputManager : MonoBehaviour
                 objectToDrag.transform.position = currentPosition;
             }
 
-            if (Input.GetMouseButtonUp(0)) //mouse Up movement not allowed
-            {
-                dragAndDropAllowed = false;
-            }
+           
+        }
+        if (Input.GetMouseButtonUp(0) && dragAndDropAllowed) //mouse Up movement not allowed
+        {
+            dragAndDropAllowed = false;
+
+            if (returnToPos)
+                objectToDrag.transform.position = dragOriginalPosition;
         }
 #endif
 
@@ -179,6 +185,8 @@ public class InputManager : MonoBehaviour
 
                     if (WhatAmIClicking() == objectToDrag)
                     {
+                        dragOriginalPosition = objectToDrag.transform.position;
+
                         dragAndDropScreenSpace = Camera.WorldToScreenPoint(objectToDrag.transform.position);
                         dragAndDropOffset = objectToDrag.transform.position - Camera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, dragAndDropScreenSpace.z));
 
@@ -202,6 +210,8 @@ public class InputManager : MonoBehaviour
                 case TouchPhase.Ended:
 
                     dragAndDropAllowed = false;
+                    if (returnToPos)
+                        objectToDrag.transform.position = dragOriginalPosition;
 
                     break;
 
@@ -219,7 +229,7 @@ public class InputManager : MonoBehaviour
     {
 
 #if UNITY_EDITOR || UNITY_STANDALONE
-        if (Input.GetMouseButton(0))//Cambiar si es necesario
+        if (Input.GetMouseButtonDown(0))//Cambiar si es necesario
         {
             Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
