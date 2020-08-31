@@ -186,15 +186,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallTime: 0
   minHeight: 0
-  maxHeight: 0
+  maxHeight: 36
   minWidth: 0
-  maxWidth: 0
-  vectorLeft: {x: 0, y: 0, z: 0}
-  vectorRight: {x: 0, y: 0, z: 0}
-  vectorDown: {x: 0, y: 0, z: 0}
-  pieces: []
-  spawnPosition: {fileID: 0}
-  objectsInBlocks: []
+  maxWidth: 10
+  vectorLeft: {x: -1, y: 0, z: 0}
+  vectorRight: {x: 1, y: 0, z: 0}
+  vectorDown: {x: 0, y: 0, z: -1}
+  pieces:
+  - {fileID: 3547235691165001178, guid: 9a4dc37da1ec93c46a40c43814b6dd9c, type: 3}
+  - {fileID: 3547235691165001178, guid: 349fda6976ff7ac47b2b43eae4b8c70d, type: 3}
+  - {fileID: 3547235691165001178, guid: d791461ef6009f74399096648df20592, type: 3}
+  - {fileID: 3547235691165001178, guid: 8dc4a4491d2d289438f33284cac3947d, type: 3}
+  - {fileID: 3547235691165001178, guid: 999d6dca6b4e5d94d8802fb2c12a0c17, type: 3}
+  - {fileID: 3547235691165001178, guid: c0438f92798746941aae232bee6cd6c3, type: 3}
+  - {fileID: 3547235691165001178, guid: 4ccf3ddc6f67efd40a15c631cd92cebd, type: 3}
+  spawnPosition: {fileID: 1210343553}
+  objectsInBlocks:
+  - {fileID: 3595874652515033771, guid: fa4ab38692ff25f43b5c32b32f66de8b, type: 3}
+  - {fileID: 7276788916895524744, guid: 5a674d078b63b6a498dec88480233a84, type: 3}
+  - {fileID: 6923092961230630920, guid: c6f93431b790c224fb5b31edd412e3bf, type: 3}
+  - {fileID: 4524433118061041797, guid: bd482f7f17c613d43ba7abdd7bf42911, type: 3}
+  - {fileID: 6205670692980185336, guid: 74b958ce01446fb4a9802748bb09adb3, type: 3}
+  - {fileID: 2138338953582612290, guid: 6f89a744a2028cb42bdb292e682b90ed, type: 3}
+  - {fileID: 9045481518017002529, guid: 4b468651b3efe20459eafde5ffa1a375, type: 3}
+  - {fileID: 7912824324016424113, guid: 0689f85e56202c6419102dcefa26d2e2, type: 3}
+  - {fileID: 9107562404605356170, guid: 684a67b12342720489e30f44942775dc, type: 3}
+  - {fileID: 383641074140223826, guid: 05079c2d38b437a4d8fcf23e62394d1e, type: 3}
+  - {fileID: 4308926495361965655, guid: fc5286f6165cc454285daff28daf812a, type: 3}
+  - {fileID: 3938271153761329924, guid: e156f0a4ef466a448a555617fb39ef7e, type: 3}
+  - {fileID: 7363437327998824236, guid: c8d04e6289e3102448172865bb045af1, type: 3}
 --- !u!114 &554676302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,9 +240,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fbc8dc9261e4248b6f8feec5937bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioInstance: {fileID: 0}
-  convertedSound: {fileID: 0}
-  convertPS: {fileID: 0}
+  AudioInstance: {fileID: 404994785303232139, guid: 1d5acc4b1c966f24bb7e41b6e51f90be,
+    type: 3}
+  convertedSound: {fileID: 8300000, guid: 28c310d6859faf345b323b3e05190694, type: 3}
+  convertPS: {fileID: 5015894723933006863, guid: 6d773dde21e98d54690960b8c4252b4c,
+    type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
