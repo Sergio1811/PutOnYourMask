@@ -137,7 +137,7 @@ public class InputManager : MonoBehaviour
 #endif
     }
 
-    public void DragAndDrop(GameObject objectToDrag, bool returnToPos)
+    public GameObject DragAndDrop(GameObject objectToDrag, bool returnToPos)
     {
 
 #if UNITY_EDITOR || UNITY_STANDALONE
@@ -162,12 +162,16 @@ public class InputManager : MonoBehaviour
                 Vector3 currentPosition = Camera.ScreenToWorldPoint(currentScreenSpace) + dragAndDropOffset; //calculate position in world with the offset
                 objectToDrag.transform.position = currentPosition;
             }
-
            
         }
         if (Input.GetMouseButtonUp(0) && dragAndDropAllowed) //mouse Up movement not allowed
         {
-            dragAndDropAllowed = false;
+            RaycastHit hit;
+            if (Physics.Raycast(Input.mousePosition, Vector3.forward, out hit))
+            {
+               return hit.collider.gameObject;
+            }
+                dragAndDropAllowed = false;
 
             if (returnToPos)
                 objectToDrag.transform.position = dragOriginalPosition;
@@ -208,6 +212,11 @@ public class InputManager : MonoBehaviour
                     break;
 
                 case TouchPhase.Ended:
+                    RaycastHit hit;
+                    if (Physics.Raycast(Input.mousePosition, Vector3.forward, out hit))
+                    {
+                        return hit.collider.gameObject;
+                    }
 
                     dragAndDropAllowed = false;
                     if (returnToPos)
@@ -222,6 +231,8 @@ public class InputManager : MonoBehaviour
                     break;
             }
         }
+
+        return null;
 #endif
     }
 
