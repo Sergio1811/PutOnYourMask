@@ -453,9 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a543b8b9a43cf5459c8cf9ab781a555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inCentrifugator:
-  - {fileID: 0}
-  - {fileID: 0}
+  inCentrifugator: 0000000000000000
   timeUI: {fileID: 1371342570}
   collectButton: {fileID: 1050167609}
   itemCollectable: {fileID: 871491490}
@@ -948,6 +946,8 @@ GameObject:
   - component: {fileID: 554676299}
   - component: {fileID: 554676303}
   - component: {fileID: 554676301}
+  - component: {fileID: 554676305}
+  - component: {fileID: 554676304}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -1004,6 +1004,10 @@ MonoBehaviour:
     type: 3}
   centifugator: {fileID: 178615075}
   warmer: {fileID: 1422230295}
+  recipeDB: {fileID: 554676305}
+  itemDB: {fileID: 554676304}
+  itemTemplate: {fileID: 2260030738460196171, guid: 70b5a90c3c65017419ecd8763a2b4c4f,
+    type: 3}
 --- !u!114 &554676302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,6 +1037,30 @@ MonoBehaviour:
   convertedSound: {fileID: 0}
   convertPS: {fileID: 0}
   infectedPS: {fileID: 0}
+--- !u!114 &554676304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554676298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940090db19bfea4419bc5cf6fb9c90b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &554676305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554676298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c885aa16f0eb840933c82d05c63d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &577870021
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,12 +2669,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e48ff578564e3499a33c4ed1ec5f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inWarmer: {fileID: 0}
+  inWarmer: 00000000
   timeUI: {fileID: 766079162}
   collectButton: {fileID: 1864649246}
   itemCollectable: {fileID: 325987857}
   item: {fileID: 21300000, guid: 4e38849a4dec5bb40bd9b6b0e7427a75, type: 3}
-  timeToWarmer: 2
+  timeToWarmer: 0.1
 --- !u!4 &1422230298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 59aa072a64716c4459defb02a9afef79,

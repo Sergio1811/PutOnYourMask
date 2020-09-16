@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private static InputManager instance ;
+    private static InputManager instance;
 
     public Camera Camera;
 
@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
     SwipeAction currentSwipeAction = new SwipeAction();
     #endregion
 
-    public static InputManager Instance 
+    public static InputManager Instance
     {
         get {
             if (instance == null)
@@ -162,16 +162,16 @@ public class InputManager : MonoBehaviour
                 Vector3 currentPosition = Camera.ScreenToWorldPoint(currentScreenSpace) + dragAndDropOffset; //calculate position in world with the offset
                 objectToDrag.transform.position = currentPosition;
             }
-           
+
         }
         if (Input.GetMouseButtonUp(0) && dragAndDropAllowed) //mouse Up movement not allowed
         {
             RaycastHit hit;
             if (Physics.Raycast(Input.mousePosition, Vector3.forward, out hit))
             {
-               return hit.collider.gameObject;
+                return hit.collider.gameObject;
             }
-                dragAndDropAllowed = false;
+            dragAndDropAllowed = false;
 
             if (returnToPos)
                 objectToDrag.transform.position = dragOriginalPosition;
@@ -249,6 +249,59 @@ public class InputManager : MonoBehaviour
                 return hit.collider.gameObject;
             }
         }
+#endif
+
+#if UNITY_ANDROID
+        if (Input.touches.Length > 0)
+        {
+            foreach (Touch touch in Input.touches)
+            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    // Construct a ray from the current touch coordinates
+                    Ray ray = Camera.ScreenPointToRay(touch.position);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        return hit.collider.gameObject;
+                    }
+
+                }
+            }
+        }
+#endif
+        return null;
+    }
+
+    public GameObject WhatAmIClicking2D()
+    {
+
+#if UNITY_EDITOR || UNITY_STANDALONE
+        if (Input.GetMouseButtonDown(0))//Cambiar si es necesario
+        {
+            Vector2 ray = Camera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero);
+            Transform target =null;
+            //If something was hit, the RaycastHit2D.collider will not be null and the the object must have the "Monkey" tag and target has to be null
+            if (hit.collider != null && hit.collider.tag == "Monkey" && target == null)
+            {
+                target = hit.collider.transform; // Sets the target to be the transform that was hit
+            }
+
+            if (target != null)
+            {
+                // target.position = worldPoint; // Moves target with the mouse
+            }
+
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                target = null; // Sets the target to null again
+            }
+            return hit.collider.gameObject;
+        }
+    
+
 #endif
 
 #if UNITY_ANDROID

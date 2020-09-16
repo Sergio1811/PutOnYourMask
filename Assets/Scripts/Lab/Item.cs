@@ -8,16 +8,14 @@ public class Item
     public string title;
     public string description;
     public Sprite icon;
-    public Dictionary<string, int> stats = new Dictionary<string, int>();
 
 
-    public Item (int _id, string _title, string _description, Sprite _icon, Dictionary<string, int> _stats)
+    public Item (int _id, string _title, string _description, Sprite _icon)
     {
         this.id = _id;
         this.title = _title;
         this.description = _description;
-        this.icon = _icon;
-        this.stats = _stats;
+        this.icon = _icon;       
     }
 
     public Item (Item item)
@@ -26,6 +24,5 @@ public class Item
         this.title = item.title;
         this.description = item.description;
         this.icon = item.icon;
-        this.stats = item.stats;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WarmerControl : MonoBehaviour
 {
-    public GameObject inWarmer;
+    public int[] inWarmer = new int[1];
 
     public Slider timeUI;
     public Button collectButton;
@@ -45,19 +45,18 @@ public class WarmerControl : MonoBehaviour
 
     public void FinishWarming()
     {
-        currentTimeWarming = 0;
-        isWarming = false;
-        inWarmer = null;
-        timeUI.value = 0;
-        timeUI.gameObject.SetActive(false);
-
         PopUpObject();
 
+        currentTimeWarming = 0;
+        isWarming = false;
+        inWarmer[0] = 0;
+        timeUI.value = 0;
+        timeUI.gameObject.SetActive(false);
     }
 
     public bool MachineFull()
     {
-        if (inWarmer != null)
+        if (inWarmer[0] != 0)
         {
             timeUI.gameObject.SetActive(true);
             return true;
@@ -66,15 +65,19 @@ public class WarmerControl : MonoBehaviour
         else return false;
     }
 
-    public void AddObject(GameObject objectToWarm)
+    public void AddObject(Item objectToWarm)
     {
-        if (inWarmer == null)
-            inWarmer = objectToWarm;
+        if (inWarmer[0] == 0)
+            inWarmer[0] = objectToWarm.id;
     }
 
     public void PopUpObject()
     {
         collectButton.gameObject.SetActive(true);
+
+        int itemIDFromRecipe = LabManager.instance.recipeDB.GetItemFromRecipe(inWarmer);
+        Item itemToCollect =LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
+        itemCollectable.sprite = itemToCollect.icon;
 
         collectButton.onClick.AddListener(
            delegate
@@ -84,7 +87,7 @@ public class WarmerControl : MonoBehaviour
 
         collectButton.onClick.AddListener(
             delegate {
-                LabManager.instance.AddToInventory(LabManager.instance.substanceOne);
+                LabManager.instance.AddToInventory(itemToCollect);
             });
 
         collectButton.onClick.AddListener(
@@ -93,6 +96,6 @@ public class WarmerControl : MonoBehaviour
                collectButton.onClick.RemoveAllListeners();
            });
 
-        itemCollectable.sprite = item;
+       
     }
 }

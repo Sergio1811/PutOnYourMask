@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LabManager : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class LabManager : MonoBehaviour
 
     public CentrifugatorControl centifugator;
     public WarmerControl warmer;
+
+    public RecipeDatabase recipeDB;
+    public ItemDatabase itemDB;
+
+    public GameObject itemTemplate;
 
 
     private void Awake()
@@ -39,21 +45,21 @@ public class LabManager : MonoBehaviour
                     break;
 
                 case "LabSub1":
-                    AddToInventory(substanceOne);
+                    AddToInventory(itemDB.GetItem(1));
                     break;
 
                 case "LabSub2":
-                    AddToInventory(substanceTwo);
+                    AddToInventory(itemDB.GetItem(2));
                     break;
 
                 case "Warmer":
-                    GameObject Item3 = Instantiate(substanceOne);
-                    warmer.AddObject(Item3);
+                   // GameObject Item3 = Instantiate(itemTemplate);
+                    warmer.AddObject(itemDB.GetItem("Rabbit"));
                     break;
 
                 case "Centrifugator":
-                    GameObject Item2 = Instantiate(substanceOne);
-                    centifugator.AddObject(Item2);
+                    //Instantiate(itemDB.GetItem(3).gameObject);
+                    centifugator.AddObject(itemDB.GetItem(1));
                     break;
 
                 case "Character":
@@ -70,13 +76,14 @@ public class LabManager : MonoBehaviour
         }
     }
 
-    public void AddToInventory(GameObject objectToAdd)
+    public void AddToInventory(Item objectToAdd)
     {
         GameObject go = InventoryLab.instance.CheckInventorySpace();
         if (go != null)
         {
-            GameObject Item = Instantiate(objectToAdd, go.transform);
+            GameObject Item = Instantiate(itemTemplate, go.transform);
             Item.transform.localPosition = Vector3.zero;
+            Item.GetComponent<Image>().sprite = objectToAdd.icon;
         }
     }
 
