@@ -34,11 +34,11 @@ public class WarmerControl : MonoBehaviour
         if (isWarming)
         {
             currentTimeWarming += Time.deltaTime;
-            timeUI.value = currentTimeWarming/ timeToWarmer;
+            timeUI.value = currentTimeWarming / timeToWarmer;
         }
         else
         {
-            isWarming= MachineFull();
+            isWarming = MachineFull();
 
         }
     }
@@ -62,13 +62,18 @@ public class WarmerControl : MonoBehaviour
             return true;
         }
 
-        else return false;
+        else
+        {
+            return false;
+        }
     }
 
     public void AddObject(Item objectToWarm)
     {
         if (inWarmer[0] == 0)
+        {
             inWarmer[0] = objectToWarm.id;
+        }
     }
 
     public void PopUpObject()
@@ -76,26 +81,48 @@ public class WarmerControl : MonoBehaviour
         collectButton.gameObject.SetActive(true);
 
         int itemIDFromRecipe = LabManager.instance.recipeDB.GetItemFromRecipe(inWarmer);
-        Item itemToCollect =LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
-        itemCollectable.sprite = itemToCollect.icon;
 
-        collectButton.onClick.AddListener(
-           delegate
-           {
-               collectButton.gameObject.SetActive(false);
-           });
+        if (itemIDFromRecipe == 0)
+        {
+            itemCollectable.sprite = Resources.Load<Sprite>("Sprites/Lab/RedCross");
 
-        collectButton.onClick.AddListener(
-            delegate {
-                LabManager.instance.AddToInventory(itemToCollect);
-            });
+            collectButton.onClick.AddListener(
+                delegate
+                {
+                    collectButton.gameObject.SetActive(false);
+                });
 
-        collectButton.onClick.AddListener(
-           delegate
-           {
-               collectButton.onClick.RemoveAllListeners();
-           });
+            collectButton.onClick.AddListener(
+               delegate
+               {
+                   collectButton.onClick.RemoveAllListeners();
+               });
+        }
 
-       
+        else
+        {
+
+            Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
+            itemCollectable.sprite = itemToCollect.icon;
+
+            collectButton.onClick.AddListener(
+               delegate
+               {
+                   collectButton.gameObject.SetActive(false);
+               });
+
+            collectButton.onClick.AddListener(
+                delegate
+                {
+                    LabManager.instance.AddToInventory(itemToCollect);
+                });
+
+            collectButton.onClick.AddListener(
+               delegate
+               {
+                   collectButton.onClick.RemoveAllListeners();
+               });
+
+        }
     }
 }

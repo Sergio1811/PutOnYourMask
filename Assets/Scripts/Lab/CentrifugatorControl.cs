@@ -23,7 +23,6 @@ public class CentrifugatorControl : MonoBehaviour
         collectButton.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(currentTimeCentrifugating>=timeToCentrifugate)
@@ -45,13 +44,14 @@ public class CentrifugatorControl : MonoBehaviour
 
     public void FinishCentrifugate()
     {
+        PopUpObject();
+
         currentTimeCentrifugating = 0;
         isCentrifugating = false;
         EmptyMachine();
         timeUI.value = 0;
         timeUI.gameObject.SetActive(false);
         collectButton.gameObject.SetActive(true);
-        PopUpObject();
 
     }
 
@@ -89,29 +89,36 @@ public class CentrifugatorControl : MonoBehaviour
 
     public void PopUpObject()
     {
-        collectButton.gameObject.SetActive(true);
-
         int itemIDFromRecipe = LabManager.instance.recipeDB.GetItemFromRecipe(inCentrifugator);
-        Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
-        itemCollectable.sprite = itemToCollect.icon;
 
-        collectButton.onClick.AddListener(
-          delegate
-          {
-              collectButton.gameObject.SetActive(false);
-          });
+        if (itemIDFromRecipe == 0)
+        {
+            print("no recipe avialable");
+        }
+        else
+        {
+            collectButton.gameObject.SetActive(true);
+            Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
+            itemCollectable.sprite = itemToCollect.icon;
 
-        collectButton.onClick.AddListener(
-            delegate {
-                LabManager.instance.AddToInventory(itemToCollect);
-            });
+            collectButton.onClick.AddListener(
+              delegate
+              {
+                  collectButton.gameObject.SetActive(false);
+              });
 
-        collectButton.onClick.AddListener(
-           delegate
-           {
-               collectButton.onClick.RemoveAllListeners();
-           });
+            collectButton.onClick.AddListener(
+                delegate
+                {
+                    LabManager.instance.AddToInventory(itemToCollect);
+                });
 
+            collectButton.onClick.AddListener(
+               delegate
+               {
+                   collectButton.onClick.RemoveAllListeners();
+               });
+        }
 
     }
 }

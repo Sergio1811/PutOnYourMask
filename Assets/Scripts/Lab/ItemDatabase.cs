@@ -21,6 +21,23 @@ public class ItemDatabase : MonoBehaviour
        return items.Find(item => item.title == title);    
     }
 
+    public Item GetItem(Sprite icon)
+    {
+        return items.Find(item => item.icon.name == icon.name);
+    }
+
+    public Item GetRandomItem()
+    {
+        Item randomItem = items[Random.Range(0, items.Count)];
+
+        while (randomItem.description=="simple item.")
+        {
+            randomItem = items[Random.Range(0, items.Count)];
+        }
+
+        return randomItem;
+    }
+
     void BuildItemDatabase()
     {
         items = new List<Item>()

@@ -22,7 +22,7 @@ public class RecipeDatabase : MonoBehaviour
             }
         }
         return 0;
-        //return recipes.Find(recipes => recipes.requiredItems == recipe);
+        
     }
 
    void BuildRecipeDatabase()

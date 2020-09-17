@@ -20,7 +20,6 @@ public class LabManager : MonoBehaviour
 
     public GameObject itemTemplate;
 
-
     private void Awake()
     {
         if (instance == null)
@@ -49,17 +48,15 @@ public class LabManager : MonoBehaviour
                     break;
 
                 case "LabSub2":
-                    AddToInventory(itemDB.GetItem(2));
+                    AddToInventory(itemDB.GetItem(4));
                     break;
 
                 case "Warmer":
                    // GameObject Item3 = Instantiate(itemTemplate);
-                    warmer.AddObject(itemDB.GetItem("Rabbit"));
                     break;
 
                 case "Centrifugator":
                     //Instantiate(itemDB.GetItem(3).gameObject);
-                    centifugator.AddObject(itemDB.GetItem(1));
                     break;
 
                 case "Character":
@@ -78,12 +75,14 @@ public class LabManager : MonoBehaviour
 
     public void AddToInventory(Item objectToAdd)
     {
-        GameObject go = InventoryLab.instance.CheckInventorySpace();
+        int number;
+        GameObject go = InventoryLab.instance.CheckInventorySpace(out number);
         if (go != null)
         {
             GameObject Item = Instantiate(itemTemplate, go.transform);
-            Item.transform.localPosition = Vector3.zero;
+            Item.transform.localPosition = Vector3.zero;            
             Item.GetComponent<Image>().sprite = objectToAdd.icon;
+
         }
     }
 

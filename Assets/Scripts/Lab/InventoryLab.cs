@@ -16,17 +16,24 @@ public class InventoryLab : MonoBehaviour
             Destroy(this);
     }
 
-    public GameObject CheckInventorySpace()
+    public GameObject CheckInventorySpace(out int num)
     {
         for (int i = 0; i < slots.Length; i++)
         {
             if (isFull[i] == false)
             {
-                isFull[i] = true;                
+                isFull[i] = true;
+                num = i;
                 return slots[i].gameObject;
             }
         }
 
+        num = 0;
         return null;
+    }
+
+    public void DeletePosition(int i)
+    {
+        isFull[i] = false;
     }
 }
