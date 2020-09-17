@@ -1514,10 +1514,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62fbc8dc9261e4248b6f8feec5937bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioInstance: {fileID: 0}
+  AudioInstance: {fileID: 404994785303232139, guid: 1d5acc4b1c966f24bb7e41b6e51f90be,
+    type: 3}
   convertedSound: {fileID: 0}
   convertPS: {fileID: 0}
   infectedPS: {fileID: 0}
+  happyPS: {fileID: 1099807837213918, guid: 92403893024b50b48b2e79ed46404a90, type: 3}
+  unhappyPS: {fileID: 1177011836738656, guid: f52cf3e11efa97e4cb2c8e9a6f9ffb15, type: 3}
 --- !u!114 &554676304
 MonoBehaviour:
   m_ObjectHideFlags: 0

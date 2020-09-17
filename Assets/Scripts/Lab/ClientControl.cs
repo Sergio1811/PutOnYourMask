@@ -51,6 +51,7 @@ public class ClientControl : MonoBehaviour
     public void Unhappy()
     {
         print("Unhappy");
+        VSFX.instance.CreateParticleSystem(VSFX.instance.unhappyPS, this.transform.position+Vector3.up, false);
         NewOrder();
 
     }
@@ -58,6 +59,7 @@ public class ClientControl : MonoBehaviour
     public void Happy()
     {
         print("Happy");
+        VSFX.instance.CreateParticleSystem(VSFX.instance.happyPS, this.transform.position, false);
         NewOrder();
 
     }

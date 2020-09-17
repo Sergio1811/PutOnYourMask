@@ -15,6 +15,8 @@ public class VSFX : MonoBehaviour
     public AudioClip convertedSound;
     public GameObject convertPS;
     public GameObject infectedPS;
+    public GameObject happyPS;
+    public GameObject unhappyPS;
 
     private void Awake()
     {
@@ -35,8 +37,8 @@ public class VSFX : MonoBehaviour
     public GameObject CreateParticleSystem(GameObject particleSystem, Vector3 position, bool loop)
     {
         GameObject psLocal = Instantiate(particleSystem, position, particleSystem.transform.rotation);
-        if(!loop)
-        Destroy(psLocal, psLocal.GetComponent<ParticleSystem>().startLifetime);
+       /* if(!loop)
+        Destroy(psLocal, psLocal.GetComponent<ParticleSystem>().startLifetime);*/
 
         return psLocal;
     }
