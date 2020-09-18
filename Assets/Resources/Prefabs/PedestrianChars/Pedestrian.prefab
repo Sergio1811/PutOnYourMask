@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 8419209754916226033}
   - component: {fileID: 5210283960250206183}
   - component: {fileID: 7021107495849982987}
+  - component: {fileID: 2035383710}
+  - component: {fileID: 2035383714}
   m_Layer: 0
-  m_Name: CharacterControl
+  m_Name: Pedestrian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260062722518289425}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.07, y: 1.25, z: 1.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -61,9 +63,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb06277fe3cc8e34f812ef40cbf68d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisType: 0
+  thisType: 1
   virus: {fileID: 0}
   masked: 0
+--- !u!114 &2035383710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260062722518289425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ee1f0049a103847b407a6ab31e902f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  routePoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!195 &2035383714
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260062722518289425}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &2282254367142019536
 PrefabInstance:
   m_ObjectHideFlags: 0
