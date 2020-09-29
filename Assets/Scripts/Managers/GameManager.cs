@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
+    public static GameManager instance;
     public AudioSource audioManager;
 
-    public static GameManager Instance
+    float miniGameTime = 120;
+    float currentMiniGameTime;
+
+    private void Awake()
     {
-        get {
-            if (instance == null)
-            {
-                instance = GameObject.FindObjectOfType<GameManager>();
 
-                if (instance == null)
-                {
-                    GameObject container = new GameObject("GameManager");
-                    instance = container.AddComponent<GameManager>();
-                }
-            }
-
-            return instance;
+        if (instance==null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
+
+    private void Update()
+    {
+        currentMiniGameTime += Time.deltaTime;
+
+        if(currentMiniGameTime>= miniGameTime)
+        {
+            SceneController.instance.ChargeMainMenu();
+        }
+    }
 }

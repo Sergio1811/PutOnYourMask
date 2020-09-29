@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ClientControl : MonoBehaviour
 {
+    public Animator animator;
     public Slider timeUI;
 
     public float timeToWait;
@@ -20,6 +21,15 @@ public class ClientControl : MonoBehaviour
 
     void Update()
     {
+       /* if(speed>0)
+        {
+            animator.SetBool("Walking", true);
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
+        }*/
+
         timeUI.value = currentTimeToZero / timeToWait;
         currentTimeToZero -= Time.deltaTime;
 
@@ -50,17 +60,13 @@ public class ClientControl : MonoBehaviour
 
     public void Unhappy()
     {
-        print("Unhappy");
         VSFX.instance.CreateParticleSystem(VSFX.instance.unhappyPS, this.transform.position+Vector3.up, false);
         NewOrder();
-
     }
 
     public void Happy()
     {
-        print("Happy");
-        VSFX.instance.CreateParticleSystem(VSFX.instance.happyPS, this.transform.position, false);
+        VSFX.instance.CreateParticleSystem(VSFX.instance.happyPS, this.transform.position+Vector3.zero, false);
         NewOrder();
-
     }
 }

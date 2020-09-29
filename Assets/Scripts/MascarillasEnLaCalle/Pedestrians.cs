@@ -10,12 +10,7 @@ public class Pedestrians : MonoBehaviour
 
     void Start()
     {
-        /*
-        if (thisType == PedestriansManager.PedestrianType.Infected || thisType == PedestriansManager.PedestrianType.Runner_Infected)
-        {
-            virus = VSFX.instance.CreateParticleSystem(VSFX.instance.infectedPS, gameObject.transform.position, true);
-            virus.transform.parent = transform;
-        }*/
+
     }
 
     public void Infection()
@@ -60,5 +55,11 @@ public class Pedestrians : MonoBehaviour
         masked = true;
         transform.GetChild(0).GetComponent<Renderer>().material = PedestriansManager.instance.maskOnMat;
         //estethic
+    }
+
+    public void NormalNoMask()
+    {
+        masked = false;
+        transform.GetChild(0).GetComponent<Renderer>().material = PedestriansManager.instance.maskOffMat;
     }
 }

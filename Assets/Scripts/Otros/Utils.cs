@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Utils 
 {
-    public static Vector2 ToVector2(this Vector3 _Origin)
+    public static Vector2 ToVector2(Vector3 _Origin)
     {
         return new Vector2(_Origin.x, _Origin.z);
     }

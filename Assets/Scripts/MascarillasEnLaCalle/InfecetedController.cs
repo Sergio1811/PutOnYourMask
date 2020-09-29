@@ -13,7 +13,6 @@ public class InfecetedController : MonoBehaviour
     {
 
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -21,12 +20,12 @@ public class InfecetedController : MonoBehaviour
         {
             CheckNearbyToInfect();
         }
-        else 
+        else if(GetComponent<Pedestrians>().thisType == PedestriansManager.PedestrianType.Infected)
         {
             if(Mathf.Sin(Time.time)>0)
             {
                 CheckNearbyToInfect();
-                if(!this.GetComponent<Pedestrians>().virus.activeSelf)
+                if(!this.GetComponent<Pedestrians>().virus.activeSelf && this.GetComponent<Pedestrians>().virus!=null)
                 this.GetComponent<Pedestrians>().virus.SetActive(true);
 
             }
@@ -58,6 +57,13 @@ public class InfecetedController : MonoBehaviour
                 }
             }*/
 
+        }
+        else
+        {
+            if (this.GetComponent<Pedestrians>().virus != null)
+                Destroy(this.GetComponent<Pedestrians>().virus);
+
+            Destroy(this);
         }
     }
 

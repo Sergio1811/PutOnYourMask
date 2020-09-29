@@ -16,6 +16,8 @@ public class PedestriansManager : MonoBehaviour
     public List<GameObject> pedestriansList;
     public float distanceToInfect;
 
+    public GameObject[] trafficLights;
+
     public enum PedestrianType
     {
         Masked,
@@ -62,7 +64,7 @@ public class PedestriansManager : MonoBehaviour
 
         if((Time.time/10)>=currentValue)
         {
-            StartCoroutine(fadePitch(GameManager.Instance.audioManager.pitch+0.05f));
+            StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch+0.05f));
             currentValue++;
         }
         #endregion
@@ -101,9 +103,9 @@ public class PedestriansManager : MonoBehaviour
     IEnumerator fadePitch(float next)
     {
 
-        while (GameManager.Instance.audioManager.pitch < next)
+        while (GameManager.instance.audioManager.pitch < next)
         {
-            GameManager.Instance.audioManager.pitch = Mathf.Lerp(GameManager.Instance.audioManager.pitch, next, 0.025f);
+            GameManager.instance.audioManager.pitch = Mathf.Lerp(GameManager.instance.audioManager.pitch, next, 0.025f);
 
             yield return null;
         }
