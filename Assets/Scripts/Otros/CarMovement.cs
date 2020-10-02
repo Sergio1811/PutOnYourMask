@@ -76,7 +76,7 @@ public class CarMovement : MonoBehaviour
         {
             for (int i = 0; i < currentNearbyTL.Count; i++)
             {
-                if (currentNearbyTL[i].GetComponent<TrafficLight>().currentState == TrafficLight.trafficLightState.Red)
+                if (currentNearbyTL[i].GetComponent<TrafficLight>().currentState == TrafficLight.trafficLightState.Red || currentNearbyTL[i].GetComponent<TrafficLight>().currentState == TrafficLight.trafficLightState.Yellow)
                 {
                     currentSpeed = 0;
                 }

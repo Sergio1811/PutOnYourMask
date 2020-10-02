@@ -835,7 +835,7 @@ PrefabInstance:
       objectReference: {fileID: 75475943}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_StoppingDistance
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_AutoBraking
@@ -844,6 +844,10 @@ PrefabInstance:
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_Radius
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 260062722518289425, guid: 35750ef2524ec1c4db7f4629ede48dbb,
         type: 3}
@@ -1083,7 +1087,7 @@ PrefabInstance:
       objectReference: {fileID: 75475943}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_StoppingDistance
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_AutoBraking
@@ -1092,6 +1096,10 @@ PrefabInstance:
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_Radius
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 260062722518289425, guid: 35750ef2524ec1c4db7f4629ede48dbb,
         type: 3}
@@ -1618,7 +1626,7 @@ PrefabInstance:
       objectReference: {fileID: 75475943}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_StoppingDistance
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_AutoBraking
@@ -1627,6 +1635,10 @@ PrefabInstance:
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_Radius
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 260062722518289425, guid: 35750ef2524ec1c4db7f4629ede48dbb,
         type: 3}
@@ -1749,6 +1761,7 @@ MonoBehaviour:
   currentState: 0
   lightGO: {fileID: 621196076}
   timeToChange: 10
+  yellowTime: 3
 --- !u!1 &253772978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,7 +2798,7 @@ PrefabInstance:
       objectReference: {fileID: 75475943}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_StoppingDistance
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_AutoBraking
@@ -2794,6 +2807,10 @@ PrefabInstance:
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_Radius
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 260062722518289425, guid: 35750ef2524ec1c4db7f4629ede48dbb,
         type: 3}
@@ -2932,8 +2949,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 0}
-  minZoom: 15
-  maxZoom: 60
+  zoomFactor: 10
+  zoomLerpSpeed: 25
+  minCameraY: 10
+  maxCameraY: 30
+  minCameraX: -22
+  maxCameraX: 17
+  minCameraZ: 0
+  maxCameraZ: 0
+  minZoom: 8
+  maxZoom: 22
   minSwipeLength: 100
   longPressDuration: 0.5
 --- !u!4 &554676300
@@ -2948,7 +2973,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &554676301
 MonoBehaviour:
@@ -2966,6 +2991,7 @@ MonoBehaviour:
   secondsText: {fileID: 987906747}
   maskOnMat: {fileID: 0}
   maskOffMat: {fileID: 0}
+  yellowTraffic: {fileID: 0}
   pedestriansList:
   - {fileID: 812793192}
   - {fileID: 2035383709}
@@ -2974,6 +3000,7 @@ MonoBehaviour:
   - {fileID: 2026807486}
   - {fileID: 969776214}
   - {fileID: 2125337746}
+  - {fileID: 248888067}
 --- !u!114 &554676302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3024,6 +3051,8 @@ MonoBehaviour:
   infectedPercentage: 20
   runnerPercentage: 20
   runnerInfectedPercentage: 20
+  wayPointsSpawn:
+  - {fileID: 75475943}
 --- !u!1001 &569388988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3350,7 +3379,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &660961303
 GameObject:
@@ -3598,7 +3627,7 @@ PrefabInstance:
       objectReference: {fileID: 75475943}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_StoppingDistance
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_AutoBraking
@@ -3607,6 +3636,10 @@ PrefabInstance:
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_Radius
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 260062722518289425, guid: 35750ef2524ec1c4db7f4629ede48dbb,
         type: 3}
@@ -3872,7 +3905,7 @@ PrefabInstance:
       objectReference: {fileID: 75475943}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_StoppingDistance
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_AutoBraking
@@ -3881,6 +3914,10 @@ PrefabInstance:
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_Radius
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 260062722518289425, guid: 35750ef2524ec1c4db7f4629ede48dbb,
         type: 3}
@@ -3987,7 +4024,7 @@ Transform:
   - {fileID: 2125337748}
   - {fileID: 248888068}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &754432373
 GameObject:
@@ -4248,7 +4285,7 @@ Transform:
   - {fileID: 2031802966}
   - {fileID: 757370340}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &840974860
 GameObject:
@@ -4685,7 +4722,7 @@ Camera:
   far clip plane: 1000
   field of view: 66
   orthographic: 1
-  orthographic size: 21.85
+  orthographic size: 22
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4747,6 +4784,7 @@ MonoBehaviour:
   currentState: 0
   lightGO: {fileID: 356048208}
   timeToChange: 10
+  yellowTime: 3
 --- !u!4 &969776216
 Transform:
   m_ObjectHideFlags: 0
@@ -4913,7 +4951,7 @@ Transform:
   - {fileID: 471230338}
   - {fileID: 2135484607}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1072420163
 GameObject:
@@ -5279,7 +5317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 33.815002, y: 25.802002, z: 39.316}
 --- !u!1 &1167815319
 GameObject:
@@ -5345,7 +5383,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1200142584
 PrefabInstance:
@@ -5877,7 +5915,7 @@ Transform:
   - {fileID: 5540090604108438522}
   - {fileID: 1560766038}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1353660517
 GameObject:
@@ -6419,7 +6457,7 @@ Transform:
   - {fileID: 938031696}
   - {fileID: 2108700735}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1554148963
 PrefabInstance:
@@ -6514,7 +6552,7 @@ PrefabInstance:
       objectReference: {fileID: 75475943}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_StoppingDistance
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_AutoBraking
@@ -6523,6 +6561,10 @@ PrefabInstance:
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_Radius
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 260062722518289425, guid: 35750ef2524ec1c4db7f4629ede48dbb,
         type: 3}
@@ -6872,7 +6914,7 @@ PrefabInstance:
       objectReference: {fileID: 75475943}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_StoppingDistance
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_AutoBraking
@@ -6881,6 +6923,10 @@ PrefabInstance:
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_Radius
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 260062722518289425, guid: 35750ef2524ec1c4db7f4629ede48dbb,
         type: 3}
@@ -7290,7 +7336,7 @@ Transform:
   - {fileID: 350241893}
   - {fileID: 191721021}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1001 &1839067294
 PrefabInstance:
@@ -7385,7 +7431,7 @@ PrefabInstance:
       objectReference: {fileID: 75475943}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_StoppingDistance
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_AutoBraking
@@ -7394,6 +7440,10 @@ PrefabInstance:
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_Radius
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 260062722518289425, guid: 35750ef2524ec1c4db7f4629ede48dbb,
         type: 3}
@@ -7864,7 +7914,7 @@ RectTransform:
   m_Children:
   - {fileID: 987906746}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8119,7 +8169,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2016650063
 GameObject:
@@ -8276,6 +8326,7 @@ MonoBehaviour:
   currentState: 1
   lightGO: {fileID: 226525208}
   timeToChange: 10
+  yellowTime: 3
 --- !u!4 &2026807488
 Transform:
   m_ObjectHideFlags: 0
@@ -8385,7 +8436,7 @@ PrefabInstance:
       objectReference: {fileID: 75475943}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_StoppingDistance
-      value: 0.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_AutoBraking
@@ -8394,6 +8445,10 @@ PrefabInstance:
     - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
       propertyPath: m_Radius
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035383714, guid: 35750ef2524ec1c4db7f4629ede48dbb, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 260062722518289425, guid: 35750ef2524ec1c4db7f4629ede48dbb,
         type: 3}
@@ -8793,6 +8848,7 @@ MonoBehaviour:
   currentState: 1
   lightGO: {fileID: 1981369527}
   timeToChange: 10
+  yellowTime: 3
 --- !u!4 &2125337748
 Transform:
   m_ObjectHideFlags: 0
@@ -12272,7 +12328,7 @@ Transform:
   - {fileID: 253772979}
   - {fileID: 1787515882}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &6549670964355357367
 MeshRenderer:

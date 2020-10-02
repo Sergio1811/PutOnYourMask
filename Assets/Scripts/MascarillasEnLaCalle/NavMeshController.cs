@@ -43,7 +43,7 @@ public class NavMeshController : MonoBehaviour
     {
         if (gameObject.activeSelf)
         {
-            if (PathComplete())
+            if (PathComplete() || Vector2.Distance(Utils.ToVector2(this.transform.position), Utils.ToVector2(agent.destination))<1)
             {
                 bool shouldBranch = false;
 
@@ -100,16 +100,20 @@ public class NavMeshController : MonoBehaviour
         agent.speed = runnerSpeed;
         agent.acceleration = runnerAcceleration;
         agent.angularSpeed = runnerAngularSpeed;
+        agent.avoidancePriority = Random.Range(1, 24);
     }
     public void IAmaWalker()
     {
         agent.speed = walkerSpeed;
         agent.acceleration = walkerAcceleration;
         agent.angularSpeed = walkerAngularSpeed;
+        agent.avoidancePriority = Random.Range(25, 50);
+
     }
 
-    public void PickRoute()
+    public void PickRoute(WayPoint l_Waypoint)
     {
+        waypoint = l_Waypoint;
         waypoint = firstWaypoint;
         transform.position = waypoint.GetPosition();
     }
@@ -149,7 +153,7 @@ public class NavMeshController : MonoBehaviour
                 }
             }
 
-            if (tMin.GetComponent<TrafficLight>().currentState == TrafficLight.trafficLightState.Green)
+            if (tMin.GetComponent<TrafficLight>().currentState == TrafficLight.trafficLightState.Green || tMin.GetComponent<TrafficLight>().currentState == TrafficLight.trafficLightState.Yellow)
             {
                 agent.isStopped = true;
             }

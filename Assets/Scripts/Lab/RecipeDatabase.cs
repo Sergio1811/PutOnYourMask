@@ -21,8 +21,7 @@ public class RecipeDatabase : MonoBehaviour
                 return recipes[i].itemToCraft;
             }
         }
-        return 0;
-        
+        return 0;        
     }
 
    void BuildRecipeDatabase()

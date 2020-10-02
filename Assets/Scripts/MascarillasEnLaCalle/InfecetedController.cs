@@ -13,7 +13,7 @@ public class InfecetedController : MonoBehaviour
     {
 
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (GetComponent<Pedestrians>().thisType == PedestriansManager.PedestrianType.Runner_Infected)
@@ -24,6 +24,7 @@ public class InfecetedController : MonoBehaviour
         {
             if(Mathf.Sin(Time.time)>0)
             {
+                print("infecting!!");
                 CheckNearbyToInfect();
                 if(!this.GetComponent<Pedestrians>().virus.activeSelf && this.GetComponent<Pedestrians>().virus!=null)
                 this.GetComponent<Pedestrians>().virus.SetActive(true);
@@ -56,7 +57,6 @@ public class InfecetedController : MonoBehaviour
                     //Speak 
                 }
             }*/
-
         }
         else
         {
@@ -70,6 +70,7 @@ public class InfecetedController : MonoBehaviour
     void CheckNearbyToInfect()
     {
         List<GameObject> nearbyObjectives = Utils.GetNearbyObjectivesFromTarget(gameObject.transform, PedestriansManager.instance.distanceToInfect, PedestriansManager.instance.pedestriansList);
+
         if (nearbyObjectives != null)
         {
             foreach (var item in nearbyObjectives)
@@ -77,8 +78,7 @@ public class InfecetedController : MonoBehaviour
                 if (item.GetComponent<Pedestrians>().thisType == PedestriansManager.PedestrianType.Non_Masked || item.GetComponent<Pedestrians>().thisType == PedestriansManager.PedestrianType.Runner)
                 {
                     item.GetComponent<Pedestrians>().Infection();
-                }
-               
+                }               
             }
         }
     }

@@ -16,6 +16,8 @@ public class PedestrianSpawner : MonoBehaviour
     float currentTime;
     float nextTime;
 
+    public WayPoint[] wayPointsSpawn;
+
     //convert all of this into editor staff
     void Start()
     {
@@ -39,6 +41,7 @@ public class PedestrianSpawner : MonoBehaviour
         {
             SpawnChar();
             nextTime = Random.Range(2f, 2.5f);
+            currentTime = 0;
 
         }
 
@@ -50,7 +53,7 @@ public class PedestrianSpawner : MonoBehaviour
         GameObject newGO = ObjectPooler.SharedInstance.GetPooledObject();
         if (newGO != null)
         {
-            newGO.GetComponent<NavMeshController>().PickRoute();
+            newGO.GetComponent<NavMeshController>().PickRoute(wayPointsSpawn[Random.Range(0, wayPointsSpawn.Length)]);
             SpawnType(nextCharType, newGO);
             PedestriansManager.instance.pedestriansList.Add(newGO);
             newGO.SetActive(true);

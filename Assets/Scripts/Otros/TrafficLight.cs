@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class TrafficLight : MonoBehaviour
 {
-    public enum trafficLightState { Green, Red };
+    public enum trafficLightState { Green, Red, Yellow };
 
     public trafficLightState currentState;
+    trafficLightState previousState;
 
     public Renderer lightGO;
 
     float currentTime;
 
     public float timeToChange;
+    public float yellowTime;
 
     private void Start()
     {
@@ -25,7 +27,9 @@ public class TrafficLight : MonoBehaviour
         currentTime += Time.deltaTime;
 
         if (currentTime >= timeToChange)
-            ChangeColor();
+        {
+            StartCoroutine("YellowChange");
+        }
 
     }
 
@@ -33,7 +37,7 @@ public class TrafficLight : MonoBehaviour
     {
         currentTime = 0;
 
-        if(currentState== trafficLightState.Red)
+        if (previousState== trafficLightState.Red)
         {
             currentState = trafficLightState.Green;
             lightGO.material = PedestriansManager.instance.maskOnMat;
@@ -45,5 +49,15 @@ public class TrafficLight : MonoBehaviour
             currentState = trafficLightState.Red;
             lightGO.material = PedestriansManager.instance.maskOffMat;
         }
+    }
+
+    private IEnumerator YellowChange()
+    {
+        previousState = currentState;
+        currentTime = 0;
+        currentState = trafficLightState.Yellow;
+        lightGO.material = PedestriansManager.instance.yellowTraffic;
+        yield return new WaitForSeconds(yellowTime);
+        ChangeColor();
     }
 }

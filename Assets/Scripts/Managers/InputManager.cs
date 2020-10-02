@@ -7,6 +7,15 @@ public class InputManager : MonoBehaviour
     private static InputManager instance;
 
     public Camera Camera;
+    private float targetZoom;
+    [SerializeField] private float zoomFactor = 3f;
+    [SerializeField] private float zoomLerpSpeed = 10;
+    [SerializeField] private float minCameraY;
+    [SerializeField] private float maxCameraY;
+    [SerializeField] private float minCameraX;
+    [SerializeField] private float maxCameraX;
+    [SerializeField] private float minCameraZ;
+    [SerializeField] private float maxCameraZ;
 
     #region DragAndDropParameters
     Vector3 dragAndDropScreenSpace;
@@ -40,7 +49,8 @@ public class InputManager : MonoBehaviour
 
     public static InputManager Instance
     {
-        get {
+        get
+        {
             if (instance == null)
             {
                 instance = GameObject.FindObjectOfType<InputManager>();
@@ -64,6 +74,7 @@ public class InputManager : MonoBehaviour
             Camera = Camera.main;
         }
 
+        targetZoom = Camera.orthographicSize;
         originalPos = Camera.transform.position;
 
         /*
@@ -174,7 +185,9 @@ public class InputManager : MonoBehaviour
             dragAndDropAllowed = false;
 
             if (returnToPos)
+            {
                 objectToDrag.transform.position = dragOriginalPosition;
+            }
         }
 #endif
 
@@ -220,7 +233,9 @@ public class InputManager : MonoBehaviour
 
                     dragAndDropAllowed = false;
                     if (returnToPos)
+                    {
                         objectToDrag.transform.position = dragOriginalPosition;
+                    }
 
                     break;
 
@@ -281,7 +296,7 @@ public class InputManager : MonoBehaviour
         {
             Vector2 ray = Camera.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero);
-            Transform target =null;
+            Transform target = null;
             //If something was hit, the RaycastHit2D.collider will not be null and the the object must have the "Monkey" tag and target has to be null
             if (hit.collider != null && hit.collider.tag == "Monkey" && target == null)
             {
@@ -300,7 +315,7 @@ public class InputManager : MonoBehaviour
             }
             return hit.collider.gameObject;
         }
-    
+
 
 #endif
 
@@ -330,6 +345,7 @@ public class InputManager : MonoBehaviour
 
     public void Zoom()
     {
+        /*
         if (Input.GetAxis("Mouse ScrollWheel") > 0) //Zoom in
         {
             RaycastHit hit;
@@ -364,6 +380,26 @@ public class InputManager : MonoBehaviour
             Vector3 direction = Vector3.Normalize(desiredPosition - Camera.transform.position) * (distance * Input.GetAxis("Mouse ScrollWheel"));
 
             Camera.transform.position -= direction;
+        }*/
+
+        float scrollData;
+        scrollData = Input.GetAxis("Mouse ScrollWheel");
+
+        targetZoom -= scrollData * zoomFactor;
+        targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
+        Camera.orthographicSize = Mathf.Lerp(Camera.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
+        if (scrollData > 0)
+        {
+            Camera.transform.position = Vector3.MoveTowards(Camera.transform.position, Camera.ScreenToWorldPoint(Input.mousePosition), zoomLerpSpeed * Time.deltaTime);
+        }
+        else if (scrollData < 0)
+        {
+            Camera.transform.position = Vector3.MoveTowards(Camera.transform.position, originalPos, zoomLerpSpeed * Time.deltaTime);
+        }
+
+        if (scrollData != 0)
+        {
+            Camera.transform.position = new Vector3(Mathf.Clamp(Camera.transform.position.x, minCameraX, maxCameraX), Mathf.Clamp(Camera.transform.position.y, minCameraY, maxCameraY), Mathf.Clamp(Camera.transform.position.z, minCameraZ, maxCameraZ));
         }
     }
 
@@ -387,7 +423,7 @@ public class InputManager : MonoBehaviour
             }
 
             if (pinchMultiplier < 1)
-            {
+            {/*
                 RaycastHit hit;
                 Ray ray = Camera.ScreenPointToRay(pointToZoom);
                 Vector3 desiredPosition;
@@ -408,16 +444,33 @@ public class InputManager : MonoBehaviour
                 if (Vector3.Distance(Camera.transform.position, hit.point) < 6 || Camera.transform.position.y < 1)
                 {
                     Camera.transform.position -= direction;
-                }
+                }*/
+
+                targetZoom -= pinchMultiplier * zoomFactor;
+                targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
+
+                Camera.orthographicSize = Mathf.Lerp(Camera.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
+
+                Camera.transform.position = Vector3.MoveTowards(Camera.transform.position, Camera.ScreenToWorldPoint(pointToZoom), zoomLerpSpeed * Time.deltaTime);
+
+                Camera.transform.position = new Vector3(Mathf.Clamp(Camera.transform.position.x, minCameraX, maxCameraX), Mathf.Clamp(Camera.transform.position.y, minCameraY, maxCameraY), Mathf.Clamp(Camera.transform.position.z, minCameraZ, maxCameraZ));
+
             }
             else
-            {
+            {/*
                 Vector3 desiredPosition = originalPos;
 
                 float distance = Vector3.Distance(desiredPosition, Camera.transform.position);
                 Vector3 direction = Vector3.Normalize(desiredPosition - Camera.transform.position) * (distance * pinchMultiplier);
 
-                Camera.transform.position -= direction;
+                Camera.transform.position -= direction;*/
+                targetZoom -= pinchMultiplier * zoomFactor;
+                targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
+                Camera.orthographicSize = Mathf.Lerp(Camera.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
+
+                Camera.transform.position = Vector3.MoveTowards(Camera.transform.position, originalPos, zoomLerpSpeed * Time.deltaTime);
+                Camera.transform.position = new Vector3(Mathf.Clamp(Camera.transform.position.x, minCameraX, maxCameraX), Mathf.Clamp(Camera.transform.position.y, minCameraY, maxCameraY), Mathf.Clamp(Camera.transform.position.z, minCameraZ, maxCameraZ));
+
             }
         }
         else

@@ -12,6 +12,7 @@ public class PedestriansManager : MonoBehaviour
     GameObject characterPrefab;
     [HideInInspector]public Material maskOnMat;
     [HideInInspector]public Material maskOffMat;
+    [HideInInspector]public Material yellowTraffic;
 
     public List<GameObject> pedestriansList;
     public float distanceToInfect;
@@ -44,6 +45,7 @@ public class PedestriansManager : MonoBehaviour
         characterPrefab = Resources.Load("Prefabs/Character") as GameObject;
         maskOffMat = Resources.Load("Materials/MaskOff") as Material;
         maskOnMat = Resources.Load("Materials/MaskOn") as Material;
+        yellowTraffic = Resources.Load("Materials/YellowTraffic") as Material;
     }
 
     // Update is called once per frame
