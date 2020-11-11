@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AccessControlManager : MonoBehaviour
 {
     public static AccessControlManager instance;
 
     public GameObject Termometro;
+
+    public string[] symptoms = new string[] {"Tos seca", "Dolor de pecho", "Cansancio", "Dificultad para respirar "};
+    public enum allSymptoms { DolorGarganta, Anginas, Diarrea, Conjuntivitis, Migraña, MBoce, ErupcionesCutaneas, DolorPiernas, Influencer, PerdidaVision, MolestiasCervicales, EBoy, Negacionista, Cirrosi, Celiaco, Vegano, Diabetes, TerraPlanista, NONE, RealSymptom };
+    List<allSymptoms> currentRandomCharSymptoms;
+    [Range(0.0f, 1.0f)] public float ratioSymp; //Probability to have a symptom
 
     public int currentCharTemp;//var de la temperatura del prox personaje
     public int minRandomTemp;//min temp random
@@ -16,12 +22,17 @@ public class AccessControlManager : MonoBehaviour
     public bool currentCharMask;//var de si lleva mask el current char
     [Tooltip("Probabilidad de que el personaje lleve máscara en decimal")] [Range(0, 1)] public float maskProbability;//probabilidad de que lleven mascara
 
+    public bool currentCharCanSmell;//var de si puede oler el current char
+    [Tooltip("Probabilidad de que el personaje pueda oler en decimal")] [Range(0, 1)] public float canSmellProbability;//probabilidad de que puedan oler
+
     public enum Options { Success, Fail };
     public Options result;
     public enum ButtonState { Able, Disable };
     public ButtonState currentButtonState;
 
     public Transform[] movementPoints; //Char movement points
+
+    public Text sympsText;
 
     public GameObject[] charsToCheck;//CharsPrefabs
 
@@ -36,9 +47,10 @@ public class AccessControlManager : MonoBehaviour
     }
 
     private void Start()
-    {
+    {       
         Invoke("SpawnChar", 3);
 
+        GetCurrentCharTemp();
         currentButtonState = ButtonState.Able;
 
         if (maxRandomTemp <= minRandomTemp)
@@ -69,7 +81,7 @@ public class AccessControlManager : MonoBehaviour
                 MovementCharPassed();
                 CheckDecision(true);
                 SpawnChar();
-
+                GetCurrentCharTemp();
                 //New info in PC
                 Debug.Log("Go In button, result:" + result);
             }
@@ -86,7 +98,7 @@ public class AccessControlManager : MonoBehaviour
                 MovementCharNotPassed();
                 CheckDecision(false);
                 SpawnChar();
-
+                GetCurrentCharTemp();
                 //New info in PC
                 Debug.Log("Go Out button, result:" + result);
             }
@@ -101,6 +113,27 @@ public class AccessControlManager : MonoBehaviour
     public void GetCurrentCharMask() //Get mask bool according to probability
     {
         currentCharMask = Random.value > (1 - maskProbability);
+    }
+
+    public void GetCurrentCharCanSmell()
+    {
+        currentCharCanSmell = Random.value > (1 - canSmellProbability);
+    }
+
+    public void GetCurrentCharSymptoms()
+    {
+        currentRandomCharSymptoms.Clear();
+
+        float randomValue = Random.value;
+        if (randomValue > (1 - ratioSymp))
+        {
+           string realSymptom = GetRealSymptom();
+        }
+        else
+        {
+            GetRandomSymptom();
+        }
+
     }
 
     public Options CheckDecision(bool passed) //MUY MEJORABLE, every if-else is a check, if bad decision return fail if not next
@@ -122,10 +155,19 @@ public class AccessControlManager : MonoBehaviour
         }
         else
         {
-            //NextCheck
+            CheckCanSmell(passed);
+        }
 
+        if (result== Options.Fail)
+        {
             return result;
         }
+        else
+        {
+            CheckSymptoms(passed);
+        }
+
+        return result;
     }
 
     public void SpawnChar()//Logic needed when Character spawns
@@ -222,5 +264,81 @@ public class AccessControlManager : MonoBehaviour
                 result = Options.Success;
             }
         }
+    }
+
+    public void CheckSymptoms(bool passed)
+    {
+        if (passed)
+        {
+            if (!currentRandomCharSymptoms.Contains(allSymptoms.RealSymptom))
+            {
+                result = Options.Success;
+            }
+            else
+            {
+                result = Options.Fail;
+            }
+        }
+        else
+        {
+            if (!currentRandomCharSymptoms.Contains(allSymptoms.RealSymptom))
+            {
+                result = Options.Fail;
+            }
+            else
+            {
+                result = Options.Success;
+            }
+        }
+    }
+
+    public void CheckCanSmell(bool passed)
+    {
+        if (passed)
+        {
+            if (currentCharCanSmell)
+            {
+                result = Options.Success;
+            }
+            else
+            {
+                result = Options.Fail;
+            }
+        }
+        else
+        {
+            if (currentCharCanSmell)
+            {
+                result = Options.Fail;
+            }
+            else
+            {
+                result = Options.Success;
+            }
+        }
+        
+    }
+
+    public void GetRandomSymptom()
+    {
+        System.Random rnd = new System.Random();
+
+        currentRandomCharSymptoms.Add((allSymptoms)rnd.Next(System.Enum.GetNames(typeof(allSymptoms)).Length));
+
+        while (currentRandomCharSymptoms.Contains(allSymptoms.RealSymptom))
+        {
+            currentRandomCharSymptoms.Clear();
+
+            rnd = new System.Random();
+
+            currentRandomCharSymptoms.Add((allSymptoms)rnd.Next(System.Enum.GetNames(typeof(allSymptoms)).Length));
+        }
+    }
+
+    public string GetRealSymptom()
+    {
+        currentRandomCharSymptoms.Add(allSymptoms.RealSymptom);
+
+        return symptoms[Random.Range(0, symptoms.Length)];
     }
 }

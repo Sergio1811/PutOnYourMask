@@ -1449,6 +1449,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 0}
+  zoomFactor: 3
+  zoomLerpSpeed: 10
+  minCameraY: 0
+  maxCameraY: 0
+  minCameraX: 0
+  maxCameraX: 0
+  minCameraZ: 0
+  maxCameraZ: 0
   minZoom: 15
   maxZoom: 60
   minSwipeLength: 100
@@ -2211,6 +2219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670c11e56a1efb34e862fcb441352341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   timeUI: {fileID: 971701329}
   timeToWait: 10
   imageItemWanted: {fileID: 243660798}
@@ -3011,6 +3020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670c11e56a1efb34e862fcb441352341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   timeUI: {fileID: 459345334}
   timeToWait: 10
   imageItemWanted: {fileID: 114761247}

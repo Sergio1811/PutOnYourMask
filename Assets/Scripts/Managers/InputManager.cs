@@ -140,7 +140,7 @@ public class InputManager : MonoBehaviour
         }
 
 #if UNITY_STANDALONE || UNITY_EDITOR
-        Zoom();
+        /*Zoom();*/
 #endif
 
 #if UNITY_ANDROID
