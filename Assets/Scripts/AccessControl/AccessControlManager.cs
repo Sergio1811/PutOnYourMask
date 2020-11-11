@@ -32,9 +32,13 @@ public class AccessControlManager : MonoBehaviour
 
     public Transform[] movementPoints; //Char movement points
 
+    int currentWaypoint = 0;
+
     public Text sympsText;
 
-    public GameObject[] charsToCheck;//CharsPrefabs
+    public GameObject[] charsToCheck; //CharsPrefabs
+
+    GameObject currentChar;
 
     public float buttonsCooldown;
 
@@ -47,8 +51,8 @@ public class AccessControlManager : MonoBehaviour
     }
 
     private void Start()
-    {       
-        Invoke("SpawnChar", 3);
+    {
+        SpawnChar();
 
         GetCurrentCharTemp();
         currentButtonState = ButtonState.Able;
@@ -62,6 +66,15 @@ public class AccessControlManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            GoInButton();
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            GoOutButton();
+        }
+
         if (InputManager.Instance.WhatAmIClicking() != null) //if click on any button
         {
             GoInButton();
@@ -75,16 +88,16 @@ public class AccessControlManager : MonoBehaviour
     {
         if (currentButtonState == ButtonState.Able)//maybe on updsate
         {
-            if (InputManager.Instance.WhatAmIClicking().CompareTag("Go In"))
-            {
+            //if (InputManager.Instance.WhatAmIClicking().CompareTag("Go In"))
+           // {
+                StartCoroutine("MoveNextPoint");
                 StartCoroutine("ButtonCooldown");
-                MovementCharPassed();
                 CheckDecision(true);
                 SpawnChar();
                 GetCurrentCharTemp();
                 //New info in PC
                 Debug.Log("Go In button, result:" + result);
-            }
+           // }
         }
     }
 
@@ -92,16 +105,16 @@ public class AccessControlManager : MonoBehaviour
     {
         if (currentButtonState == ButtonState.Able)
         {
-            if (InputManager.Instance.WhatAmIClicking().CompareTag("Go Out"))
-            {
+            //if (InputManager.Instance.WhatAmIClicking().CompareTag("Go Out"))
+           // {
+                StartCoroutine("MoveBackPoint");
                 StartCoroutine("ButtonCooldown");
-                MovementCharNotPassed();
                 CheckDecision(false);
                 SpawnChar();
                 GetCurrentCharTemp();
                 //New info in PC
                 Debug.Log("Go Out button, result:" + result);
-            }
+           // }
         }
     }
 
@@ -177,7 +190,10 @@ public class AccessControlManager : MonoBehaviour
             int tempRnd = Random.Range(0, charsToCheck.Length - 1);
             GetCurrentCharTemp();
             GetCurrentCharMask();
-            Instantiate(charsToCheck[tempRnd], movementPoints[0].position, charsToCheck[tempRnd].transform.rotation);
+            currentChar = Instantiate(charsToCheck[tempRnd], movementPoints[0].position, charsToCheck[tempRnd].transform.rotation);
+            currentWaypoint = 0;
+
+            StartCoroutine("MoveNextPoint");
         }
     }
 
@@ -206,12 +222,12 @@ public class AccessControlManager : MonoBehaviour
 
     public void MovementCharPassed()//Move char forward
     {
-        //Movement
+        StartCoroutine("MoveNextPoint");
     }
 
     public void MovementCharNotPassed()//Move char back
     {
-        //Movement
+        StartCoroutine("MoveBackPoint");
     }
 
     public void CheckTemperature(bool passed)//Check if temperature was on threshold and give result according on player input
@@ -341,4 +357,53 @@ public class AccessControlManager : MonoBehaviour
 
         return symptoms[Random.Range(0, symptoms.Length)];
     }
+
+    public IEnumerator MoveNextPoint()
+    {
+        GameObject localCurrentChar = currentChar;
+
+        currentWaypoint++;
+
+        if (currentWaypoint>=movementPoints.Length)
+        {
+            currentWaypoint = 0;
+        }
+
+        while (Vector3.Distance(localCurrentChar.transform.position, movementPoints[currentWaypoint].position)>0.1f)
+        {
+            currentChar.transform.position = Vector3.MoveTowards(currentChar.transform.position, movementPoints[currentWaypoint].position, 0.5f * Time.deltaTime);
+        }
+
+        if (Vector3.Distance(localCurrentChar.transform.position, movementPoints[2].position) < 0.2f)
+        {
+            Destroy(localCurrentChar);
+        }
+
+        yield return null;
+    }
+    public IEnumerator MoveBackPoint()
+    {
+        currentWaypoint--;
+
+        if (currentWaypoint < 0)
+        {
+            currentWaypoint = 0;
+        }
+
+        while (Vector3.Distance(currentChar.transform.position, movementPoints[currentWaypoint].position) > 0.1f)
+        {
+            currentChar.transform.position = Vector3.MoveTowards(currentChar.transform.position, movementPoints[currentWaypoint].position, 0.5f * Time.deltaTime);
+        }
+
+        GameObject localCurrentChar = currentChar;
+
+        if (Vector3.Distance(localCurrentChar.transform.position, movementPoints[0].position) < 0.2f)
+        {
+            Destroy(localCurrentChar);
+        }
+
+        yield return null;
+    }
+
+
 }
