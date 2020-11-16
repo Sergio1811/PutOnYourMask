@@ -27,7 +27,7 @@ public class TermometroController : MonoBehaviour
 
     public void AssignToText(int temp)
     {
-        temperatureText.text = "Temp: " + temp + "ºC";
+        temperatureText.text =  temp + "ºC";
     }
 
     public void ThermometreInHead()
@@ -37,6 +37,7 @@ public class TermometroController : MonoBehaviour
         {
             if (hit.collider.CompareTag("CharsHead"))//Detect therm in char head
             {
+                print("chars");
                 if (!measured)//If not finished add time and slider
                 {
                     currentTimeMeasuring += Time.deltaTime;
@@ -57,5 +58,10 @@ public class TermometroController : MonoBehaviour
                 measured = false;
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position, Vector3.forward);
     }
 }

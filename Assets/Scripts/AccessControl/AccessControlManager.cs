@@ -8,25 +8,29 @@ public class AccessControlManager : MonoBehaviour
     public static AccessControlManager instance;
 
     public GameObject Termometro;
+    public GameObject Palanca;
+    public GameObject Buttons;
 
-    public string[] symptoms = new string[] {"Tos seca", "Dolor de pecho", "Cansancio", "Dificultad para respirar "};
+    public GameObject _2DMaskPrefab;
+
+    public Canvas myCanvas;
+
+    public string[] symptoms = new string[] { "Tos seca", "Dolor de pecho", "Cansancio", "Dificultad para respirar " };
     public enum allSymptoms { DolorGarganta, Anginas, Diarrea, Conjuntivitis, Migraña, MBoce, ErupcionesCutaneas, DolorPiernas, Influencer, PerdidaVision, MolestiasCervicales, EBoy, Negacionista, Cirrosi, Celiaco, Vegano, Diabetes, TerraPlanista, NONE, RealSymptom };
     List<allSymptoms> currentRandomCharSymptoms;
-    [Range(0.0f, 1.0f)] public float ratioSymp; //Probability to have a symptom
+    [Range(0.0f, 1.0f)] public float ratioNoSymp; //Probability to have a symptom
 
-    public int currentCharTemp;//var de la temperatura del prox personaje
+    [HideInInspector] public int currentCharTemp;//var de la temperatura del prox personaje
     public int minRandomTemp;//min temp random
     public int maxRandomTemp;//max temp tandom
     [Tooltip("Temperatura a partir de la que no pasa")] public int tempToFail;
 
-    public bool currentCharMask;//var de si lleva mask el current char
+    [HideInInspector] public bool currentCharMask;//var de si lleva mask el current char
     [Tooltip("Probabilidad de que el personaje lleve máscara en decimal")] [Range(0, 1)] public float maskProbability;//probabilidad de que lleven mascara
 
-    public bool currentCharCanSmell;//var de si puede oler el current char
+    [HideInInspector] public bool currentCharCanSmell;//var de si puede oler el current char
     [Tooltip("Probabilidad de que el personaje pueda oler en decimal")] [Range(0, 1)] public float canSmellProbability;//probabilidad de que puedan oler
 
-    public enum Options { Success, Fail };
-    public Options result;
     public enum ButtonState { Able, Disable };
     public ButtonState currentButtonState;
 
@@ -39,6 +43,8 @@ public class AccessControlManager : MonoBehaviour
     public GameObject[] charsToCheck; //CharsPrefabs
 
     GameObject currentChar;
+
+    bool currentCharCanPass = true;
 
     public float buttonsCooldown;
 
@@ -70,7 +76,7 @@ public class AccessControlManager : MonoBehaviour
         {
             GoInButton();
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             GoOutButton();
         }
@@ -79,6 +85,8 @@ public class AccessControlManager : MonoBehaviour
         {
             GoInButton();
             GoOutButton();
+            PalancaOlor();
+            PickMask();
         }
 
         InputManager.Instance.DragAndDrop(Termometro, true);
@@ -88,16 +96,19 @@ public class AccessControlManager : MonoBehaviour
     {
         if (currentButtonState == ButtonState.Able)//maybe on updsate
         {
-            //if (InputManager.Instance.WhatAmIClicking().CompareTag("Go In"))
-           // {
-                StartCoroutine("MoveNextPoint");
+            if (InputManager.Instance.WhatAmIClicking().CompareTag("Go In"))
+            {
+                MoveNextPoint();
+                Buttons.GetComponent<Animation>().clip = Buttons.GetComponent<Animation>().GetClip("BotonDer");
+                Buttons.GetComponent<Animation>().Play();
                 StartCoroutine("ButtonCooldown");
+                Debug.Log("Go In button, result:");
                 CheckDecision(true);
                 SpawnChar();
                 GetCurrentCharTemp();
                 //New info in PC
-                Debug.Log("Go In button, result:" + result);
-           // }
+
+            }
         }
     }
 
@@ -105,82 +116,20 @@ public class AccessControlManager : MonoBehaviour
     {
         if (currentButtonState == ButtonState.Able)
         {
-            //if (InputManager.Instance.WhatAmIClicking().CompareTag("Go Out"))
-           // {
-                StartCoroutine("MoveBackPoint");
+            if (InputManager.Instance.WhatAmIClicking().CompareTag("Go Out"))
+            {
+                MoveBackPoint();
+                Buttons.GetComponent<Animation>().clip = Buttons.GetComponent<Animation>().GetClip("BotonIzq");
+                Buttons.GetComponent<Animation>().Play();
                 StartCoroutine("ButtonCooldown");
+                Debug.Log("Go Out button, result:");
                 CheckDecision(false);
                 SpawnChar();
                 GetCurrentCharTemp();
                 //New info in PC
-                Debug.Log("Go Out button, result:" + result);
-           // }
+
+            }
         }
-    }
-
-    public void GetCurrentCharTemp()//Get temp according threshold
-    {
-        currentCharTemp = Random.Range(minRandomTemp, maxRandomTemp);
-    }
-
-    public void GetCurrentCharMask() //Get mask bool according to probability
-    {
-        currentCharMask = Random.value > (1 - maskProbability);
-    }
-
-    public void GetCurrentCharCanSmell()
-    {
-        currentCharCanSmell = Random.value > (1 - canSmellProbability);
-    }
-
-    public void GetCurrentCharSymptoms()
-    {
-        currentRandomCharSymptoms.Clear();
-
-        float randomValue = Random.value;
-        if (randomValue > (1 - ratioSymp))
-        {
-           string realSymptom = GetRealSymptom();
-        }
-        else
-        {
-            GetRandomSymptom();
-        }
-
-    }
-
-    public Options CheckDecision(bool passed) //MUY MEJORABLE, every if-else is a check, if bad decision return fail if not next
-    {                                         //check until finish and give success or next check
-        CheckTemperature(passed);
-
-        if (result == Options.Fail)
-        {
-            return result;
-        }
-        else
-        {
-            CheckMask(passed);
-        }
-
-        if (result == Options.Fail)
-        {
-            return result;
-        }
-        else
-        {
-            CheckCanSmell(passed);
-        }
-
-        if (result== Options.Fail)
-        {
-            return result;
-        }
-        else
-        {
-            CheckSymptoms(passed);
-        }
-
-        return result;
     }
 
     public void SpawnChar()//Logic needed when Character spawns
@@ -189,150 +138,70 @@ public class AccessControlManager : MonoBehaviour
         {
             int tempRnd = Random.Range(0, charsToCheck.Length - 1);
             GetCurrentCharTemp();
-            GetCurrentCharMask();
             currentChar = Instantiate(charsToCheck[tempRnd], movementPoints[0].position, charsToCheck[tempRnd].transform.rotation);
-            currentWaypoint = 0;
+            currentChar.GetComponent<LookGameObject>().objectToLookAt = movementPoints[1].gameObject;
+            currentChar.GetComponent<CharsPPMovement>().waypoint = movementPoints[1];
+            StartCoroutine("LookPlayer");
+            GetCurrentCharMask();
+            currentCharCanPass = true;
 
-            StartCoroutine("MoveNextPoint");
         }
     }
 
-    public IEnumerator ButtonCooldown()//Coroutine interaction between able/disable buttons
+    public void CheckDecision(bool passed)
     {
-        ShowButtonsDisable();
-        yield return new WaitForSecondsRealtime(buttonsCooldown);
-        ShowButtonsAble();
-    }
-
-    public void ShowButtonsDisable()//Disbale buttons after use
-    {
-        Debug.Log("Button Disable");
-
-        currentButtonState = ButtonState.Disable;
-        //Estetica
-    }
-
-    public void ShowButtonsAble()//Activate buttons after CD
-    {
-        Debug.Log("Button Able");
-
-        currentButtonState = ButtonState.Able;
-        //Estetica
-    }
-
-    public void MovementCharPassed()//Move char forward
-    {
-        StartCoroutine("MoveNextPoint");
-    }
-
-    public void MovementCharNotPassed()//Move char back
-    {
-        StartCoroutine("MoveBackPoint");
-    }
-
-    public void CheckTemperature(bool passed)//Check if temperature was on threshold and give result according on player input
-    {
-        if (passed)
+        if (passed != currentCharCanPass)
         {
-            if (currentCharTemp >= tempToFail)
-            {
-                result = Options.Fail;
-            }
-            else
-            {
-                result = Options.Success;
-            }
+            Debug.Log("Failed");
         }
         else
         {
-            if (currentCharTemp >= tempToFail)
-            {
-                result = Options.Success;
-            }
-            else
-            {
-                result = Options.Fail;
-            }
+            Debug.Log("Success");
         }
     }
 
-    public void CheckMask(bool passed) //Check if mask was on the char and give result according on player input
+    public void GetCurrentCharTemp()//Get temp according threshold
     {
-        if (passed)
+        currentCharTemp = Random.Range(minRandomTemp, maxRandomTemp);
+        if (currentCharTemp >= tempToFail)
         {
-            if (currentCharMask)
-            {
-                result = Options.Success;
-            }
-            else
-            {
-                result = Options.Fail;
-            }
-        }
-        else
-        {
-            if (currentCharMask)
-            {
-                result = Options.Fail;
-            }
-            else
-            {
-                result = Options.Success;
-            }
+            currentCharCanPass = false;
         }
     }
 
-    public void CheckSymptoms(bool passed)
+    public void GetCurrentCharMask() //Get mask bool according to probability
     {
-        if (passed)
+        currentCharMask = Random.value > (1 - maskProbability);
+        if (!currentCharMask)
         {
-            if (!currentRandomCharSymptoms.Contains(allSymptoms.RealSymptom))
-            {
-                result = Options.Success;
-            }
-            else
-            {
-                result = Options.Fail;
-            }
-        }
-        else
-        {
-            if (!currentRandomCharSymptoms.Contains(allSymptoms.RealSymptom))
-            {
-                result = Options.Fail;
-            }
-            else
-            {
-                result = Options.Success;
-            }
+            currentChar.GetComponent<CharsPPMovement>().mask.SetActive(false);
+            currentCharCanPass = false;
         }
     }
 
-    public void CheckCanSmell(bool passed)
+    public void GetCurrentCharCanSmell()
     {
-        if (passed)
+        currentCharCanSmell = Random.value > (1 - canSmellProbability);
+        if (!currentCharCanSmell)
         {
-            if (currentCharCanSmell)
-            {
-                result = Options.Success;
-            }
-            else
-            {
-                result = Options.Fail;
-            }
+            currentCharCanPass = false;
+        }
+    }
+
+    public void GetCurrentCharSymptoms()
+    {
+        currentRandomCharSymptoms.Clear();
+
+        float randomValue = Random.value;
+        if (randomValue > (1 - ratioNoSymp))
+        {
+            string realSymptom = GetRealSymptom();
+            currentCharCanPass = false;
         }
         else
         {
-            if (currentCharCanSmell)
-            {
-                result = Options.Fail;
-            }
-            else
-            {
-                result = Options.Success;
-            }
+            GetRandomSymptom();
         }
-        
     }
 
     public void GetRandomSymptom()
@@ -358,52 +227,65 @@ public class AccessControlManager : MonoBehaviour
         return symptoms[Random.Range(0, symptoms.Length)];
     }
 
-    public IEnumerator MoveNextPoint()
+    public void MoveNextPoint()
     {
-        GameObject localCurrentChar = currentChar;
-
-        currentWaypoint++;
-
-        if (currentWaypoint>=movementPoints.Length)
-        {
-            currentWaypoint = 0;
-        }
-
-        while (Vector3.Distance(localCurrentChar.transform.position, movementPoints[currentWaypoint].position)>0.1f)
-        {
-            currentChar.transform.position = Vector3.MoveTowards(currentChar.transform.position, movementPoints[currentWaypoint].position, 0.5f * Time.deltaTime);
-        }
-
-        if (Vector3.Distance(localCurrentChar.transform.position, movementPoints[2].position) < 0.2f)
-        {
-            Destroy(localCurrentChar);
-        }
-
-        yield return null;
+        currentChar.GetComponent<CharsPPMovement>().waypoint = movementPoints[2];
+        currentChar.GetComponent<CharsPPMovement>().voted = true;
+        currentChar.GetComponent<LookGameObject>().objectToLookAt = movementPoints[2].gameObject;
     }
-    public IEnumerator MoveBackPoint()
+    public void MoveBackPoint()
     {
-        currentWaypoint--;
-
-        if (currentWaypoint < 0)
-        {
-            currentWaypoint = 0;
-        }
-
-        while (Vector3.Distance(currentChar.transform.position, movementPoints[currentWaypoint].position) > 0.1f)
-        {
-            currentChar.transform.position = Vector3.MoveTowards(currentChar.transform.position, movementPoints[currentWaypoint].position, 0.5f * Time.deltaTime);
-        }
-
-        GameObject localCurrentChar = currentChar;
-
-        if (Vector3.Distance(localCurrentChar.transform.position, movementPoints[0].position) < 0.2f)
-        {
-            Destroy(localCurrentChar);
-        }
-
-        yield return null;
+        currentChar.GetComponent<CharsPPMovement>().waypoint = movementPoints[0];
+        currentChar.GetComponent<CharsPPMovement>().voted = true;
+        currentChar.GetComponent<LookGameObject>().objectToLookAt = movementPoints[0].gameObject;
     }
 
+
+    public IEnumerator ButtonCooldown()//Coroutine interaction between able/disable buttons
+    {
+        ShowButtonsDisable();
+        yield return new WaitForSecondsRealtime(buttonsCooldown);
+        ShowButtonsAble();
+    }
+
+    public void ShowButtonsDisable()//Disbale buttons after use
+    {
+        Debug.Log("Button Disable");
+
+        currentButtonState = ButtonState.Disable;
+        //Estetica
+    }
+
+    public void ShowButtonsAble()//Activate buttons after CD
+    {
+        Debug.Log("Button Able");
+
+        currentButtonState = ButtonState.Able;
+        //Estetica
+    }
+
+    public IEnumerator LookPlayer()
+    {
+        yield return new WaitForSecondsRealtime(1.25f);
+        currentChar.GetComponent<LookGameObject>().objectToLookAt = gameObject;
+    }
+
+    public void PalancaOlor()
+    {
+        if (InputManager.Instance.WhatAmIClicking().CompareTag("PalancaOlor"))
+        {
+            Palanca.GetComponent<Animation>().Play();
+            //Activtae calcetin
+        }
+    }
+
+    public void PickMask()
+    {
+        if (InputManager.Instance.WhatAmIClicking().CompareTag("CajasMascarillas"))
+        {
+            Instantiate(_2DMaskPrefab, myCanvas.transform);
+            //Activtae calcetin
+        }
+    }
 
 }
