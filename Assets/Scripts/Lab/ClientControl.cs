@@ -7,6 +7,7 @@ public class ClientControl : MonoBehaviour
 {
     public Animator animator;
     public Slider timeUI;
+    public GameObject canvasClient;
 
     public float timeToWait;
     float currentTimeToZero;
@@ -14,28 +15,43 @@ public class ClientControl : MonoBehaviour
     public Image imageItemWanted;
     public Item wantedItem;
 
+    public Transform[] puntosDeEspera;
+    public Transform[] puntosDeHuida;
+
+    int point;
+
+    bool waiting = false;
+
+    public float speed;
+
     private void Start()
     {
-        NewOrder();
+        point = Random.Range(0, 1);
     }
 
     void Update()
     {
-       /* if(speed>0)
+        if (!waiting)
         {
-            animator.SetBool("Walking", true);
+            if (Vector3.Distance(this.transform.position, puntosDeEspera[point].transform.position) < 0.1f)
+            {
+                canvasClient.SetActive(true);
+                waiting = true;
+                animator.SetBool("Walking", false);
+                NewOrder();
+
+            }
+            this.transform.position = Vector3.MoveTowards(this.transform.position, puntosDeEspera[point].transform.position, speed * Time.deltaTime);
         }
         else
         {
-            animator.SetBool("Walking", false);
-        }*/
+            timeUI.value = currentTimeToZero / timeToWait;
+            currentTimeToZero -= Time.deltaTime;
 
-        timeUI.value = currentTimeToZero / timeToWait;
-        currentTimeToZero -= Time.deltaTime;
-
-        if(currentTimeToZero<=0)
-        {
-            Unhappy();
+            if (currentTimeToZero <= 0)
+            {
+                Unhappy();
+            }
         }
     }
 
@@ -69,4 +85,5 @@ public class ClientControl : MonoBehaviour
         VSFX.instance.CreateParticleSystem(VSFX.instance.happyPS, this.transform.position+Vector3.zero, false);
         NewOrder();
     }
+
 }

@@ -10,13 +10,14 @@ public class AccessControlManager : MonoBehaviour
     public GameObject Termometro;
     public GameObject Palanca;
     public GameObject Buttons;
+    public GameObject Calcetin;
 
     public GameObject _2DMaskPrefab;
 
     public Canvas myCanvas;
 
     public string[] symptoms = new string[] { "Tos seca", "Dolor de pecho", "Cansancio", "Dificultad para respirar " };
-    public enum allSymptoms { DolorGarganta, Anginas, Diarrea, Conjuntivitis, Migraña, MBoce, ErupcionesCutaneas, DolorPiernas, Influencer, PerdidaVision, MolestiasCervicales, EBoy, Negacionista, Cirrosi, Celiaco, Vegano, Diabetes, TerraPlanista, NONE, RealSymptom };
+    public enum allSymptoms { DolorGarganta, Anginas, Diarrea, Conjuntivitis, Migraña, MBoce, ErupcionesCutaneas, DolorPiernas, Influencer, PerdidaVision, MolestiasCervicales, EBoy, Negacionista, Cirrosis, Celiaco, Vegano, Diabetes, TerraPlanista, NONE, RealSymptom };
     List<allSymptoms> currentRandomCharSymptoms;
     [Range(0.0f, 1.0f)] public float ratioNoSymp; //Probability to have a symptom
 
@@ -275,7 +276,7 @@ public class AccessControlManager : MonoBehaviour
         if (InputManager.Instance.WhatAmIClicking().CompareTag("PalancaOlor"))
         {
             Palanca.GetComponent<Animation>().Play();
-            //Activtae calcetin
+            Calcetin.GetComponent<Animation>().Play();
         }
     }
 
