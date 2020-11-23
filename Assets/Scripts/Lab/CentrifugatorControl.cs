@@ -8,7 +8,7 @@ public class CentrifugatorControl : MonoBehaviour
     //change for only ids
     public int[] inCentrifugator = new int[2];
 
-    public Slider timeUI;
+    public Image timeUI;
     public Button collectButton;
     public Image itemCollectable;
 
@@ -25,17 +25,17 @@ public class CentrifugatorControl : MonoBehaviour
 
     void Update()
     {
-        if(currentTimeCentrifugating>=timeToCentrifugate)
+        if (currentTimeCentrifugating >= timeToCentrifugate)
         {
             FinishCentrifugate();
         }
 
-        if(isCentrifugating)
+        if (isCentrifugating)
         {
             currentTimeCentrifugating += Time.deltaTime;
-            timeUI.value = currentTimeCentrifugating / timeToCentrifugate;
+            timeUI.fillAmount = currentTimeCentrifugating / timeToCentrifugate;
         }
-        else 
+        else
         {
             isCentrifugating = MachineFull();
 
@@ -49,7 +49,7 @@ public class CentrifugatorControl : MonoBehaviour
         currentTimeCentrifugating = 0;
         isCentrifugating = false;
         EmptyMachine();
-        timeUI.value = 0;
+        timeUI.fillAmount = 0;
         timeUI.gameObject.SetActive(false);
         collectButton.gameObject.SetActive(true);
 
@@ -60,7 +60,9 @@ public class CentrifugatorControl : MonoBehaviour
         for (int i = 0; i < inCentrifugator.Length; i++)
         {
             if (inCentrifugator[i] == 0)
+            {
                 return false;
+            }
         }
 
         timeUI.gameObject.SetActive(true);
@@ -70,7 +72,7 @@ public class CentrifugatorControl : MonoBehaviour
     public void EmptyMachine()
     {
         for (int i = 0; i < inCentrifugator.Length; i++)
-        {           
+        {
             inCentrifugator[i] = 0;
         }
     }
@@ -91,34 +93,28 @@ public class CentrifugatorControl : MonoBehaviour
     {
         int itemIDFromRecipe = LabManager.instance.recipeDB.GetItemFromRecipe(inCentrifugator);
 
-        if (itemIDFromRecipe == 0)
-        {
-            print("no recipe avialable");
-        }
-        else
-        {
-            collectButton.gameObject.SetActive(true);
-            Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
-            itemCollectable.sprite = itemToCollect.icon;
+        collectButton.gameObject.SetActive(true);
+        Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
+        itemCollectable.sprite = itemToCollect.icon;
 
-            collectButton.onClick.AddListener(
-              delegate
-              {
-                  collectButton.gameObject.SetActive(false);
-              });
+        collectButton.onClick.AddListener(
+          delegate
+          {
+              collectButton.gameObject.SetActive(false);
+          });
 
-            collectButton.onClick.AddListener(
-                delegate
-                {
-                    LabManager.instance.AddToInventory(itemToCollect);
-                });
+        collectButton.onClick.AddListener(
+            delegate
+            {
+                LabManager.instance.AddToInventory(itemToCollect);
+            });
 
-            collectButton.onClick.AddListener(
-               delegate
-               {
-                   collectButton.onClick.RemoveAllListeners();
-               });
-        }
+        collectButton.onClick.AddListener(
+           delegate
+           {
+               collectButton.onClick.RemoveAllListeners();
+           });
+
 
     }
 }

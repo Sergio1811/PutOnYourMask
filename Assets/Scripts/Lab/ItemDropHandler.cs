@@ -36,7 +36,7 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
                 {
                     Debug.Log("InCentrifugator");
 
-                    LabManager.instance.centifugator.AddObject(LabManager.instance.itemDB.GetItem(sprite));
+                    LabManager.instance.centrifugator.AddObject(LabManager.instance.itemDB.GetItem(sprite));
                     InventoryLab.instance.DeletePosition(int.Parse(transform.parent.name));
                     Destroy(gameObject);
                 }

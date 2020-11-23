@@ -7,11 +7,9 @@ public class WarmerControl : MonoBehaviour
 {
     public int[] inWarmer = new int[1];
 
-    public Slider timeUI;
+    public Image timeUI;
     public Button collectButton;
     public Image itemCollectable;
-
-    public Sprite item;
 
     public float timeToWarmer;
     float currentTimeWarming;
@@ -20,7 +18,6 @@ public class WarmerControl : MonoBehaviour
 
     void Start()
     {
-        timeUI.gameObject.SetActive(false);
         collectButton.gameObject.SetActive(false);
     }
 
@@ -34,7 +31,7 @@ public class WarmerControl : MonoBehaviour
         if (isWarming)
         {
             currentTimeWarming += Time.deltaTime;
-            timeUI.value = currentTimeWarming / timeToWarmer;
+            timeUI.fillAmount = currentTimeWarming / timeToWarmer;
         }
         else
         {
@@ -50,7 +47,7 @@ public class WarmerControl : MonoBehaviour
         currentTimeWarming = 0;
         isWarming = false;
         inWarmer[0] = 0;
-        timeUI.value = 0;
+        timeUI.fillAmount = 0;
         timeUI.gameObject.SetActive(false);
     }
 

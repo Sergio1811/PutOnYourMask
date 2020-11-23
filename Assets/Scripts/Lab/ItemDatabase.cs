@@ -42,19 +42,19 @@ public class ItemDatabase : MonoBehaviour
     {
         items = new List<Item>()
         {
-            new Item(1, "Wheat", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Wheat")),
+            new Item(1, "Amarillo", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Amarillo")),
 
-            new Item(2, "Beer", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Beer")),
+            new Item(2, "Azul", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Azul")),
 
-            new Item(3, "Box", "combo item.", Resources.Load<Sprite>("Sprites/Lab/Items/Box")),
+            new Item(3, "Rojo", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Rojo")),
 
-            new Item(4, "Rabbit", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Rabbit")),
+            new Item(4, "Naranja", "combo item.", Resources.Load<Sprite>("Sprites/Lab/Items/Naranja")),
 
-            new Item(5, "Death", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Death")),
+            new Item(5, "Verde", "combo item.", Resources.Load<Sprite>("Sprites/Lab/Items/Verde")),
 
-            new Item(6, "Egg", "combo item.", Resources.Load<Sprite>("Sprites/Lab/Items/Egg")),
+            new Item(6, "Lila", "combo item.", Resources.Load<Sprite>("Sprites/Lab/Items/Lila")),
 
-            new Item(7, "Dinner", "combo item.", Resources.Load<Sprite>("Sprites/Lab/Items/Dinner")),
+           // new Item(7, "Negro", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/negro")),
         };
         
     }

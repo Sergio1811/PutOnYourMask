@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ClientControl : MonoBehaviour
 {
     public Animator animator;
-    public Slider timeUI;
+    public Image timeUI;
     public GameObject canvasClient;
 
     public float timeToWait;
@@ -27,6 +27,7 @@ public class ClientControl : MonoBehaviour
     private void Start()
     {
         point = Random.Range(0, 1);
+        canvasClient.SetActive(false);
     }
 
     void Update()
@@ -45,7 +46,7 @@ public class ClientControl : MonoBehaviour
         }
         else
         {
-            timeUI.value = currentTimeToZero / timeToWait;
+            timeUI.fillAmount = currentTimeToZero / timeToWait;
             currentTimeToZero -= Time.deltaTime;
 
             if (currentTimeToZero <= 0)

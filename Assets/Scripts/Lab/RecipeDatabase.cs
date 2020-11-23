@@ -28,15 +28,22 @@ public class RecipeDatabase : MonoBehaviour
     {
         recipes = new List<CraftRecipe>()
         {
-            new CraftRecipe( new int[] {1}, 2),
+            new CraftRecipe( new int[] {1,2}, 5),
+            new CraftRecipe( new int[] {2,1}, 5),
 
-            new CraftRecipe( new int[] {1,1}, 3),
+            new CraftRecipe( new int[] {2,3}, 6),
+            new CraftRecipe( new int[] {3,2}, 6),
 
-            new CraftRecipe( new int[] {1,4}, 7),
+            new CraftRecipe( new int[] {1,3}, 4),
+            new CraftRecipe( new int[] {3,1}, 4),
+            /*
+            new CraftRecipe( new int[] {1}, 7),
+            new CraftRecipe( new int[] {2}, 7),
+            new CraftRecipe( new int[] {3}, 7),
+            new CraftRecipe( new int[] {4}, 7),
+            new CraftRecipe( new int[] {5}, 7),
+            new CraftRecipe( new int[] {6}, 7),*/
 
-            new CraftRecipe( new int[] {4}, 5),
-
-            new CraftRecipe( new int[] {4,4}, 6),
         };
     }
 }
