@@ -17,6 +17,8 @@ public class PedestrianSpawner : MonoBehaviour
     float nextTime;
 
     public WayPoint[] wayPointsSpawn;
+    public AnimationClip[] animations;
+
 
     //convert all of this into editor staff
     void Start()
@@ -30,6 +32,7 @@ public class PedestrianSpawner : MonoBehaviour
 
     private void Update()
     {
+
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
             SpawnChar();
@@ -90,6 +93,8 @@ public class PedestrianSpawner : MonoBehaviour
     {
         Pedestrians localPedestrians = GO.GetComponent<Pedestrians>();
         localPedestrians.thisType = type;
+        localPedestrians.animator.SetBool("Runner", true);
+
         switch (type)
         {
             case PedestriansManager.PedestrianType.Masked:
@@ -109,11 +114,13 @@ public class PedestrianSpawner : MonoBehaviour
             case PedestriansManager.PedestrianType.Runner:
                 localPedestrians.NormalNoMask();
                 GO.GetComponent<NavMeshController>().IAmaRunner();
+                localPedestrians.animator.SetBool("Runner", true);
                 //Change IA
                 break;
             case PedestriansManager.PedestrianType.Runner_Infected:
                 localPedestrians.NormalNoMask();
                 GO.GetComponent<NavMeshController>().IAmaRunner();
+                localPedestrians.animator.SetBool("Runner", true);
                 localPedestrians.Infection();
                 //Change IA and Infect
                 break;

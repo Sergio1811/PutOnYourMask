@@ -36,6 +36,7 @@ public class NavMeshController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(waypoint.GetPosition());
         pedestriansScript = GetComponent<Pedestrians>();
+        this.gameObject.SetActive(false);
 
     }
 
@@ -115,7 +116,7 @@ public class NavMeshController : MonoBehaviour
     {
         waypoint = l_Waypoint;
         waypoint = firstWaypoint;
-        transform.position = waypoint.GetPosition();
+        transform.position = l_Waypoint.GetPosition();
     }
 
     protected bool PathComplete()

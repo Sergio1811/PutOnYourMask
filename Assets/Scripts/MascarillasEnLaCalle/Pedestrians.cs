@@ -7,10 +7,16 @@ public class Pedestrians : MonoBehaviour
     public PedestriansManager.PedestrianType thisType;
     public GameObject virus = null;
     public bool masked = false;
+    public GameObject mask;
+    public Animator animator;
+    //[HideInInspector]public AnimatorOverrideController animatorOverrideController;
 
-    void Start()
+
+    void Awake()
     {
-
+        animator = GetComponentInChildren<Animator>();
+       // animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        //animator.runtimeAnimatorController = animatorOverrideController;
     }
 
     public void Infection()
@@ -53,13 +59,13 @@ public class Pedestrians : MonoBehaviour
     public void PutMask()
     {
         masked = true;
-        transform.GetChild(0).GetComponent<Renderer>().material = PedestriansManager.instance.maskOnMat;
+        mask.SetActive(true);
         //estethic
     }
 
     public void NormalNoMask()
     {
         masked = false;
-        transform.GetChild(0).GetComponent<Renderer>().material = PedestriansManager.instance.maskOffMat;
+        mask.SetActive(false);
     }
 }
