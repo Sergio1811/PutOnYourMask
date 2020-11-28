@@ -9011,6 +9011,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerLab
       objectReference: {fileID: 0}
+    - target: {fileID: 5291626898512767905, guid: 1882363373a989f42a03fa9fdc576eea,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7c21cd5ce29a140cba4c9ae961a24b62, type: 2}
     - target: {fileID: 7878314258568072699, guid: 1882363373a989f42a03fa9fdc576eea,
         type: 3}
       propertyPath: slots.Array.data[0]
