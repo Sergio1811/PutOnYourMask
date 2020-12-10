@@ -70,7 +70,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8419209754916226033}
-  - component: {fileID: 5210283960250206183}
   - component: {fileID: 7021107495849982987}
   - component: {fileID: 2035383710}
   - component: {fileID: 2035383714}
@@ -96,22 +95,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &5210283960250206183
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260062722518289425}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 347e22fac8c6cac42880ceb6f580f053, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 347e22fac8c6cac42880ceb6f580f053, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &7021107495849982987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +112,6 @@ MonoBehaviour:
   masked: 0
   mask: {fileID: 3020677930319655477}
   animator: {fileID: 0}
-  animatorOverrideController: {fileID: 0}
 --- !u!114 &2035383710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,11 +124,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ee1f0049a103847b407a6ab31e902f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  routePoints1: []
-  routePoints2: []
-  routePoints3: []
-  routePoints4: []
+  routePoints1:
+  - {fileID: 0}
+  - {fileID: 0}
+  routePoints2:
+  - {fileID: 0}
+  - {fileID: 0}
+  routePoints3:
+  - {fileID: 0}
+  - {fileID: 0}
+  routePoints4:
+  - {fileID: 0}
+  - {fileID: 0}
   currentRoute: []
+  agent: {fileID: 0}
+  runnerSpeed: 8
+  walkerSpeed: 3.5
   waypoint: {fileID: 0}
 --- !u!195 &2035383714
 NavMeshAgent:
@@ -157,17 +150,17 @@ NavMeshAgent:
   m_GameObject: {fileID: 260062722518289425}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.66
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1 &416559710114314323
@@ -2210,7 +2203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8421057023672968317}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.983, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4818495391414852488}

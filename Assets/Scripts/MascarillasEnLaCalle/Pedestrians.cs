@@ -8,15 +8,13 @@ public class Pedestrians : MonoBehaviour
     public GameObject virus = null;
     public bool masked = false;
     public GameObject mask;
-    public Animator animator;
-    //[HideInInspector]public AnimatorOverrideController animatorOverrideController;
-
+    [HideInInspector] public Animator animator;
+    NavMeshController navController;
 
     void Awake()
     {
+        navController = GetComponent<NavMeshController>();
         animator = GetComponentInChildren<Animator>();
-       // animatorOverrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-        //animator.runtimeAnimatorController = animatorOverrideController;
     }
 
     public void Infection()
@@ -40,7 +38,8 @@ public class Pedestrians : MonoBehaviour
     {
         Debug.Log("Put your fucking mask on!");
 
-        GetComponent<Animation>().Play();
+        if(this.gameObject.activeSelf)
+        StartCoroutine("PuttingMask");
         VSFX.instance.CreateParticleSystem(VSFX.instance.convertPS, transform.position, false);
         VSFX.instance.PlayAudio(VSFX.instance.convertedSound);
 
@@ -67,5 +66,17 @@ public class Pedestrians : MonoBehaviour
     {
         masked = false;
         mask.SetActive(false);
+    }
+
+    public IEnumerator PuttingMask()
+    {
+        animator.SetTrigger("MaskOn");
+
+        float iniSpeed = navController.agent.speed;
+        navController.agent.speed = 0;
+
+        yield return new WaitForSeconds(3.5f);
+        navController.agent.speed = iniSpeed;
+
     }
 }

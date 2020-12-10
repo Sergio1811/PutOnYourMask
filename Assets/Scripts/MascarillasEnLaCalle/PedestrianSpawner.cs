@@ -43,7 +43,7 @@ public class PedestrianSpawner : MonoBehaviour
         if (currentTime >= nextTime)
         {
             SpawnChar();
-            nextTime = Random.Range(2f, 2.5f);
+            nextTime = Random.Range(0.1f, 0.2f);
             currentTime = 0;
 
         }
@@ -114,13 +114,11 @@ public class PedestrianSpawner : MonoBehaviour
             case PedestriansManager.PedestrianType.Runner:
                 localPedestrians.NormalNoMask();
                 GO.GetComponent<NavMeshController>().IAmaRunner();
-                localPedestrians.animator.SetBool("Runner", true);
                 //Change IA
                 break;
             case PedestriansManager.PedestrianType.Runner_Infected:
                 localPedestrians.NormalNoMask();
                 GO.GetComponent<NavMeshController>().IAmaRunner();
-                localPedestrians.animator.SetBool("Runner", true);
                 localPedestrians.Infection();
                 //Change IA and Infect
                 break;

@@ -11,13 +11,13 @@ public class NavMeshController : MonoBehaviour
     public Transform[] routePoints4;
     public Transform[] currentRoute;
 
-    NavMeshAgent agent;
+    [HideInInspector]public NavMeshAgent agent;
     Transform nextPos;
     NavMeshPath navMeshPath;
-    float runnerSpeed = 8;
+    public float runnerSpeed = 8;
     float runnerAcceleration = 20;
     float runnerAngularSpeed = 200;
-    float walkerSpeed = 3.5f;
+    public float walkerSpeed = 3.5f;
     float walkerAcceleration = 8;
     float walkerAngularSpeed = 120;
 
@@ -92,6 +92,11 @@ public class NavMeshController : MonoBehaviour
             {
                 CanICross();
             }
+            else
+            {
+                pedestriansScript.animator.SetFloat("Speed", agent.speed);
+
+            }
         }
 
     }
@@ -157,10 +162,13 @@ public class NavMeshController : MonoBehaviour
             if (tMin.GetComponent<TrafficLight>().currentState == TrafficLight.trafficLightState.Green || tMin.GetComponent<TrafficLight>().currentState == TrafficLight.trafficLightState.Yellow)
             {
                 agent.isStopped = true;
+                pedestriansScript.animator.SetFloat("Speed", 0);
             }
             else
             {
                 agent.isStopped = false;
+                pedestriansScript.animator.SetFloat("Speed", 0);
+
             }
         }
     }

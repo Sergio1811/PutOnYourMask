@@ -18,7 +18,7 @@ public class AccessControlManager : MonoBehaviour
 
     public string[] symptoms = new string[] { "Tos seca", "Dolor de pecho", "Cansancio", "Dificultad para respirar " };
     public enum allSymptoms { DolorGarganta, Anginas, Diarrea, Conjuntivitis, Migraña, MBoce, ErupcionesCutaneas, DolorPiernas, Influencer, PerdidaVision, MolestiasCervicales, EBoy, Negacionista, Cirrosis, Celiaco, Vegano, Diabetes, TerraPlanista, NONE, RealSymptom };
-    List<allSymptoms> currentRandomCharSymptoms;
+    List<allSymptoms> currentRandomCharSymptoms = new List<allSymptoms>();
     [Range(0.0f, 1.0f)] public float ratioNoSymp; //Probability to have a symptom
 
     [HideInInspector] public int currentCharTemp;//var de la temperatura del prox personaje
@@ -144,7 +144,10 @@ public class AccessControlManager : MonoBehaviour
             currentChar.GetComponent<CharsPPMovement>().waypoint = movementPoints[1];
             StartCoroutine("LookPlayer");
             GetCurrentCharMask();
+            GetCurrentCharSymptoms();
+            GetCurrentCharCanSmell();
             currentCharCanPass = true;
+            AccesCanvasControler.instance.ChangeName();
 
         }
     }
@@ -153,10 +156,14 @@ public class AccessControlManager : MonoBehaviour
     {
         if (passed != currentCharCanPass)
         {
+            AccesCanvasControler.instance.StartCoroutine("Cross");
+
             Debug.Log("Failed");
         }
         else
         {
+            AccesCanvasControler.instance.StartCoroutine("Tick");
+
             Debug.Log("Success");
         }
     }
@@ -191,17 +198,39 @@ public class AccessControlManager : MonoBehaviour
 
     public void GetCurrentCharSymptoms()
     {
-        currentRandomCharSymptoms.Clear();
+        List<string> tempRealSymp = new List<string>(symptoms);
 
-        float randomValue = Random.value;
-        if (randomValue > (1 - ratioNoSymp))
+        if (currentRandomCharSymptoms.Count > 0)
         {
-            string realSymptom = GetRealSymptom();
-            currentCharCanPass = false;
+            currentRandomCharSymptoms.Clear();
         }
-        else
+
+        int howManySymps = Random.Range(1, 4);
+
+        AccesCanvasControler.instance.listSymptoms.text = "";
+
+        for (int i = 0; i < howManySymps; i++)
         {
-            GetRandomSymptom();
+
+            float randomValue = Random.value;
+            if (randomValue > (1 - ratioNoSymp))
+            {
+                GetRealSymptom(tempRealSymp);
+                currentCharCanPass = false;
+            }
+            else
+            {
+                GetRandomSymptom();
+            }
+        }
+
+        foreach (var item in currentRandomCharSymptoms)
+        {
+            if (item.ToString() == "NONE")
+                break;
+            else if (item.ToString() != "RealSymptom")
+                AccesCanvasControler.instance.listSymptoms.text += "- " + item.ToString() + "\n";
+
         }
     }
 
@@ -209,23 +238,26 @@ public class AccessControlManager : MonoBehaviour
     {
         System.Random rnd = new System.Random();
 
-        currentRandomCharSymptoms.Add((allSymptoms)rnd.Next(System.Enum.GetNames(typeof(allSymptoms)).Length));
-
-        while (currentRandomCharSymptoms.Contains(allSymptoms.RealSymptom))
+        allSymptoms tempSymptom = (allSymptoms)rnd.Next(System.Enum.GetNames(typeof(allSymptoms)).Length);
+        
+        while (tempSymptom == allSymptoms.RealSymptom || currentRandomCharSymptoms.Contains(tempSymptom))
         {
-            currentRandomCharSymptoms.Clear();
-
             rnd = new System.Random();
 
-            currentRandomCharSymptoms.Add((allSymptoms)rnd.Next(System.Enum.GetNames(typeof(allSymptoms)).Length));
+            tempSymptom = (allSymptoms)rnd.Next(System.Enum.GetNames(typeof(allSymptoms)).Length);
         }
+        currentRandomCharSymptoms.Add(tempSymptom);
     }
 
-    public string GetRealSymptom()
+    public void GetRealSymptom(List<string> l_Symptoms)
     {
         currentRandomCharSymptoms.Add(allSymptoms.RealSymptom);
+        int rnd = Random.Range(0, l_Symptoms.Count);
+        string tempString = l_Symptoms[rnd];
+        l_Symptoms.RemoveAt(rnd);
 
-        return symptoms[Random.Range(0, symptoms.Length)];
+        AccesCanvasControler.instance.listSymptoms.text += "- " + tempString + "\n";
+
     }
 
     public void MoveNextPoint()
@@ -277,6 +309,10 @@ public class AccessControlManager : MonoBehaviour
         {
             Palanca.GetComponent<Animation>().Play();
             Calcetin.GetComponent<Animation>().Play();
+            if (currentCharCanSmell)
+            {
+                currentChar.GetComponent<CharsPPMovement>().SmellActivate();
+            }
         }
     }
 

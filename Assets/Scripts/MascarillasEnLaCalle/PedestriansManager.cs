@@ -42,6 +42,7 @@ public class PedestriansManager : MonoBehaviour
 
     void Start()
     {
+        pedestriansList = ObjectPooler.SharedInstance.pooledObjects;
         characterPrefab = Resources.Load("Prefabs/Character") as GameObject;
         maskOffMat = Resources.Load("Materials/MaskOff") as Material;
         maskOnMat = Resources.Load("Materials/MaskOn") as Material;

@@ -42,4 +42,9 @@ public class CharsPPMovement : MonoBehaviour
 
     }
 
+    public void SmellActivate()
+    {
+        animator.SetTrigger("Smell");
+    }
+
 }
