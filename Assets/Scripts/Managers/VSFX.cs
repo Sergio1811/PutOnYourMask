@@ -17,6 +17,7 @@ public class VSFX : MonoBehaviour
     public GameObject infectedPS;
     public GameObject happyPS;
     public GameObject unhappyPS;
+    public GameObject badSmellPS;
 
     private void Awake()
     {
