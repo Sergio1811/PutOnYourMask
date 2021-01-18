@@ -21,7 +21,7 @@ public class AccessControlManager : MonoBehaviour
     List<allSymptoms> currentRandomCharSymptoms = new List<allSymptoms>();
     [Range(0.0f, 1.0f)] public float ratioNoSymp; //Probability to have a symptom
 
-    [HideInInspector] public int currentCharTemp;//var de la temperatura del prox personaje
+   public int currentCharTemp;//var de la temperatura del prox personaje
     public int minRandomTemp;//min temp random
     public int maxRandomTemp;//max temp tandom
     [Tooltip("Temperatura a partir de la que no pasa")] public int tempToFail;
@@ -48,6 +48,8 @@ public class AccessControlManager : MonoBehaviour
     bool currentCharCanPass = true;
 
     public float buttonsCooldown;
+
+    bool maskIsOnlyProblem = false;
 
     private void Awake()
     {
@@ -103,10 +105,8 @@ public class AccessControlManager : MonoBehaviour
                 Buttons.GetComponent<Animation>().clip = Buttons.GetComponent<Animation>().GetClip("BotonDer");
                 Buttons.GetComponent<Animation>().Play();
                 StartCoroutine("ButtonCooldown");
-                Debug.Log("Go In button, result:");
                 CheckDecision(true);
                 SpawnChar();
-                GetCurrentCharTemp();
                 //New info in PC
 
             }
@@ -123,10 +123,9 @@ public class AccessControlManager : MonoBehaviour
                 Buttons.GetComponent<Animation>().clip = Buttons.GetComponent<Animation>().GetClip("BotonIzq");
                 Buttons.GetComponent<Animation>().Play();
                 StartCoroutine("ButtonCooldown");
-                Debug.Log("Go Out button, result:");
+                
                 CheckDecision(false);
                 SpawnChar();
-                GetCurrentCharTemp();
                 //New info in PC
 
             }
@@ -137,8 +136,11 @@ public class AccessControlManager : MonoBehaviour
     {
         if (charsToCheck.Length > 0 && movementPoints.Length > 0)
         {
+            currentCharCanPass = true;
+            currentCharMask = false;
             int tempRnd = Random.Range(0, charsToCheck.Length - 1);
-            GetCurrentCharTemp();
+            
+
             currentChar = Instantiate(charsToCheck[tempRnd], movementPoints[0].position, charsToCheck[tempRnd].transform.rotation);
             currentChar.GetComponent<LookGameObject>().objectToLookAt = movementPoints[1].gameObject;
             currentChar.GetComponent<CharsPPMovement>().waypoint = movementPoints[1];
@@ -146,7 +148,8 @@ public class AccessControlManager : MonoBehaviour
             GetCurrentCharMask();
             GetCurrentCharSymptoms();
             GetCurrentCharCanSmell();
-            currentCharCanPass = true;
+            GetCurrentCharTemp();
+
             AccesCanvasControler.instance.ChangeName();
 
         }
@@ -174,6 +177,9 @@ public class AccessControlManager : MonoBehaviour
         if (currentCharTemp >= tempToFail)
         {
             currentCharCanPass = false;
+            maskIsOnlyProblem = false;
+            Debug.Log("I change it to false, temp");
+
         }
     }
 
@@ -183,7 +189,15 @@ public class AccessControlManager : MonoBehaviour
         if (!currentCharMask)
         {
             currentChar.GetComponent<CharsPPMovement>().mask.SetActive(false);
-            currentCharCanPass = false;
+            if (currentCharCanPass)
+            {
+                maskIsOnlyProblem = true;
+                Debug.Log("I change it to false, mask");
+                currentCharCanPass = false;
+
+            }
+            
+
         }
     }
 
@@ -193,6 +207,9 @@ public class AccessControlManager : MonoBehaviour
         if (!currentCharCanSmell)
         {
             currentCharCanPass = false;
+            maskIsOnlyProblem = false;
+            Debug.Log("I change it to false, smell");
+
         }
     }
 
@@ -217,6 +234,9 @@ public class AccessControlManager : MonoBehaviour
             {
                 GetRealSymptom(tempRealSymp);
                 currentCharCanPass = false;
+                maskIsOnlyProblem = false;
+                Debug.Log("I change it to false, symp");
+
             }
             else
             {
@@ -283,7 +303,6 @@ public class AccessControlManager : MonoBehaviour
 
     public void ShowButtonsDisable()//Disbale buttons after use
     {
-        Debug.Log("Button Disable");
 
         currentButtonState = ButtonState.Disable;
         //Estetica
@@ -291,7 +310,6 @@ public class AccessControlManager : MonoBehaviour
 
     public void ShowButtonsAble()//Activate buttons after CD
     {
-        Debug.Log("Button Able");
 
         currentButtonState = ButtonState.Able;
         //Estetica
@@ -322,6 +340,14 @@ public class AccessControlManager : MonoBehaviour
         {
             Instantiate(_2DMaskPrefab, myCanvas.transform);
             //Activtae calcetin
+        }
+    }
+
+    public void maskOn()
+    {
+        if (maskIsOnlyProblem)
+        {
+            currentCharCanPass = true;
         }
     }
 

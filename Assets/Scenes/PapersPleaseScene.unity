@@ -310,7 +310,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -631,15 +631,15 @@ MonoBehaviour:
   - Dolor de pecho
   - Cansancio
   - 'Dificultad para respirar '
-  ratioNoSymp: 0.45
+  ratioNoSymp: 0.11
   currentCharTemp: 0
   minRandomTemp: 35
   maxRandomTemp: 40
-  tempToFail: 37
+  tempToFail: 38
   currentCharMask: 0
   maskProbability: 0.5
   currentCharCanSmell: 0
-  canSmellProbability: 0.51
+  canSmellProbability: 0.8
   currentButtonState: 0
   movementPoints:
   - {fileID: 604764925}
@@ -2242,7 +2242,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4605,7 +4605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &6168404284648744456
 BoxCollider:
   m_ObjectHideFlags: 0

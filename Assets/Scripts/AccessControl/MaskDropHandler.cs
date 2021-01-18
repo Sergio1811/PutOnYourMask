@@ -26,6 +26,7 @@ public class MaskDropHandler : MonoBehaviour
                     if (hit.collider.CompareTag("CharsHead"))
                     {
                         hit.collider.gameObject.GetComponent<CharsPPMovement>().mask.SetActive(true);
+                        AccessControlManager.instance.maskOn();
                     }
                     else
                     {

@@ -3079,6 +3079,7 @@ MonoBehaviour:
   infectedPS: {fileID: 1596797231852468, guid: 23187b48ca1029f4f932b48a4a6b31d2, type: 3}
   happyPS: {fileID: 0}
   unhappyPS: {fileID: 0}
+  badSmellPS: {fileID: 0}
 --- !u!114 &554676304
 MonoBehaviour:
   m_ObjectHideFlags: 0

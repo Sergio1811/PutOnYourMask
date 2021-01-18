@@ -42,7 +42,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Volumen
+    path: PrimerElemento
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -70,7 +70,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Mute
+    path: SegundoElemento
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -98,7 +98,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Volumen
+    path: PrimerElemento
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -126,7 +126,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Volumen
+    path: PrimerElemento
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -154,7 +154,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Mute
+    path: SegundoElemento
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -182,7 +182,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Mute
+    path: SegundoElemento
     classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -240,7 +240,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Volumen
+    path: PrimerElemento
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -268,7 +268,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: Mute
+    path: SegundoElemento
     classID: 1
     script: {fileID: 0}
   - curve:
@@ -296,7 +296,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Volumen
+    path: PrimerElemento
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -324,7 +324,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Volumen
+    path: PrimerElemento
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -352,7 +352,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: Mute
+    path: SegundoElemento
     classID: 224
     script: {fileID: 0}
   - curve:
@@ -380,7 +380,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: Mute
+    path: SegundoElemento
     classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []
