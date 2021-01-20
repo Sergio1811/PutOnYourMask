@@ -54,6 +54,18 @@ public class ItemDatabase : MonoBehaviour
 
             new Item(6, "Lila", "combo item.", Resources.Load<Sprite>("Sprites/Lab/Items/Lila")),
 
+            new Item(7, "Amarillo_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Amarillo_Burbuja")),
+
+            new Item(8, "Azul_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Azul_Burbuja")),
+
+            new Item(9, "Rojo_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Rojo_Burbuja")),
+
+            new Item(10, "Naranja_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Naranja_Burbuja")),
+
+            new Item(11, "Verde_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Verde_Burbuja")),
+
+            new Item(12, "Lila_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Lila_Burbuja")),
+
            // new Item(7, "Negro", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/negro")),
         };
         

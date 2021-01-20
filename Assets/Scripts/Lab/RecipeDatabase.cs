@@ -36,13 +36,13 @@ public class RecipeDatabase : MonoBehaviour
 
             new CraftRecipe( new int[] {1,3}, 4),
             new CraftRecipe( new int[] {3,1}, 4),
-            /*
-            new CraftRecipe( new int[] {1}, 7),
-            new CraftRecipe( new int[] {2}, 7),
-            new CraftRecipe( new int[] {3}, 7),
-            new CraftRecipe( new int[] {4}, 7),
-            new CraftRecipe( new int[] {5}, 7),
-            new CraftRecipe( new int[] {6}, 7),*/
+
+            new CraftRecipe (new int[] {1}, 7),
+            new CraftRecipe (new int[] {2}, 8),
+            new CraftRecipe (new int[] {3}, 9),
+            new CraftRecipe (new int[] {4}, 10),
+            new CraftRecipe (new int[] {5}, 11),
+            new CraftRecipe (new int[] {6}, 12)
 
         };
     }

@@ -11,7 +11,6 @@ public class LabManager : MonoBehaviour
     public GameObject substanceTwo;
     public PlayerLabMovement player;
 
-    public enum ObjectType { Beer, Wheat, Rabbit, Dead, Egg, Box, Dinner };
 
     public CentrifugatorControl centrifugator;
     public WarmerControl warmer;
