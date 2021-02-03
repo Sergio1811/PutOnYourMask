@@ -19,7 +19,6 @@ public class BuyButton : MonoBehaviour
     void Start()
     {
         defaultText = priceText.text;
-
     }
 
 

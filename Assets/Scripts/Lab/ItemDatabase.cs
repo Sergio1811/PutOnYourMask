@@ -66,7 +66,6 @@ public class ItemDatabase : MonoBehaviour
 
             new Item(12, "Lila_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Lila_Burbuja")),
 
-           // new Item(7, "Negro", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/negro")),
         };
         
     }

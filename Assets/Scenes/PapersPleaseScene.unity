@@ -557,7 +557,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 554676300}
-  - component: {fileID: 554676302}
   - component: {fileID: 554676299}
   - component: {fileID: 554676303}
   - component: {fileID: 554676301}
@@ -649,19 +648,6 @@ MonoBehaviour:
   charsToCheck:
   - {fileID: 4290204741763702040, guid: 8481fdc1607df2c4ab2ce237a65ee11d, type: 3}
   buttonsCooldown: 3
---- !u!114 &554676302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554676298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 927ceeaff736c084b83ff819639386fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioManager: {fileID: 1997655926}
 --- !u!114 &554676303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,6 +668,9 @@ MonoBehaviour:
   happyPS: {fileID: 0}
   unhappyPS: {fileID: 0}
   badSmellPS: {fileID: 1549509112934564, guid: 2add70bf3cd6d3a4b8e2b31e04dd1950, type: 3}
+  SmokePuffPS: {fileID: 0}
+  FireBunPS: {fileID: 0}
+  SmokeColumnPS: {fileID: 0}
 --- !u!1 &557804308
 GameObject:
   m_ObjectHideFlags: 0

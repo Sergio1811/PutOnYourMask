@@ -18,6 +18,11 @@ public class WarmerControl : MonoBehaviour
 
     void Start()
     {
+        if (VSFX.instance.SmokeColumnPS != null && VSFX.instance.FireBunPS != null)
+        {
+            VSFX.instance.SmokeColumnPS.GetComponent<ParticleSystem>().Stop();
+            VSFX.instance.FireBunPS.GetComponent<ParticleSystem>().Stop();
+        }
         collectButton.gameObject.SetActive(false);
     }
 
@@ -43,7 +48,13 @@ public class WarmerControl : MonoBehaviour
     public void FinishWarming()
     {
         PopUpObject();
+        if (VSFX.instance.SmokeColumnPS != null && VSFX.instance.FireBunPS != null)
+        {
+            VSFX.instance.SmokeColumnPS.GetComponent<ParticleSystem>().Stop();
+            VSFX.instance.FireBunPS.GetComponent<ParticleSystem>().Stop();
+        }
 
+        VSFX.instance.CreateParticleSystem(VSFX.instance.SmokePuffPS, this.transform.position, false);
         currentTimeWarming = 0;
         isWarming = false;
         inWarmer[0] = 0;
@@ -55,6 +66,12 @@ public class WarmerControl : MonoBehaviour
     {
         if (inWarmer[0] != 0)
         {
+            if (VSFX.instance.SmokeColumnPS != null && VSFX.instance.FireBunPS != null)
+            {
+                VSFX.instance.SmokeColumnPS.GetComponent<ParticleSystem>().Play();
+                VSFX.instance.FireBunPS.GetComponent<ParticleSystem>().Play();
+            }
+
             timeUI.gameObject.SetActive(true);
             return true;
         }

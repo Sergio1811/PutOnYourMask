@@ -17,7 +17,6 @@ public class ObjectControl : MonoBehaviour, IDragHandler, IEndDragHandler
         Vector2 pos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(myCanvas.transform as RectTransform, Input.mousePosition, myCanvas.worldCamera, out pos);
         transform.position = myCanvas.transform.TransformPoint(pos);
-
     }
 
     public void OnEndDrag(PointerEventData eventData)

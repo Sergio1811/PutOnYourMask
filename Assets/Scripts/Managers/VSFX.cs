@@ -19,6 +19,12 @@ public class VSFX : MonoBehaviour
     public GameObject unhappyPS;
     public GameObject badSmellPS;
 
+    [Header("Laboratorio")]
+    public GameObject SmokePuffPS;
+    public GameObject FireBunPS;
+    public GameObject SmokeColumnPS;
+
+
     private void Awake()
     {
         if (instance == null)

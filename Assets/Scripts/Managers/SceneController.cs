@@ -23,6 +23,7 @@ public class SceneController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //DontDestroyOnLoad(instance);
     }
 
     public void ChargeMiniGameTetris()
@@ -35,7 +36,7 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(accessGameName);
     }
 
-    public void ChargeMiniGameMasksAtstreet()
+    public void ChargeMiniGameMasksAtStreet()
     {
         SceneManager.LoadScene(masksGameName);
     }
@@ -48,5 +49,10 @@ public class SceneController : MonoBehaviour
     public void ChargeMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public int GetCurrentScene()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
     }
 }

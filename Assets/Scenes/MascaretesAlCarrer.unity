@@ -2969,7 +2969,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 554676300}
-  - component: {fileID: 554676302}
   - component: {fileID: 554676299}
   - component: {fileID: 554676301}
   - component: {fileID: 554676303}
@@ -3046,19 +3045,6 @@ MonoBehaviour:
   - {fileID: 969776214}
   - {fileID: 2125337746}
   - {fileID: 248888067}
---- !u!114 &554676302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554676298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 927ceeaff736c084b83ff819639386fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioManager: {fileID: 1997655926}
 --- !u!114 &554676303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3080,6 +3066,9 @@ MonoBehaviour:
   happyPS: {fileID: 0}
   unhappyPS: {fileID: 0}
   badSmellPS: {fileID: 0}
+  SmokePuffPS: {fileID: 0}
+  FireBunPS: {fileID: 0}
+  SmokeColumnPS: {fileID: 0}
 --- !u!114 &554676304
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class LabManager : MonoBehaviour
 
     public GameObject itemTemplate;
 
+
     #region Waypoints
     [Header("Waypoints")]
     public Transform mostradorPosition;
@@ -115,18 +116,9 @@ public class LabManager : MonoBehaviour
             GameObject Item = Instantiate(itemTemplate, go.transform);
             Item.transform.localPosition = Vector3.zero;            
             Item.GetComponent<Image>().sprite = objectToAdd.icon;
-
+            //Item.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animations/LiquidsAnimations/" + objectToAdd.title + "Anim") as RuntimeAnimatorController;
         }
     }
 
-    public void WarmerControl()
-    {
-
-    }
-
-    public void CentrifugatorControl()
-    {
-
-    }
 
 }
