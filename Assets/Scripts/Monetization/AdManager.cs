@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class AdManager : MonoBehaviour
 {
 
-    private string gameId = "3494909";  //id para poner ads en adroid o ios
+    private string gameId = "4000079";  //id para poner ads en adroid o ios
     private string myPlacementId = "rewardedVideo"; //tipo de anuncio que quieres poner
     private bool testMode = true;
 

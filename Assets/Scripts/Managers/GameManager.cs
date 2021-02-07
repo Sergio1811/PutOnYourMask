@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] minigamesButtons;
     List<Transform> placesNotUsed;
 
-    public Text virusPercentageText;
+    public TextMeshProUGUI virusPercentageText;
     public Image bckgVirusPercentage;
 
     private void Awake()
