@@ -5,6 +5,7 @@ using UnityEngine;
 public class MapMovement : MonoBehaviour
 {
     public RectTransform map;
+    public RectTransform waypoints;
     public float minX;
     public float maxX;
     bool right = false;
@@ -27,14 +28,17 @@ public class MapMovement : MonoBehaviour
             if (Mathf.Abs(distance)>0.1f)
             {
                 map.anchoredPosition3D = new Vector3(map.anchoredPosition3D.x + distance, map.anchoredPosition3D.y, map.anchoredPosition3D.z);
+                waypoints.anchoredPosition3D = new Vector3(waypoints.anchoredPosition3D.x + distance, waypoints.anchoredPosition3D.y, waypoints.anchoredPosition3D.z);
             }
             if (map.anchoredPosition3D.x > maxX)
             {
                 map.anchoredPosition3D = new Vector3(maxX, map.anchoredPosition3D.y, map.anchoredPosition3D.z);
+                waypoints.anchoredPosition3D = new Vector3(maxX, waypoints.anchoredPosition3D.y, waypoints.anchoredPosition3D.z);
             }
             else if (map.anchoredPosition3D.x < minX)
             {
                 map.anchoredPosition3D = new Vector3(minX, map.anchoredPosition3D.y, map.anchoredPosition3D.z);
+                waypoints.anchoredPosition3D = new Vector3(minX, waypoints.anchoredPosition3D.y, waypoints.anchoredPosition3D.z);
             }
         }
 
@@ -47,14 +51,17 @@ public class MapMovement : MonoBehaviour
             if (distance != 0)
             {
                 map.anchoredPosition3D = new Vector3(map.anchoredPosition3D.x + distance * forceMovement, map.anchoredPosition3D.y, map.anchoredPosition3D.z);
+                waypoints.anchoredPosition3D = new Vector3(waypoints.anchoredPosition3D.x + distance * forceMovement, waypoints.anchoredPosition3D.y, waypoints.anchoredPosition3D.z);
 
                 if (map.anchoredPosition3D.x > maxX)
                 {
                     map.anchoredPosition3D = new Vector3(maxX, map.anchoredPosition3D.y, map.anchoredPosition3D.z);
+                    waypoints.anchoredPosition3D = new Vector3(maxX, waypoints.anchoredPosition3D.y, waypoints.anchoredPosition3D.z);
                 }
                 else if (map.anchoredPosition3D.x < minX)
                 {
                     map.anchoredPosition3D = new Vector3(minX, map.anchoredPosition3D.y, map.anchoredPosition3D.z);
+                    waypoints.anchoredPosition3D = new Vector3(minX, waypoints.anchoredPosition3D.y, waypoints.anchoredPosition3D.z);
                 }
             }
 

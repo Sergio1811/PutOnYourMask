@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
+using System.Net;
 
 
 
@@ -14,7 +15,7 @@ public class AdManager : MonoBehaviour
     private bool testMode = true;
 
     int lastNumberAd;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +75,7 @@ public class AdManager : MonoBehaviour
     public IEnumerator getTime()
     {
         WWW www = new WWW("http://leatonm.net/wp-content/uploads/2017/candlepin/getdate.php");
+        
 
         yield return www;
         wdatos = www.text;
@@ -83,6 +85,8 @@ public class AdManager : MonoBehaviour
         _currentDay = PartesFecha[1];
         
     }*/
+
+   
 
 
 

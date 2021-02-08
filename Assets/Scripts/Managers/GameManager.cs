@@ -103,4 +103,10 @@ public class GameManager : MonoBehaviour
         virusPercentageText.text = virusPercentage.ToString() + "%";
         bckgVirusPercentage.fillAmount = virusPercentage / 100; 
     }
+
+    public void getTime()
+    {
+        System.DateTime time = System.DateTime.Now;
+        
+    }
 }
