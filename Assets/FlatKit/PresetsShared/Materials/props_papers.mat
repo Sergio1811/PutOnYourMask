@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SmoothPcycho03__StylSurf_Single_ExCel_Spec_Rim
+  m_Name: props_papers
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_ShaderKeywords: DR_CEL_EXTRA_ON DR_RIM_ON DR_SPECULAR_ON _CELPRIMARYMODE_SINGLE
     _FLAT_SHADOWS_ENABLED _FLAT_SPECULAR_ENABLED _UNITYSHADOWMODE_NONE
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e0c00d0943da224469f07b8ee1f12d2d, type: 3}
+        m_Texture: {fileID: 2800000, guid: eefc98bfbc4ddef4aa1dcfc07b1d81af, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -74,18 +74,18 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _FlatRimAmount: 0.5
-    - _FlatRimEdgeSmoothness: 1
+    - _FlatRimEdgeSmoothness: 0
     - _FlatRimEnabled: 1
-    - _FlatRimLightAlign: 0.094
-    - _FlatRimSize: 0.106
+    - _FlatRimLightAlign: 0.21
+    - _FlatRimSize: 0.197
     - _FlatShadowsEnabled: 1
     - _FlatSmoothness: 0.362
     - _FlatSpecularEdgeSmoothness: 1
     - _FlatSpecularEnabled: 1
-    - _FlatSpecularSize: 0.806
+    - _FlatSpecularSize: 0.541
     - _FlatSpecularSmoothness: 0.5
     - _Flatness: 1
-    - _FlatnessExtra: 1
+    - _FlatnessExtra: 0.946
     - _FlatnessSecondary: 1
     - _GlossMapScale: 1
     - _Glossiness: 0
@@ -108,9 +108,9 @@ Material:
     - _SecondaryColor: 1
     - _SecondaryColorEnabled: 1
     - _SelfShadingSize: 0.722
-    - _SelfShadingSizeExtra: 0.454
+    - _SelfShadingSizeExtra: 0.416
     - _ShadowEdgeSize: 0.434
-    - _ShadowEdgeSizeExtra: 0.198
+    - _ShadowEdgeSizeExtra: 0.324
     - _ShadowEdgeSmoothness: 0.071
     - _ShadowFalloff: 0.01
     - _SmoothnessTextureChannel: 0
@@ -130,13 +130,13 @@ Material:
     - _ColorCelShadow: {r: 0.49056602, g: 0.34478462, b: 0.4476891, a: 1}
     - _ColorDim: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
     - _ColorDimCurve: {r: 0.85, g: 0.85, b: 0.85, a: 0.85}
-    - _ColorDimExtra: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorDimExtra: {r: 1, g: 0.7249037, b: 0.051886797, a: 1}
     - _ColorDimSteps: {r: 0.29690358, g: 0.38679248, b: 0.24265754, a: 0.85}
     - _ColorGradient: {r: 0, g: 0, b: 0, a: 1}
     - _ColorSecondary: {r: 1, g: 0.55879205, b: 0, a: 1}
     - _ColorShadow: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _ColorShadows: {r: 0.5471698, g: 0.37346402, b: 0.26584196, a: 1}
     - _EmissionColor: {r: 4.9245777, g: 0, b: 0, a: 1}
-    - _FlatRimColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
-    - _FlatSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FlatRimColor: {r: 0.36912602, g: 0.677401, b: 0.990566, a: 1}
+    - _FlatSpecularColor: {r: 0.23380208, g: 0.48058802, b: 0.6981132, a: 1}
     - _UnityShadowColor: {r: 0.65, g: 0.65, b: 0.65, a: 1}
