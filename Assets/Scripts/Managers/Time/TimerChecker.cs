@@ -162,7 +162,7 @@ public class TimerChecker : MonoBehaviour
         }
     }
     /*  private IEnumerator CheckTime()
- {
+    {
      Debug.Log("==> Checking the time");
      timeLabel.text = "Checking the time";
      yield return StartCoroutine(
