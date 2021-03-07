@@ -189,6 +189,7 @@ public class InputManager : MonoBehaviour
                 objectToDrag.transform.position = dragOriginalPosition;
             }
         }
+        return null;
 #endif
 
 #if UNITY_ANDROID //same as above but in mobile
