@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TermometroController : MonoBehaviour
 {
-    public Text temperatureText;//Display text temp
+    public TextMeshProUGUI temperatureText;//Display text temp
     [Tooltip("Time the thermometer will take to measure")] public float timeToMeasure;
     float currentTimeMeasuring;//timeController
 
-    public Slider sliderTemp;//Display loading time
+    public Image imageTempCharge;//Display loading time
 
     bool measured = false;//Is Temperature measured
 
+    private void Start()
+    {
+        Restart();
+    }
     void Update()
     {
         ThermometreInHead();
@@ -41,7 +46,7 @@ public class TermometroController : MonoBehaviour
                 if (!measured)//If not finished add time and slider
                 {
                     currentTimeMeasuring += Time.deltaTime;
-                    sliderTemp.value = currentTimeMeasuring / timeToMeasure;
+                    imageTempCharge.fillAmount = currentTimeMeasuring / timeToMeasure;
 
                     if (currentTimeMeasuring >= timeToMeasure)//If finalized call function
                     {
@@ -54,7 +59,7 @@ public class TermometroController : MonoBehaviour
             {
                 //Reset thermometre
                 currentTimeMeasuring = 0;
-                sliderTemp.value = 0;
+                imageTempCharge.fillAmount = 0;
                 measured = false;
             }
         }
@@ -63,5 +68,13 @@ public class TermometroController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawRay(transform.position, Vector3.forward);
+    }
+
+    public void Restart()
+    {
+        currentTimeMeasuring = 0;
+        imageTempCharge.fillAmount = 0;
+        temperatureText.text = "----";
+        measured = false;
     }
 }
