@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LabManager : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class LabManager : MonoBehaviour
 
     public GameObject itemTemplate;
 
+    public float timeMinigame;
+    public TextMeshProUGUI timeText;
+    int currentValue = 6;
 
     #region Waypoints
     [Header("Waypoints")]
@@ -42,7 +46,8 @@ public class LabManager : MonoBehaviour
     
     void Update()
     {
-        ClickController();   
+        ClickController();
+        TimeControl();
     }
 
     public void ClickController()
@@ -69,17 +74,20 @@ public class LabManager : MonoBehaviour
 
                 case "LabSub1":
                     player.nextPoint = sub1.gameObject.transform.position;
-                    AddToInventory(itemDB.GetItem(1));
+                    if(AddToInventory(itemDB.GetItem(1)))
+                    VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
                     break;
 
                 case "LabSub2":
                     player.nextPoint = sub2.gameObject.transform.position;
-                    AddToInventory(itemDB.GetItem(2));
+                    if(AddToInventory(itemDB.GetItem(2)))
+                    VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
                     break;
 
                 case "LabSub3":
                     player.nextPoint = sub3.gameObject.transform.position;
-                    AddToInventory(itemDB.GetItem(3));
+                    if(AddToInventory(itemDB.GetItem(3)))
+                    VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
                     break;
 
                 case "Warmer":
@@ -107,7 +115,7 @@ public class LabManager : MonoBehaviour
         }
     }
 
-    public void AddToInventory(Item objectToAdd)
+    public bool AddToInventory(Item objectToAdd)
     {
         int number;
         GameObject go = InventoryLab.instance.CheckInventorySpace(out number);
@@ -117,8 +125,41 @@ public class LabManager : MonoBehaviour
             Item.transform.localPosition = Vector3.zero;            
             Item.GetComponent<Image>().sprite = objectToAdd.icon;
             //Item.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animations/LiquidsAnimations/" + objectToAdd.title + "Anim") as RuntimeAnimatorController;
+            return true;
+        }
+        return false;
+    }
+
+    public void TimeControl()
+    {
+        int currentMinutes = (int)(timeMinigame - Time.time) / 60;
+        int currentSeconds = (int)(timeMinigame - Time.time) - (currentMinutes * 60);
+
+        if (currentSeconds >= 10)
+        {
+            timeText.text = "0"+ currentMinutes + ":" + currentSeconds;
+        }
+        else
+        {
+            timeText.text = "0" + currentMinutes + ":0" + currentSeconds;
+        }
+
+        if ((Time.time / 10) >= currentValue)
+        {
+           // StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch + 0.05f));
+            currentValue++;
         }
     }
 
+    IEnumerator fadePitch(float next)
+    {
 
+        while (GameManager.instance.audioManager.pitch < next)
+        {
+            GameManager.instance.audioManager.pitch = Mathf.Lerp(GameManager.instance.audioManager.pitch, next, 0.025f);
+
+            yield return null;
+        }
+
+    }
 }

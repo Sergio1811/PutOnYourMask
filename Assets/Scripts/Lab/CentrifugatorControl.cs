@@ -14,13 +14,19 @@ public class CentrifugatorControl : MonoBehaviour
 
     public float timeToCentrifugate;
     float currentTimeCentrifugating;
+    public GameObject liquido;
+    public Rotation batidora;
 
     bool isCentrifugating = false;
-
+    [HideInInspector]
+    public bool objectInMachine;
     void Start()
     {
         timeUI.gameObject.SetActive(false);
         collectButton.gameObject.SetActive(false);
+        batidora.rotSpeed = 0;
+        liquido.SetActive(false);
+        liquido.GetComponent<Rotation>().rotSpeed = 0;
     }
 
     void Update()
@@ -38,7 +44,6 @@ public class CentrifugatorControl : MonoBehaviour
         else
         {
             isCentrifugating = MachineFull();
-
         }
     }
 
@@ -46,13 +51,15 @@ public class CentrifugatorControl : MonoBehaviour
     {
         PopUpObject();
 
+        objectInMachine = true;
+        batidora.rotSpeed = 0;
+        liquido.GetComponent<Rotation>().rotSpeed = 0;
         currentTimeCentrifugating = 0;
         isCentrifugating = false;
         EmptyMachine();
         timeUI.fillAmount = 0;
         timeUI.gameObject.SetActive(false);
         collectButton.gameObject.SetActive(true);
-
     }
 
     public bool MachineFull()
@@ -66,6 +73,10 @@ public class CentrifugatorControl : MonoBehaviour
         }
 
         timeUI.gameObject.SetActive(true);
+        batidora.rotSpeed = 120;
+        liquido.SetActive(true);
+        liquido.GetComponent<MeshRenderer>().material.color = Color.black;
+        liquido.GetComponent<Rotation>().rotSpeed = 240;
         return true;
     }
 
@@ -79,12 +90,15 @@ public class CentrifugatorControl : MonoBehaviour
 
     public void AddObject(Item objectToCentrifugate)
     {
-        for (int i = 0; i < inCentrifugator.Length; i++)
+        if (!objectInMachine)
         {
-            if (inCentrifugator[i] == 0)
+            for (int i = 0; i < inCentrifugator.Length; i++)
             {
-                inCentrifugator[i] = objectToCentrifugate.id;
-                break;
+                if (inCentrifugator[i] == 0)
+                {
+                    inCentrifugator[i] = objectToCentrifugate.id;
+                    break;
+                }
             }
         }
     }
@@ -92,29 +106,57 @@ public class CentrifugatorControl : MonoBehaviour
     public void PopUpObject()
     {
         int itemIDFromRecipe = LabManager.instance.recipeDB.GetItemFromRecipe(inCentrifugator);
+            collectButton.gameObject.SetActive(true);
 
-        collectButton.gameObject.SetActive(true);
-        Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
-        itemCollectable.sprite = itemToCollect.icon;
+        if (itemIDFromRecipe == 0)
+        {
+            //PONER EXPLOSION DE LA MAQUINA O REACCION DEL PLAYER
+            itemCollectable.sprite = Resources.Load<Sprite>("Sprites/Lab/RedCross");
 
-        collectButton.onClick.AddListener(
-          delegate
-          {
-              collectButton.gameObject.SetActive(false);
-          });
+            collectButton.onClick.AddListener(
+                delegate
+                {
+                    collectButton.gameObject.SetActive(false);
+                    objectInMachine = false;
+                });
 
-        collectButton.onClick.AddListener(
-            delegate
-            {
-                LabManager.instance.AddToInventory(itemToCollect);
-            });
+            collectButton.onClick.AddListener(
+               delegate
+               {
+                   collectButton.onClick.RemoveAllListeners();
+               });
+        }
 
-        collectButton.onClick.AddListener(
-           delegate
-           {
-               collectButton.onClick.RemoveAllListeners();
-           });
+        else
+        {
 
+            Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
+            itemCollectable.sprite = itemToCollect.icon;
 
+            //poner cambio color del liquidillo
+
+            collectButton.onClick.AddListener(
+              delegate
+              {
+                  collectButton.gameObject.SetActive(false);
+                  liquido.SetActive(false);
+                  objectInMachine = false;
+              });
+
+            collectButton.onClick.AddListener(
+                delegate
+                {
+                    if (LabManager.instance.AddToInventory(itemToCollect))
+                        VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
+                });
+
+            collectButton.onClick.AddListener(
+               delegate
+               {
+                   collectButton.onClick.RemoveAllListeners();
+               });
+        }
     }
+    
 }
+

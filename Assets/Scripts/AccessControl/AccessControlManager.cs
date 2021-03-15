@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AccessControlManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class AccessControlManager : MonoBehaviour
     List<allSymptoms> currentRandomCharSymptoms = new List<allSymptoms>();
     [Range(0.0f, 1.0f)] public float ratioNoSymp; //Probability to have a symptom
 
-   public int currentCharTemp;//var de la temperatura del prox personaje
+    public int currentCharTemp;//var de la temperatura del prox personaje
     public int minRandomTemp;//min temp random
     public int maxRandomTemp;//max temp tandom
     [Tooltip("Temperatura a partir de la que no pasa")] public int tempToFail;
@@ -51,6 +52,17 @@ public class AccessControlManager : MonoBehaviour
 
     bool maskIsOnlyProblem = false;
 
+    public GameObject panelPostit;
+
+    [Header("Stats")]
+    public int howManyFailed;
+    public int howManyPassed;
+
+    public float timeMinigame;
+    float currentTimeMinigame;
+    public TextMeshProUGUI timeText;
+    int currentValue = 6;
+
     private void Awake()
     {
         if (instance == null)
@@ -75,17 +87,10 @@ public class AccessControlManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            GoInButton();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            GoOutButton();
-        }
-
+        //Control juego
         if (InputManager.Instance.WhatAmIClicking() != null) //if click on any button
         {
+            OpenPostit();
             GoInButton();
             GoOutButton();
             PalancaOlor();
@@ -93,6 +98,16 @@ public class AccessControlManager : MonoBehaviour
         }
 
         InputManager.Instance.DragAndDrop(Termometro, true);
+
+        //Condiciones derrota y victoria
+        TimeControl();
+
+        if (howManyFailed>=3)
+        {
+            //LOSE
+        }
+
+
     }
 
     void GoInButton()//Let char Pass button logic
@@ -127,8 +142,15 @@ public class AccessControlManager : MonoBehaviour
                 CheckDecision(false);
                 SpawnChar();
                 //New info in PC
-
             }
+        }
+    }
+
+    public void OpenPostit()
+    {
+        if (InputManager.Instance.WhatAmIClicking().CompareTag("Postit"))
+        {
+            panelPostit.SetActive(true);
         }
     }
 
@@ -160,13 +182,13 @@ public class AccessControlManager : MonoBehaviour
         if (passed != currentCharCanPass)
         {
             AccesCanvasControler.instance.StartCoroutine("Cross");
-
+            howManyFailed++;
             Debug.Log("Failed");
         }
         else
         {
             AccesCanvasControler.instance.StartCoroutine("Tick");
-
+            howManyPassed++;
             Debug.Log("Success");
         }
     }
@@ -195,9 +217,7 @@ public class AccessControlManager : MonoBehaviour
                 Debug.Log("I change it to false, mask");
                 currentCharCanPass = false;
 
-            }
-            
-
+            }           
         }
     }
 
@@ -349,6 +369,37 @@ public class AccessControlManager : MonoBehaviour
         {
             currentCharCanPass = true;
         }
+    }
+
+    public void TimeControl()
+    {
+        int currentMinutes = (int)(timeMinigame - Time.time) / 60;
+        int currentSeconds = (int)(timeMinigame - Time.time) - (currentMinutes * 60);
+
+        if (currentSeconds >= 10)
+        {
+            timeText.text = "0" + currentMinutes + ":" + currentSeconds;
+        }
+        else
+        {
+            timeText.text = "0" + currentMinutes + ":0" + currentSeconds;
+        }
+
+        if ((Time.time / 10) >= currentValue)
+        {
+            // StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch + 0.05f));
+            currentValue++;
+        }
+    }
+
+    public void Lose()
+    {
+
+    }
+
+    public void Finish()
+    {
+
     }
 
 }

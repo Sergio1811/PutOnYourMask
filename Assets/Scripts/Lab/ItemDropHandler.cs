@@ -24,16 +24,22 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
             {
                 if (hit.collider.CompareTag("Warmer"))
                 {
-                    Debug.Log(sprite.name.Remove(sprite.name.Length - 1, 1));
-                    LabManager.instance.warmer.AddObject(LabManager.instance.itemDB.GetItem(sprite));
-                    InventoryLab.instance.DeletePosition(int.Parse(transform.parent.name));
-                    Destroy(gameObject);
+                    if (!LabManager.instance.warmer.objectInMachine)
+                    {
+                        Debug.Log(sprite.name.Remove(sprite.name.Length - 1, 1));
+                        LabManager.instance.warmer.AddObject(LabManager.instance.itemDB.GetItem(sprite));
+                        InventoryLab.instance.DeletePosition(int.Parse(transform.parent.name));
+                        Destroy(gameObject);
+                    }
                 }
                 else if (hit.collider.CompareTag("Centrifugator"))
                 {
-                    LabManager.instance.centrifugator.AddObject(LabManager.instance.itemDB.GetItem(sprite));
-                    InventoryLab.instance.DeletePosition(int.Parse(transform.parent.name));
-                    Destroy(gameObject);
+                    if (!LabManager.instance.centrifugator.objectInMachine)
+                    {
+                        LabManager.instance.centrifugator.AddObject(LabManager.instance.itemDB.GetItem(sprite));
+                        InventoryLab.instance.DeletePosition(int.Parse(transform.parent.name));
+                        Destroy(gameObject);
+                    }
                 }
                 else if (hit.collider.CompareTag("Bin"))
                 {

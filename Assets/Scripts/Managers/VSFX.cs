@@ -23,6 +23,7 @@ public class VSFX : MonoBehaviour
     public GameObject SmokePuffPS;
     public GameObject FireBunPS;
     public GameObject SmokeColumnPS;
+    public AudioClip[] bottleSounds;
 
 
     private void Awake()

@@ -15,7 +15,9 @@ public class WarmerControl : MonoBehaviour
     float currentTimeWarming;
 
     bool isWarming = false;
-
+    
+    [HideInInspector]
+    public bool objectInMachine;
     void Start()
     {
         if (VSFX.instance.SmokeColumnPS != null && VSFX.instance.FireBunPS != null)
@@ -48,6 +50,7 @@ public class WarmerControl : MonoBehaviour
     public void FinishWarming()
     {
         PopUpObject();
+        objectInMachine = true;
         if (VSFX.instance.SmokeColumnPS != null && VSFX.instance.FireBunPS != null)
         {
             VSFX.instance.SmokeColumnPS.GetComponent<ParticleSystem>().Stop();
@@ -92,18 +95,20 @@ public class WarmerControl : MonoBehaviour
 
     public void PopUpObject()
     {
-        collectButton.gameObject.SetActive(true);
 
+        collectButton.gameObject.SetActive(true);
         int itemIDFromRecipe = LabManager.instance.recipeDB.GetItemFromRecipe(inWarmer);
 
         if (itemIDFromRecipe == 0)
         {
+            //PONER EXPLOSION DE LA MAQUINA O REACCION DEL PLAYER
             itemCollectable.sprite = Resources.Load<Sprite>("Sprites/Lab/RedCross");
 
             collectButton.onClick.AddListener(
                 delegate
                 {
                     collectButton.gameObject.SetActive(false);
+                    objectInMachine = false;
                 });
 
             collectButton.onClick.AddListener(
@@ -122,13 +127,17 @@ public class WarmerControl : MonoBehaviour
             collectButton.onClick.AddListener(
                delegate
                {
+                    objectInMachine = false;
                    collectButton.gameObject.SetActive(false);
                });
 
             collectButton.onClick.AddListener(
                 delegate
                 {
-                    LabManager.instance.AddToInventory(itemToCollect);
+
+                    if(LabManager.instance.AddToInventory(itemToCollect))
+                    VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
+
                 });
 
             collectButton.onClick.AddListener(
