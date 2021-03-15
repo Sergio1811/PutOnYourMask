@@ -3678,7 +3678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1908284722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4804,6 +4804,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8034ed23a38c1214a992a944388b1ece, type: 2}
+    - target: {fileID: 4887959162472951151, guid: 946be5ca9146e3a41a91cc3678f66a6a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2e8891f6b33864d48aea2ab2246d0c56, type: 2}
     - target: {fileID: 5105265962154601293, guid: 946be5ca9146e3a41a91cc3678f66a6a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4859,6 +4864,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5280861097617510523, guid: 946be5ca9146e3a41a91cc3678f66a6a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2e8891f6b33864d48aea2ab2246d0c56, type: 2}
     - target: {fileID: 5321023845806736769, guid: 946be5ca9146e3a41a91cc3678f66a6a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4954,6 +4964,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.2833877
       objectReference: {fileID: 0}
+    - target: {fileID: 5916191079159481224, guid: 946be5ca9146e3a41a91cc3678f66a6a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2e8891f6b33864d48aea2ab2246d0c56, type: 2}
     - target: {fileID: 5933543527766792522, guid: 946be5ca9146e3a41a91cc3678f66a6a,
         type: 3}
       propertyPath: m_LocalPosition.x
