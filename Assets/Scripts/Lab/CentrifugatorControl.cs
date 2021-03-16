@@ -106,57 +106,40 @@ public class CentrifugatorControl : MonoBehaviour
     public void PopUpObject()
     {
         int itemIDFromRecipe = LabManager.instance.recipeDB.GetItemFromRecipe(inCentrifugator);
-            collectButton.gameObject.SetActive(true);
+        collectButton.gameObject.SetActive(true);
 
         if (itemIDFromRecipe == 0)
         {
             //PONER EXPLOSION DE LA MAQUINA O REACCION DEL PLAYER
-            itemCollectable.sprite = Resources.Load<Sprite>("Sprites/Lab/Items/Marron");
-
-            collectButton.onClick.AddListener(
-                delegate
-                {
-                    collectButton.gameObject.SetActive(false);
-                    objectInMachine = false;
-                });
-
-            collectButton.onClick.AddListener(
-               delegate
-               {
-                   collectButton.onClick.RemoveAllListeners();
-               });
         }
 
-        else
-        {
+        Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
+        itemCollectable.sprite = itemToCollect.icon;
 
-            Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
-            itemCollectable.sprite = itemToCollect.icon;
+        //poner cambio color del liquidillo
 
-            //poner cambio color del liquidillo
+        collectButton.onClick.AddListener(
+          delegate
+          {
+              collectButton.gameObject.SetActive(false);
+              liquido.SetActive(false);
+              objectInMachine = false;
+          });
 
-            collectButton.onClick.AddListener(
-              delegate
-              {
-                  collectButton.gameObject.SetActive(false);
-                  liquido.SetActive(false);
-                  objectInMachine = false;
-              });
+        collectButton.onClick.AddListener(
+            delegate
+            {
+                if (LabManager.instance.AddToInventory(itemToCollect))
+                    VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
+            });
 
-            collectButton.onClick.AddListener(
-                delegate
-                {
-                    if (LabManager.instance.AddToInventory(itemToCollect))
-                        VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
-                });
+        collectButton.onClick.AddListener(
+           delegate
+           {
+               collectButton.onClick.RemoveAllListeners();
+           });
 
-            collectButton.onClick.AddListener(
-               delegate
-               {
-                   collectButton.onClick.RemoveAllListeners();
-               });
-        }
     }
-    
+
 }
 
