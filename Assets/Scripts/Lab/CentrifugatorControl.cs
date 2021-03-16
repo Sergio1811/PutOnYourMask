@@ -111,7 +111,7 @@ public class CentrifugatorControl : MonoBehaviour
         if (itemIDFromRecipe == 0)
         {
             //PONER EXPLOSION DE LA MAQUINA O REACCION DEL PLAYER
-            itemCollectable.sprite = Resources.Load<Sprite>("Sprites/Lab/RedCross");
+            itemCollectable.sprite = Resources.Load<Sprite>("Sprites/Lab/Items/Marron");
 
             collectButton.onClick.AddListener(
                 delegate

@@ -42,6 +42,8 @@ public class ItemDatabase : MonoBehaviour
     {
         items = new List<Item>()
         {
+            new Item(0, "Error", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Marron")),
+
             new Item(1, "Amarillo", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Amarillo")),
 
             new Item(2, "Azul", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Azul")),
