@@ -10,7 +10,8 @@ public class ClientControl : MonoBehaviour
     public Animator animator;
     public Image timeUI;
     public GameObject canvasClient;
-    public Animation doorOpening;
+    //public Animation doorOpening;
+    public AnimationDoor doorOpening;
 
     public float timeToWait;
     float currentTimeToZero;
@@ -154,7 +155,8 @@ public class ClientControl : MonoBehaviour
             case States.Puerta:
                 NextObjetivo = puntoPuerta.position;
                 dondeMiro.objectToLookAt = puntoPuerta.gameObject;
-                doorOpening.Play();
+                //doorOpening.Play();
+                doorOpening.currentDoorState = AnimationDoor.doorState.OPENING;
                 break;
             case States.Inicio:
                 NextObjetivo = puntoInicio.position;

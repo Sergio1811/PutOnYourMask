@@ -54,6 +54,8 @@ public class AccessControlManager : MonoBehaviour
 
     public GameObject panelPostit;
 
+    public GameObject canvasFinal; 
+
     [Header("Stats")]
     public int howManyFailed;
     public int howManyPassed;
@@ -104,10 +106,8 @@ public class AccessControlManager : MonoBehaviour
 
         if (howManyFailed>=3)
         {
-            //LOSE
+            Finish();
         }
-
-
     }
 
     void GoInButton()//Let char Pass button logic
@@ -373,8 +373,9 @@ public class AccessControlManager : MonoBehaviour
 
     public void TimeControl()
     {
-        int currentMinutes = (int)(timeMinigame - Time.time) / 60;
-        int currentSeconds = (int)(timeMinigame - Time.time) - (currentMinutes * 60);
+        currentTimeMinigame = Time.time;
+        int currentMinutes = (int)(timeMinigame - currentTimeMinigame) / 60;
+        int currentSeconds = (int)(timeMinigame - currentTimeMinigame) - (currentMinutes * 60);
 
         if (currentSeconds >= 10)
         {
@@ -390,16 +391,18 @@ public class AccessControlManager : MonoBehaviour
             // StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch + 0.05f));
             currentValue++;
         }
+
+        if (currentTimeMinigame>120)
+        {
+            Finish();
+        }
     }
 
-    public void Lose()
-    {
-
-    }
 
     public void Finish()
     {
-
+        //calculos de puntuacion
+        canvasFinal.SetActive(true);
     }
 
 }

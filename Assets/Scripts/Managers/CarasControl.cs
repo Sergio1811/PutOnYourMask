@@ -28,10 +28,10 @@ public class CarasControl : MonoBehaviour
             case Feelings.NEUTRAL2:
                 faceMat.mainTextureOffset = new Vector2(0.517f, 0);
                 break;
-            case Feelings.SAD:
+            case Feelings.ANGRY:
                 faceMat.mainTextureOffset = new Vector2(0, 0.25f);
                 break;
-            case Feelings.SAD2:
+            case Feelings.ANGRY2:
                 faceMat.mainTextureOffset = new Vector2(0.517f, 0.25f);
                 break;
             case Feelings.GROSS:
@@ -41,11 +41,11 @@ public class CarasControl : MonoBehaviour
                 faceMat.mainTextureOffset = new Vector2(0.517f, 0.5f);
 
                 break;
-            case Feelings.ANGRY:
+            case Feelings.SAD:
                 faceMat.mainTextureOffset = new Vector2(0, 0.75f);
 
                 break;
-            case Feelings.ANGRY2:
+            case Feelings.SAD2:
                 faceMat.mainTextureOffset = new Vector2(0.517f, 0.75f);
                 break;
             default:
@@ -65,6 +65,5 @@ public class CarasControl : MonoBehaviour
         currentState = Feelings.NEUTRAL2;
         yield return new WaitForSeconds(time/3);
         StartCoroutine(face1());
-
     }
 }
