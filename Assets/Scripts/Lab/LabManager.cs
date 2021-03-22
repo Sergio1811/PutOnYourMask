@@ -24,6 +24,9 @@ public class LabManager : MonoBehaviour
     public float timeMinigame;
     public TextMeshProUGUI timeText;
     int currentValue = 6;
+    float currentTimeMinigame;
+
+    public GameObject canvasFinal;
 
     #region Waypoints
     [Header("Waypoints")]
@@ -36,6 +39,10 @@ public class LabManager : MonoBehaviour
     public Transform centrifugatorPos;
 
     #endregion
+
+    [Header("Data")]
+    public int requests;
+    public int completedRequests;
 
     private void Awake()
     {
@@ -132,8 +139,9 @@ public class LabManager : MonoBehaviour
 
     public void TimeControl()
     {
-        int currentMinutes = (int)(timeMinigame - Time.time) / 60;
-        int currentSeconds = (int)(timeMinigame - Time.time) - (currentMinutes * 60);
+        currentTimeMinigame = Time.time;
+        int currentMinutes = (int)(timeMinigame - currentTimeMinigame) / 60;
+        int currentSeconds = (int)(timeMinigame - currentTimeMinigame) - (currentMinutes * 60);
 
         if (currentSeconds >= 10)
         {
@@ -149,6 +157,10 @@ public class LabManager : MonoBehaviour
            // StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch + 0.05f));
             currentValue++;
         }
+        if (currentTimeMinigame > 120)
+        {
+            Finish();
+        }
     }
 
     IEnumerator fadePitch(float next)
@@ -161,5 +173,10 @@ public class LabManager : MonoBehaviour
             yield return null;
         }
 
+    }
+    public void Finish()
+    {
+        //calculos de puntuacion
+        canvasFinal.SetActive(true);
     }
 }

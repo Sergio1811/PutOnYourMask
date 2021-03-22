@@ -7,6 +7,7 @@ public class PedestriansManager : MonoBehaviour
 {
     public static PedestriansManager instance;
     [Tooltip("In Seconds")] public int miniGameTime;
+    float currentTimeMinigame;
     public Text secondsText;
     int currentValue=6;
     GameObject characterPrefab;
@@ -18,6 +19,14 @@ public class PedestriansManager : MonoBehaviour
     public float distanceToInfect;
 
     public GameObject[] trafficLights;
+
+    public GameObject canvasFinal;
+
+    [Header("Data")]
+    public int masked;
+    public int nonMasked;
+    public int infected;
+    public int initialInfected;
 
     public enum PedestrianType
     {
@@ -53,8 +62,9 @@ public class PedestriansManager : MonoBehaviour
     void Update()
     {
         #region TimeControl
-        int currentMinutes = (int)(miniGameTime - Time.time) / 60;
-        int currentSeconds = (int)(miniGameTime - Time.time) - (currentMinutes * 60);
+        currentTimeMinigame = Time.time;
+        int currentMinutes = (int)(miniGameTime - currentTimeMinigame) / 60;
+        int currentSeconds = (int)(miniGameTime - currentTimeMinigame) - (currentMinutes * 60);
 
         if (currentSeconds >= 10)
         {
@@ -69,6 +79,10 @@ public class PedestriansManager : MonoBehaviour
         {
             StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch+0.05f));
             currentValue++;
+        }
+        if (currentTimeMinigame > 120)
+        {
+            Finish();
         }
         #endregion
 
@@ -113,5 +127,19 @@ public class PedestriansManager : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    public void Finish()
+    {
+        //calculos de puntuacion
+        if (masked+nonMasked-(infected-initialInfected)>=0.5f)
+        {
+            //buena partida
+        }
+        else
+        {
+            //mala partida
+        }
+        canvasFinal.SetActive(true);
     }
 }

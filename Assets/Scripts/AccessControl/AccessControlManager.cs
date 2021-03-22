@@ -398,6 +398,17 @@ public class AccessControlManager : MonoBehaviour
         }
     }
 
+    IEnumerator fadePitch(float next)
+    {
+
+        while (GameManager.instance.audioManager.pitch < next)
+        {
+            GameManager.instance.audioManager.pitch = Mathf.Lerp(GameManager.instance.audioManager.pitch, next, 0.025f);
+
+            yield return null;
+        }
+
+    }
 
     public void Finish()
     {

@@ -5,7 +5,6 @@ using UnityEngine;
 public class PedestrianSpawner : MonoBehaviour
 {
 
-
     [Header("Put normal percentage, script add it for you")]
     public float maskedPercentage;
     public float nonMaskedPercentage;
@@ -18,7 +17,6 @@ public class PedestrianSpawner : MonoBehaviour
 
     public WayPoint[] wayPointsSpawn;
     public AnimationClip[] animations;
-
 
     //convert all of this into editor staff
     void Start()
