@@ -64,6 +64,25 @@ public class AdManager : MonoBehaviour
                 Debug.Log("Skipped");
                 break;
             case ShowResult.Finished:
+                if (lastNumberAd==0)
+                {
+                    GameManager.instance.coins += 500;
+                }
+                if (lastNumberAd == 1)
+                {
+                    //PONERLO BONITO
+                    LabManager.instance.canvasFinale.textCoins.text = (int.Parse(LabManager.instance.canvasFinale.coins )* 2).ToString();
+                }
+                if (lastNumberAd == 2)
+                {
+                    //PONERLO BONITO
+                    PedestriansManager.instance.canvasFinale.textCoins.text = (int.Parse(LabManager.instance.canvasFinale.coins )* 2).ToString();
+                } 
+                if (lastNumberAd == 3)
+                {
+                    //PONERLO BONITO
+                    AccessControlManager.instance.canvasFinale.textCoins.text = (int.Parse(LabManager.instance.canvasFinale.coins )* 2).ToString();
+                }
                 break;
             default:
                 break;

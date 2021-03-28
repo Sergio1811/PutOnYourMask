@@ -6,6 +6,8 @@ using TMPro;
 
 public class LabManager : MonoBehaviour
 {
+    public enum GameState { Play, Finish };
+    public GameState currentState = GameState.Play;
     public static LabManager instance;
 
     public GameObject substanceOne;
@@ -26,7 +28,10 @@ public class LabManager : MonoBehaviour
     int currentValue = 6;
     float currentTimeMinigame;
 
+    public GameObject panelChuleta;
     public GameObject canvasFinal;
+    [HideInInspector]
+    public PunctuationCanvas canvasFinale;
 
     #region Waypoints
     [Header("Waypoints")]
@@ -50,26 +55,34 @@ public class LabManager : MonoBehaviour
             instance = this;
         else Destroy(this);
     }
-    
+
+    private void Start()
+    {
+        canvasFinale = canvasFinal.GetComponent<PunctuationCanvas>();
+    }
+
     void Update()
     {
-        ClickController();
-        TimeControl();
+        if (currentState == GameState.Play)
+        {
+            ClickController();
+            TimeControl();
+        }
     }
 
     public void ClickController()
     {
         GameObject goClicked = InputManager.Instance.WhatAmIClicking();
-        if(goClicked!=null)
+        if (goClicked != null)
         {
             var pos = Vector3.zero;
             if (Input.touchCount > 0)
             {
-                 pos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                pos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
             }
             else
             {
-                 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             }
 
             switch (goClicked.tag)
@@ -81,20 +94,20 @@ public class LabManager : MonoBehaviour
 
                 case "LabSub1":
                     player.nextPoint = sub1.gameObject.transform.position;
-                    if(AddToInventory(itemDB.GetItem(1)))
-                    VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
+                    if (AddToInventory(itemDB.GetItem(1)))
+                        VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
                     break;
 
                 case "LabSub2":
                     player.nextPoint = sub2.gameObject.transform.position;
-                    if(AddToInventory(itemDB.GetItem(2)))
-                    VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
+                    if (AddToInventory(itemDB.GetItem(2)))
+                        VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
                     break;
 
                 case "LabSub3":
                     player.nextPoint = sub3.gameObject.transform.position;
-                    if(AddToInventory(itemDB.GetItem(3)))
-                    VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
+                    if (AddToInventory(itemDB.GetItem(3)))
+                        VSFX.instance.PlayAudio(VSFX.instance.bottleSounds[Random.Range(0, VSFX.instance.bottleSounds.Length)]);
                     break;
 
                 case "Warmer":
@@ -116,6 +129,10 @@ public class LabManager : MonoBehaviour
                     //
                     break;
 
+                case "Button":
+                    panelChuleta.SetActive(true);
+                    break;
+
                 default:
                     break;
             }
@@ -129,7 +146,7 @@ public class LabManager : MonoBehaviour
         if (go != null)
         {
             GameObject Item = Instantiate(itemTemplate, go.transform);
-            Item.transform.localPosition = Vector3.zero;            
+            Item.transform.localPosition = Vector3.zero;
             Item.GetComponent<Image>().sprite = objectToAdd.icon;
             //Item.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animations/LiquidsAnimations/" + objectToAdd.title + "Anim") as RuntimeAnimatorController;
             return true;
@@ -139,13 +156,13 @@ public class LabManager : MonoBehaviour
 
     public void TimeControl()
     {
-        currentTimeMinigame = Time.time;
+        currentTimeMinigame += Time.deltaTime;
         int currentMinutes = (int)(timeMinigame - currentTimeMinigame) / 60;
         int currentSeconds = (int)(timeMinigame - currentTimeMinigame) - (currentMinutes * 60);
 
         if (currentSeconds >= 10)
         {
-            timeText.text = "0"+ currentMinutes + ":" + currentSeconds;
+            timeText.text = "0" + currentMinutes + ":" + currentSeconds;
         }
         else
         {
@@ -154,10 +171,10 @@ public class LabManager : MonoBehaviour
 
         if ((Time.time / 10) >= currentValue)
         {
-           // StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch + 0.05f));
+            // StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch + 0.05f));
             currentValue++;
         }
-        if (currentTimeMinigame > 120)
+        if (currentTimeMinigame > timeMinigame)
         {
             Finish();
         }
@@ -176,7 +193,14 @@ public class LabManager : MonoBehaviour
     }
     public void Finish()
     {
+        currentState = GameState.Finish;
         //calculos de puntuacion
+
+        canvasFinale.coins = "100";
+        GameManager.instance.AddCoins(100);
+        canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
+        canvasFinale.finalPercentage = (GameManager.instance.virusPercentage - 20).ToString();
+        GameManager.instance.virusPercentage -= 20;
         canvasFinal.SetActive(true);
     }
 }

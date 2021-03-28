@@ -11,6 +11,9 @@ public class VSFX : MonoBehaviour
 
     public GameObject AudioInstance;
 
+    public AudioClip monedas;
+    public AudioClip tachar;
+
     [Header("Mascaretas al carrer")]
     public AudioClip convertedSound;
     public GameObject convertPS;

@@ -6,6 +6,8 @@ using TMPro;
 
 public class AccessControlManager : MonoBehaviour
 {
+   public enum GameState { Play, Finish };
+    public GameState currentState = GameState.Play;
     public static AccessControlManager instance;
 
     public GameObject Termometro;
@@ -54,7 +56,9 @@ public class AccessControlManager : MonoBehaviour
 
     public GameObject panelPostit;
 
-    public GameObject canvasFinal; 
+    public GameObject canvasFinal;
+    [HideInInspector]
+    public PunctuationCanvas canvasFinale;
 
     [Header("Stats")]
     public int howManyFailed;
@@ -75,6 +79,8 @@ public class AccessControlManager : MonoBehaviour
 
     private void Start()
     {
+        canvasFinale = canvasFinal.GetComponent<PunctuationCanvas>();
+
         SpawnChar();
 
         GetCurrentCharTemp();
@@ -89,24 +95,27 @@ public class AccessControlManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Control juego
-        if (InputManager.Instance.WhatAmIClicking() != null) //if click on any button
+        if (currentState == GameState.Play)
         {
-            OpenPostit();
-            GoInButton();
-            GoOutButton();
-            PalancaOlor();
-            PickMask();
-        }
+            //Control juego
+            if (InputManager.Instance.WhatAmIClicking() != null) //if click on any button
+            {
+                OpenPostit();
+                GoInButton();
+                GoOutButton();
+                PalancaOlor();
+                PickMask();
+            }
 
-        InputManager.Instance.DragAndDrop(Termometro, true);
+            InputManager.Instance.DragAndDrop(Termometro, true);
 
-        //Condiciones derrota y victoria
-        TimeControl();
+            //Condiciones derrota y victoria
+            TimeControl();
 
-        if (howManyFailed>=3)
-        {
-            Finish();
+            if (howManyFailed >= 3)
+            {
+                Finish();
+            }
         }
     }
 
@@ -373,7 +382,7 @@ public class AccessControlManager : MonoBehaviour
 
     public void TimeControl()
     {
-        currentTimeMinigame = Time.time;
+        currentTimeMinigame += Time.deltaTime;
         int currentMinutes = (int)(timeMinigame - currentTimeMinigame) / 60;
         int currentSeconds = (int)(timeMinigame - currentTimeMinigame) - (currentMinutes * 60);
 
@@ -392,7 +401,7 @@ public class AccessControlManager : MonoBehaviour
             currentValue++;
         }
 
-        if (currentTimeMinigame>120)
+        if (currentTimeMinigame>timeMinigame)
         {
             Finish();
         }
@@ -412,7 +421,15 @@ public class AccessControlManager : MonoBehaviour
 
     public void Finish()
     {
+        currentState = GameState.Finish;
         //calculos de puntuacion
+
+        canvasFinale.coins = "100";
+        GameManager.instance.AddCoins(100);
+
+        canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
+        canvasFinale.finalPercentage = (GameManager.instance.virusPercentage - 20).ToString();
+        GameManager.instance.virusPercentage -= 20;
         canvasFinal.SetActive(true);
     }
 

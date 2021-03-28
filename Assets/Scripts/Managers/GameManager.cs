@@ -10,9 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public AudioSource audioManager;
 
-    float miniGameTime = 120;
-    float currentMiniGameTime;
-
+    public int coins;
+    public TextMeshProUGUI coinsText;
     public float virusPercentage;
     int currentMiniGamesOnMenu;
     public GameObject waypointsParent;
@@ -20,8 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] minigamesButtons;
     List<Transform> placesNotUsed;
 
-    public TextMeshProUGUI virusPercentageText;
-    public Image bckgVirusPercentage;
+
 
     private void Awake()
     {
@@ -38,23 +36,38 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if(SceneController.instance.GetCurrentScene()==0)
-        InstantiateMinigames();
+        if (SceneController.instance.GetCurrentScene() == 0)
+        {
+            coinsText = GameObject.Find("CoinsText").GetComponent<TextMeshProUGUI>();
+            waypointsParent = GameObject.Find("WaypointsSpawnMinigames");
+            InstantiateMinigames();
+            AddCoins(0);
+        }
     }
 
+    private void OnLevelWasLoaded(int level)
+    {      
+        if (level == 0)
+        {
+            coinsText = GameObject.Find("CoinsText").GetComponent<TextMeshProUGUI>();
+            waypointsParent = GameObject.Find("WaypointsSpawnMinigames");
+            InstantiateMinigames();
+            AddCoins(0);
+        }
+    }
     private void Update()
     {
+        /*
         currentMiniGameTime += Time.deltaTime;
 
         if(currentMiniGameTime>= miniGameTime)
         {
             SceneController.instance.ChargeMainMenu();
-        }
+        }*/
     }
 
     public void InstantiateMinigames()
     {
-        PercentageUI();
         
         placesToMinigame = waypointsParent.GetComponentsInChildren<Transform>();
         placesNotUsed = placesToMinigame.OfType<Transform>().ToList();
@@ -98,15 +111,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PercentageUI()
-    {
-        virusPercentageText.text = virusPercentage.ToString() + "%";
-        bckgVirusPercentage.fillAmount = virusPercentage / 100; 
-    }
-
     public void getTime()
     {
         System.DateTime time = System.DateTime.Now;
         
     }
+
+    public void AddCoins(int l_Coins)
+    {
+        coins += l_Coins;
+        coinsText.text = coins.ToString();
+    }
+   
 }

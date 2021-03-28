@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PedestriansManager : MonoBehaviour
 {
+    public enum GameState { Play, Finish };
+    public GameState currentState = GameState.Play;
     public static PedestriansManager instance;
     [Tooltip("In Seconds")] public int miniGameTime;
     float currentTimeMinigame;
-    public Text secondsText;
+    public TextMeshProUGUI secondsText;
     int currentValue=6;
     GameObject characterPrefab;
     [HideInInspector]public Material maskOnMat;
@@ -21,6 +24,8 @@ public class PedestriansManager : MonoBehaviour
     public GameObject[] trafficLights;
 
     public GameObject canvasFinal;
+    [HideInInspector]
+    public PunctuationCanvas canvasFinale;
 
     [Header("Data")]
     public int masked;
@@ -51,6 +56,8 @@ public class PedestriansManager : MonoBehaviour
 
     void Start()
     {
+        canvasFinale = canvasFinal.GetComponent<PunctuationCanvas>();
+
         pedestriansList = ObjectPooler.SharedInstance.pooledObjects;
         characterPrefab = Resources.Load("Prefabs/Character") as GameObject;
         maskOffMat = Resources.Load("Materials/MaskOff") as Material;
@@ -61,8 +68,10 @@ public class PedestriansManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentState== GameState.Play)
+        {
         #region TimeControl
-        currentTimeMinigame = Time.time;
+        currentTimeMinigame += Time.deltaTime;
         int currentMinutes = (int)(miniGameTime - currentTimeMinigame) / 60;
         int currentSeconds = (int)(miniGameTime - currentTimeMinigame) - (currentMinutes * 60);
 
@@ -77,10 +86,10 @@ public class PedestriansManager : MonoBehaviour
 
         if((Time.time/10)>=currentValue)
         {
-            StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch+0.05f));
-            currentValue++;
+           /* StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch+0.05f));
+            currentValue++;*/
         }
-        if (currentTimeMinigame > 120)
+        if (currentTimeMinigame > miniGameTime)
         {
             Finish();
         }
@@ -115,6 +124,7 @@ public class PedestriansManager : MonoBehaviour
             }
         }
         #endregion
+        }
     }
 
     IEnumerator fadePitch(float next)
@@ -140,6 +150,15 @@ public class PedestriansManager : MonoBehaviour
         {
             //mala partida
         }
+        currentState = GameState.Finish;
+        //calculos de puntuacion
+
+        canvasFinale.coins = "100";
+        GameManager.instance.AddCoins(100);
+
+        canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
+        canvasFinale.finalPercentage = (GameManager.instance.virusPercentage - 20).ToString();
+        GameManager.instance.virusPercentage -= 20;
         canvasFinal.SetActive(true);
     }
 }

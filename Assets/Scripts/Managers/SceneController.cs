@@ -49,6 +49,7 @@ public class SceneController : MonoBehaviour
     public void ChargeMainMenu()
     {
         SceneManager.LoadScene(0);
+
     }
 
     public int GetCurrentScene()
