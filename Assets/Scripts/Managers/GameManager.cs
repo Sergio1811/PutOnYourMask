@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,13 +20,23 @@ public class GameManager : MonoBehaviour
     public GameObject[] minigamesButtons;
     List<Transform> placesNotUsed;
 
+    public GameObject[] noticias;
+    GameObject panelNoticias;
 
+    public PercentageVirusControl vsControl;
+
+    [Tooltip("Porcentaje en decimal de la probabilidad")]
+    [Range(0,1)]public float newProbability;
 
     private void Awake()
     {
+       
+
         if (instance==null)
         {
             instance = this;
+            SceneManager.sceneLoaded += LoadLevel0;
+
         }
         else
         {
@@ -34,27 +45,33 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(instance);
     }
 
-    private void Start()
+    
+    private void LoadLevel0(Scene scene, LoadSceneMode mode)
     {
-        if (SceneController.instance.GetCurrentScene() == 0)
+        if (scene.buildIndex == 0)
         {
-            coinsText = GameObject.Find("CoinsText").GetComponent<TextMeshProUGUI>();
+            vsControl = GameObject.Find("ScriptHolder").GetComponent<PercentageVirusControl>();
+            coinsText = GameObject.FindGameObjectWithTag("CoinText").GetComponent<TextMeshProUGUI>();
             waypointsParent = GameObject.Find("WaypointsSpawnMinigames");
-            InstantiateMinigames();
+            panelNoticias = GameObject.Find("PanelNoticias");
+            panelNoticias.SetActive(false);
+
+            
             AddCoins(0);
+
+            if (Random.value > 1 - newProbability)
+            {
+                NewNews();
+            }
+            else
+            {
+                InstantiateMinigames();
+            }
+
         }
+        
     }
 
-    private void OnLevelWasLoaded(int level)
-    {      
-        if (level == 0)
-        {
-            coinsText = GameObject.Find("CoinsText").GetComponent<TextMeshProUGUI>();
-            waypointsParent = GameObject.Find("WaypointsSpawnMinigames");
-            InstantiateMinigames();
-            AddCoins(0);
-        }
-    }
     private void Update()
     {
         /*
@@ -64,6 +81,8 @@ public class GameManager : MonoBehaviour
         {
             SceneController.instance.ChargeMainMenu();
         }*/
+
+        
     }
 
     public void InstantiateMinigames()
@@ -123,4 +142,23 @@ public class GameManager : MonoBehaviour
         coinsText.text = coins.ToString();
     }
    
+
+    public void NewNews()
+    {
+        panelNoticias.SetActive(true);
+        panelNoticias.GetComponent<Button>().onClick.RemoveAllListeners();
+        GameObject go = Instantiate(noticias[Random.Range(0, noticias.Length)], panelNoticias.transform);
+        go.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            virusPercentage = Mathf.Clamp(virusPercentage+20, 0,100);
+            vsControl.PercentageUI();
+            go.GetComponent<Animation>().Play();
+            InstantiateMinigames();
+            panelNoticias.GetComponent<Button>().onClick.AddListener(delegate
+            {
+                panelNoticias.SetActive(false);
+                Destroy(go);
+            });
+        });
+    }
 }

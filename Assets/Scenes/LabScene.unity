@@ -820,6 +820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d18576cedb9fb44863598f798c001a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   substanceOne: {fileID: 4203573749653469805, guid: 042ef2fd8604af543b8ee72a7dd7dafd,
     type: 3}
   substanceTwo: {fileID: 5607132711454424454, guid: e622748a4078dcb409f605b7fb1cd0ae,
@@ -835,6 +836,7 @@ MonoBehaviour:
   timeText: {fileID: 1568937030}
   panelChuleta: {fileID: 1844786482}
   canvasFinal: {fileID: 2141796499}
+  canvasFinale: {fileID: 0}
   mostradorPosition: {fileID: 1730042750}
   sub1: {fileID: 123762165}
   sub2: {fileID: 350228435}
@@ -842,7 +844,6 @@ MonoBehaviour:
   trash: {fileID: 1074780692}
   warmerPos: {fileID: 1727951739}
   centrifugatorPos: {fileID: 1304775586}
-  canvasFinale: {fileID: 0}
   requests: 0
   completedRequests: 0
 --- !u!114 &554676302
@@ -4496,7 +4497,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997655925}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3aa3fc6f69e1105488a838da860d665f, type: 3}
