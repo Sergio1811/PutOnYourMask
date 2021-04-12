@@ -79,7 +79,7 @@ public class AccessControlManager : MonoBehaviour
 
     private void Start()
     {
-        canvasFinale = canvasFinal.GetComponent<PunctuationCanvas>();
+        canvasFinale = canvasFinal.GetComponentInChildren<PunctuationCanvas>();
 
         SpawnChar();
 

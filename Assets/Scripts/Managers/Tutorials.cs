@@ -10,15 +10,11 @@ public class Tutorials : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetString(this.gameObject.name, ""); //ELIMINAR EN BUILD FINAL
-
+       boton.onClick.AddListener(delegate { FirstTutoTran(); });
         if (PlayerPrefs.GetString(this.gameObject.name) == "Completed")
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
-        
-
-       boton.onClick.AddListener(delegate { FirstTutoTran(); });
     }
 
     public void FirstTutoTran( )

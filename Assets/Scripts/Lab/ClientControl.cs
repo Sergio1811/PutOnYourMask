@@ -41,52 +41,55 @@ public class ClientControl : MonoBehaviour
 
     void Update()
     {
-        switch (currentState)
+        if (LabManager.instance.currentState == LabManager.GameState.Play)
         {
-            case States.Wait:
-                timeUI.fillAmount = currentTimeToZero / timeToWait;
-                currentTimeToZero -= Time.deltaTime;
+            switch (currentState)
+            {
+                case States.Wait:
+                    timeUI.fillAmount = currentTimeToZero / timeToWait;
+                    currentTimeToZero -= Time.deltaTime;
 
-                if (currentTimeToZero <= 0)
-                {
-                    Unhappy();
-                }
-                break;
-            case States.Huye:
-                this.transform.position = Vector3.MoveTowards(this.transform.position, NextObjetivo, speed * Time.deltaTime);
+                    if (currentTimeToZero <= 0)
+                    {
+                        Unhappy();
+                    }
+                    break;
+                case States.Huye:
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, NextObjetivo, speed * Time.deltaTime);
 
-                if (Vector3.Distance(this.transform.position, puntosDeHuida.position) < 0.1f)
-                {
-                    ChangeState(States.Inicio);
-                }
-                break;
-            case States.Inicio:
-                this.transform.position = Vector3.MoveTowards(this.transform.position, NextObjetivo, speed * Time.deltaTime);
+                    if (Vector3.Distance(this.transform.position, puntosDeHuida.position) < 0.1f)
+                    {
+                        ChangeState(States.Inicio);
+                    }
+                    break;
+                case States.Inicio:
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, NextObjetivo, speed * Time.deltaTime);
 
-                if (Vector3.Distance(this.transform.position, puntoInicio.position) < 0.1f)
-                {
-                    ChangeState(States.Puerta);
-                }
-                break;
-            case States.Puerta:
-                this.transform.position = Vector3.MoveTowards(this.transform.position, NextObjetivo, speed * Time.deltaTime);
+                    if (Vector3.Distance(this.transform.position, puntoInicio.position) < 0.1f)
+                    {
+                        ChangeState(States.Puerta);
+                    }
+                    break;
+                case States.Puerta:
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, NextObjetivo, speed * Time.deltaTime);
 
-                if (Vector3.Distance(this.transform.position, puntoPuerta.position) < 0.1f)
-                {
-                    ChangeState(States.Mostrador);
-                }
-                break;
-            case States.Mostrador:
-                this.transform.position = Vector3.MoveTowards(this.transform.position, NextObjetivo, speed * Time.deltaTime);
+                    if (Vector3.Distance(this.transform.position, puntoPuerta.position) < 0.1f)
+                    {
+                        ChangeState(States.Mostrador);
+                    }
+                    break;
+                case States.Mostrador:
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, NextObjetivo, speed * Time.deltaTime);
 
-                if (Vector3.Distance(this.transform.position, puntosDeEspera.position) < 0.1f)
-                {
-                    ChangeState(States.Wait);
-                }
-                break;
-            
-            default:
-                break;
+                    if (Vector3.Distance(this.transform.position, puntosDeEspera.position) < 0.1f)
+                    {
+                        ChangeState(States.Wait);
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
        
     }

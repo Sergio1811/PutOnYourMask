@@ -16,6 +16,13 @@ public class MenuController : MonoBehaviour
     public string currentLanguage;
     int currentNum = 0;
 
+    public enum Clothing { Head, Shirt, Pants, Shoes};
+    public Clothing currentCloth = Clothing.Shirt;
+
+    bool maskOn = false;
+    public GameObject maskChar;
+    public GameObject canvasItem;
+
     private void Awake()
     {
         if (instance==null)
@@ -42,12 +49,18 @@ public class MenuController : MonoBehaviour
     
     public void TwitterAcces()
     {
-        Application.OpenURL("https://twitter.com/RollingCatGames");
+        print("hi");
+        Application.OpenURL("http://www.twitter.com/RollingCatGames");
+
+        print("hi2");
+
+        Application.OpenURL("twitter:///user?screen_name=RollingCatGames");
+
     }
-    
+
     public void RateAcces()
     {
-        Application.OpenURL("https://play.google.com/store/apps/details?id=com.area120.grasshopper&hl=es&gl=US");
+        Application.OpenURL("https://play.google.com/apps/internaltest/4699336267926481719");
     }
 
     public void ChangeLanguage()
@@ -80,5 +93,42 @@ public class MenuController : MonoBehaviour
     public void ChangeNot()
     {
         notificationsOn = !notificationsOn;
+    }
+
+    public void RandomOutfit()
+    {
+
+    }
+
+    public void NextCloth()
+    {
+
+    }
+    
+    public void PrevCloth()
+    {
+
+    }
+
+    public void MaskChange()
+    {
+        maskOn = !maskOn;
+
+        if(maskOn)
+        maskChar.SetActive(true);
+
+        else
+        maskChar.SetActive(true);
+    }
+
+    public void PurchaseItem()
+    {
+        canvasItem.SetActive(true);
+        //rellenar datos
+    }
+
+    public void SelectCloth(Clothing l_Cloth)
+    {
+        currentCloth = l_Cloth;
     }
 }

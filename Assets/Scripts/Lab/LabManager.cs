@@ -58,7 +58,7 @@ public class LabManager : MonoBehaviour
 
     private void Start()
     {
-        canvasFinale = canvasFinal.GetComponent<PunctuationCanvas>();
+        canvasFinale = canvasFinal.GetComponentInChildren<PunctuationCanvas>();
     }
 
     void Update()

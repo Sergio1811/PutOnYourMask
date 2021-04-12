@@ -95,6 +95,7 @@ public class InputManager : MonoBehaviour
         DetectSwipe();
 
         //Update Plane
+        /*
         if (Input.touchCount >= 1)
         {
             Plane.SetNormalAndPosition(transform.up, transform.position);
@@ -136,8 +137,8 @@ public class InputManager : MonoBehaviour
             //Move cam amount the mid ray
             Camera.transform.position = Vector3.LerpUnclamped(pos1, Camera.transform.position, 1 / zoom);
 
-
-        }
+        
+        }*/
 
 #if UNITY_STANDALONE || UNITY_EDITOR
         /*Zoom();*/

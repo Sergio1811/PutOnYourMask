@@ -19,6 +19,9 @@ public class CharsPPMovement : MonoBehaviour
 
     void Update()
     {
+        if (AccessControlManager.instance.currentState == AccessControlManager.GameState.Play)
+        {
+
         if (waypoint != null)
         {
             if (Vector3.Distance(this.transform.position, waypoint.transform.position)>0.1f)
@@ -39,6 +42,7 @@ public class CharsPPMovement : MonoBehaviour
             }
         }
         
+        }
 
     }
 

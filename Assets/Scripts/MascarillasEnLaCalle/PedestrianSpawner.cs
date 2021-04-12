@@ -30,22 +30,19 @@ public class PedestrianSpawner : MonoBehaviour
 
     private void Update()
     {
-
-        if (Input.GetKeyUp(KeyCode.Alpha1))
+        if (PedestriansManager.instance.currentState == PedestriansManager.GameState.Play)
         {
-            SpawnChar();
+
+            currentTime += Time.deltaTime;
+
+            if (currentTime >= nextTime)
+            {
+                SpawnChar();
+                nextTime = Random.Range(0.1f, 0.2f);
+                currentTime = 0;
+
+            }
         }
-
-        currentTime += Time.deltaTime;
-
-        if (currentTime >= nextTime)
-        {
-            SpawnChar();
-            nextTime = Random.Range(0.1f, 0.2f);
-            currentTime = 0;
-
-        }
-
     }
 
     public void SpawnChar()

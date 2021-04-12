@@ -12,11 +12,11 @@ public class PedestriansManager : MonoBehaviour
     [Tooltip("In Seconds")] public int miniGameTime;
     float currentTimeMinigame;
     public TextMeshProUGUI secondsText;
-    int currentValue=6;
+    int currentValue = 6;
     GameObject characterPrefab;
-    [HideInInspector]public Material maskOnMat;
-    [HideInInspector]public Material maskOffMat;
-    [HideInInspector]public Material yellowTraffic;
+    [HideInInspector] public Material maskOnMat;
+    [HideInInspector] public Material maskOffMat;
+    [HideInInspector] public Material yellowTraffic;
 
     public List<GameObject> pedestriansList;
     public float distanceToInfect;
@@ -44,7 +44,7 @@ public class PedestriansManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance==null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -56,7 +56,7 @@ public class PedestriansManager : MonoBehaviour
 
     void Start()
     {
-        canvasFinale = canvasFinal.GetComponent<PunctuationCanvas>();
+        canvasFinale = canvasFinal.GetComponentInChildren<PunctuationCanvas>();
 
         pedestriansList = ObjectPooler.SharedInstance.pooledObjects;
         characterPrefab = Resources.Load("Prefabs/Character") as GameObject;
@@ -68,62 +68,62 @@ public class PedestriansManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentState== GameState.Play)
+        if (currentState == GameState.Play)
         {
-        #region TimeControl
-        currentTimeMinigame += Time.deltaTime;
-        int currentMinutes = (int)(miniGameTime - currentTimeMinigame) / 60;
-        int currentSeconds = (int)(miniGameTime - currentTimeMinigame) - (currentMinutes * 60);
+            #region TimeControl
+            currentTimeMinigame += Time.deltaTime;
+            int currentMinutes = (int)(miniGameTime - currentTimeMinigame) / 60;
+            int currentSeconds = (int)(miniGameTime - currentTimeMinigame) - (currentMinutes * 60);
 
-        if (currentSeconds >= 10)
-        {
-            secondsText.text = currentMinutes + " : " + currentSeconds;
-        }
-        else
-        {
-            secondsText.text = currentMinutes + " : 0" + currentSeconds;
-        }
-
-        if((Time.time/10)>=currentValue)
-        {
-           /* StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch+0.05f));
-            currentValue++;*/
-        }
-        if (currentTimeMinigame > miniGameTime)
-        {
-            Finish();
-        }
-        #endregion
-
-        #region ClickOnChar
-        if (InputManager.Instance.WhatAmIClicking() != null)
-        {
-            if (InputManager.Instance.WhatAmIClicking().CompareTag("Character"))
+            if (currentSeconds >= 10)
             {
-                GameObject saveGO = InputManager.Instance.WhatAmIClicking();
+                secondsText.text = currentMinutes + " : " + currentSeconds;
+            }
+            else
+            {
+                secondsText.text = currentMinutes + " : 0" + currentSeconds;
+            }
 
-                if (saveGO.transform.parent.GetComponent<Pedestrians>().thisType == PedestrianType.Masked || saveGO.transform.parent.GetComponent<Pedestrians>().thisType == PedestrianType.Runner || saveGO.transform.parent.GetComponent<Pedestrians>().thisType == PedestrianType.Runner_Infected)
+            if ((Time.time / 10) >= currentValue)
+            {
+                /* StartCoroutine(fadePitch(GameManager.instance.audioManager.pitch+0.05f));
+                 currentValue++;*/
+            }
+            if (currentTimeMinigame > miniGameTime)
+            {
+                Finish();
+            }
+            #endregion
+
+            #region ClickOnChar
+            if (InputManager.Instance.WhatAmIClicking() != null)
+            {
+                if (InputManager.Instance.WhatAmIClicking().CompareTag("Character"))
                 {
-                    int random = Random.Range(0, 1);
-                    switch (random)
+                    GameObject saveGO = InputManager.Instance.WhatAmIClicking();
+
+                    if (saveGO.transform.parent.GetComponent<Pedestrians>().thisType == PedestrianType.Masked || saveGO.transform.parent.GetComponent<Pedestrians>().thisType == PedestrianType.Runner || saveGO.transform.parent.GetComponent<Pedestrians>().thisType == PedestrianType.Runner_Infected)
                     {
-                        case 0:
-                            Debug.Log("That's a good guy or a runner");
-                            break;
-                        case 1:
-                            Debug.Log("That's a good girl or a runner");
-                            break;
-                        default:
-                            break;
+                        int random = Random.Range(0, 1);
+                        switch (random)
+                        {
+                            case 0:
+                                Debug.Log("That's a good guy or a runner");
+                                break;
+                            case 1:
+                                Debug.Log("That's a good girl or a runner");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        saveGO.transform.parent.GetComponent<Pedestrians>().MaskOn();
                     }
                 }
-                else
-                { 
-                    saveGO.transform.parent.GetComponent<Pedestrians>().MaskOn();
-                }
             }
-        }
-        #endregion
+            #endregion
         }
     }
 
@@ -142,7 +142,7 @@ public class PedestriansManager : MonoBehaviour
     public void Finish()
     {
         //calculos de puntuacion
-        if (masked+nonMasked-(infected-initialInfected)>=0.5f)
+        if (masked + nonMasked - (infected - initialInfected) >= 0.5f)
         {
             //buena partida
         }
