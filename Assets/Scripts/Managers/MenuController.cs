@@ -123,7 +123,7 @@ public class MenuController : MonoBehaviour
             maskChar.SetActive(true);
 
         else
-            maskChar.SetActive(true);
+            maskChar.SetActive(false);
     }
 
     public void PurchaseItem()
