@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -16,16 +17,20 @@ public class MenuController : MonoBehaviour
     public string currentLanguage;
     int currentNum = 0;
 
-    public enum Clothing { Head, Shirt, Pants, Shoes};
+    public enum Clothing { Head, Shirt, Pants, Shoes };
     public Clothing currentCloth = Clothing.Shirt;
-
+    public Animation m_DropdownAnimation;
+    public AnimationClip openAnim;
+    public AnimationClip closedAnim;
+    bool ddOpened = false;
+    public Image currentIcon;
     bool maskOn = false;
     public GameObject maskChar;
     public GameObject canvasItem;
 
     private void Awake()
     {
-        if (instance==null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -46,7 +51,7 @@ public class MenuController : MonoBehaviour
         languageObjectArray[currentNum].SetActive(true);
         currentLanguage = languageStringArray[currentNum];
     }
-    
+
     public void TwitterAcces()
     {
         print("hi");
@@ -71,7 +76,7 @@ public class MenuController : MonoBehaviour
         }
 
         currentNum++;
-        if (currentNum>=languageObjectArray.Length)
+        if (currentNum >= languageObjectArray.Length)
         {
             currentNum = 0;
         }
@@ -88,7 +93,7 @@ public class MenuController : MonoBehaviour
     public void ChangeMusic()
     {
         musicOn = !musicOn;
-    } 
+    }
 
     public void ChangeNot()
     {
@@ -104,7 +109,7 @@ public class MenuController : MonoBehaviour
     {
 
     }
-    
+
     public void PrevCloth()
     {
 
@@ -114,11 +119,11 @@ public class MenuController : MonoBehaviour
     {
         maskOn = !maskOn;
 
-        if(maskOn)
-        maskChar.SetActive(true);
+        if (maskOn)
+            maskChar.SetActive(true);
 
         else
-        maskChar.SetActive(true);
+            maskChar.SetActive(true);
     }
 
     public void PurchaseItem()
@@ -127,8 +132,67 @@ public class MenuController : MonoBehaviour
         //rellenar datos
     }
 
-    public void SelectCloth(Clothing l_Cloth)
+    public void SelectCloth(Sprite l_Cloth)
     {
-        currentCloth = l_Cloth;
+        if (!ddOpened)
+        {
+            m_DropdownAnimation.clip = openAnim;
+            m_DropdownAnimation.Play();
+            ddOpened = true;
+        }
+        else
+        {
+            m_DropdownAnimation.clip = closedAnim;
+            m_DropdownAnimation.Play();
+            ddOpened = false;
+        }
+
+        if (l_Cloth != null)
+            currentIcon.sprite = l_Cloth;
+       
+    }
+    public void SelectCloth(int l_Cloth)
+    {
+        switch (l_Cloth)
+        {
+            case 0:
+                currentCloth = Clothing.Head;
+                break;
+
+            case 1:
+                currentCloth = Clothing.Shirt;
+                break;
+
+            case 2:
+                currentCloth = Clothing.Pants;
+                break;
+
+            case 3:
+                currentCloth = Clothing.Shoes;
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+    public void OpenCloth()
+    {
+        if (!ddOpened)
+        {
+            m_DropdownAnimation.clip = openAnim;
+            m_DropdownAnimation.Play();
+            ddOpened = true;
+        }
+        else
+        {
+            m_DropdownAnimation.clip = closedAnim;
+            m_DropdownAnimation.Play();
+            ddOpened = false;
+        }
+
+       
+       
     }
 }

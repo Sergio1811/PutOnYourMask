@@ -75,7 +75,7 @@ public class CentrifugatorControl : MonoBehaviour
         timeUI.gameObject.SetActive(true);
         batidora.rotSpeed = 120;
         liquido.SetActive(true);
-        liquido.GetComponent<MeshRenderer>().material.color = Color.black;
+        liquido.GetComponent<SkinnedMeshRenderer>().material.color = Color.black;
         liquido.GetComponent<Rotation>().rotSpeed = 240;
         return true;
     }
