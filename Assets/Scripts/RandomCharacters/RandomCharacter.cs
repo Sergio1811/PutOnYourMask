@@ -34,13 +34,31 @@ public class RandomCharacter : MonoBehaviour
         }
 
         if (meshToChange != null)
-            meshToChange.materials[0] = newCloth;
+        {
+            Material[] mats = meshToChange.materials;
+
+            mats[0] = newCloth;
+
+            meshToChange.materials = mats;
+        }
+            
     }
 
     public void ChangeSkinsColor(Material newSkinColor)
     {
         head.material = newSkinColor;
-        body.materials[1] = newSkinColor;
-        legs.materials[1] = newSkinColor;
+
+        Material[] mats = body.materials;
+
+        mats[1] = newSkinColor;
+
+        body.materials = mats; 
+        
+        Material[] mats2 = legs.materials;
+
+        mats[1] = newSkinColor;
+
+        legs.materials = mats;
+
     }
 }

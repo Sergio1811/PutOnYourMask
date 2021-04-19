@@ -10,14 +10,14 @@ public class Tutorials : MonoBehaviour
 
     private void Start()
     {
-       boton.onClick.AddListener(delegate { FirstTutoTran(); });
+        boton.onClick.AddListener(delegate { FirstTutoTran(); });
         if (PlayerPrefs.GetString(this.gameObject.name) == "Completed")
         {
             this.gameObject.SetActive(false);
         }
     }
 
-    public void FirstTutoTran( )
+    public void FirstTutoTran()
     {
         animControl.SetTrigger("FirstTrans");
         boton.onClick.RemoveAllListeners();
@@ -27,7 +27,17 @@ public class Tutorials : MonoBehaviour
     {
         animControl.SetTrigger("SecondTrans");
         boton.onClick.RemoveAllListeners();
-        boton.onClick.AddListener(delegate { Destroy(this.gameObject); });
+        boton.onClick.AddListener(delegate
+        {
+            this.gameObject.SetActive(false);
+            Reset();
+        });
         PlayerPrefs.SetString(this.gameObject.name, "Completed");
+    }
+
+    public void Reset()
+    {
+        boton.onClick.RemoveAllListeners();
+        boton.onClick.AddListener(delegate { FirstTutoTran(); });
     }
 }

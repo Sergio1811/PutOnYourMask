@@ -24,11 +24,20 @@ public class CharacterGenerator : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            GenerateRandomCharacter();
+        }
+    }
     public void GenerateRandomCharacter()
     {
         RandomCharacter randomCharacter = Instantiate(characterPrefab, parentTransform).GetComponent<RandomCharacter>();
         foreach (BodyPart item in System.Enum.GetValues(typeof(BodyPart)))
         {
+            print(item);
+            print(cloths[Random.Range(0, cloths.Length)]);
             randomCharacter.ChangeClothes(cloths[Random.Range(0, cloths.Length)], item);
         }
         randomCharacter.ChangeSkinsColor(skinColors[Random.Range(0, skinColors.Length)]);

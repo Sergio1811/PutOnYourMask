@@ -20,6 +20,9 @@ public class CentrifugatorControl : MonoBehaviour
     bool isCentrifugating = false;
     [HideInInspector]
     public bool objectInMachine;
+
+    public Animator m_Animator;
+
     void Start()
     {
         timeUI.gameObject.SetActive(false);
@@ -44,6 +47,8 @@ public class CentrifugatorControl : MonoBehaviour
         else
         {
             isCentrifugating = MachineFull();
+            m_Animator.SetBool("MachineFull", MachineFull());
+
         }
     }
 

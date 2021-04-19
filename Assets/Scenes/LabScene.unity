@@ -344,6 +344,7 @@ MonoBehaviour:
   liquido: {fileID: 286564273}
   batidora: {fileID: 1595776970}
   objectInMachine: 0
+  m_Animator: {fileID: 1785964878}
 --- !u!1 &193832492
 GameObject:
   m_ObjectHideFlags: 0
@@ -4232,22 +4233,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1628001586}
   m_PrefabAsset: {fileID: 0}
---- !u!111 &1785964878
-Animation:
+--- !u!95 &1785964878
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785964876}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 7ba130f2d0f7fdc43b6941e01686a678, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 7ba130f2d0f7fdc43b6941e01686a678, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58063292668b78e4da18611b8eed4ca9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1812658070
 GameObject:
   m_ObjectHideFlags: 0

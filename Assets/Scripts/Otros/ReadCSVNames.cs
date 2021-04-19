@@ -6,15 +6,14 @@ using System.IO;
 public class ReadCSVNames : MonoBehaviour
 {
     public static ReadCSVNames names;
-    [HideInInspector]public string[] spanishNames;
-    [HideInInspector]public string[] englishNames;
-    [HideInInspector]public string[] spanishSurnames;
-    [HideInInspector]public string[] englishSurnames;
-    [HideInInspector]public string[] spanishCitiesNames;
-    [HideInInspector]public string[] englishCitiesNames;
+    public string[] spanishNames;
+    public string[] englishNames;
+    public string[] spanishSurnames;
+    public string[] englishSurnames;
+    public string[] spanishCitiesNames;
     private void Awake()
     {
-        if (names==null)
+        if (names == null)
         {
             names = this;
         }
@@ -24,133 +23,80 @@ public class ReadCSVNames : MonoBehaviour
         }
     }
 
-    string ruteNameSpanishNames = "C:\\Users\\sergi\\OneDrive\\Documentos\\GitHub\\PutOnYourMask\\Assets\\Resources\\BBDD\\SpanishNames.csv";//Change
-    string ruteNameSpanishSurnames = "C:\\Users\\sergi\\OneDrive\\Documentos\\GitHub\\PutOnYourMask\\Assets\\Resources\\BBDD\\SpanishSurnames.csv";//Change
-    string ruteNameEnglishNames = "C:\\Users\\sergi\\OneDrive\\Documentos\\GitHub\\PutOnYourMask\\Assets\\Resources\\BBDD\\EnglishNames.csv";//Change
-    string ruteNameEnglishSurnames = "C:\\Users\\sergi\\OneDrive\\Documentos\\GitHub\\PutOnYourMask\\Assets\\Resources\\BBDD\\EnglishSurnames.csv";//Change
-    string ruteSpanishCities = "C:\\Users\\sergi\\OneDrive\\Documentos\\GitHub\\PutOnYourMask\\Assets\\Resources\\BBDD\\Cities.csv";//Change
-    string ruteEnglishCities = "C:\\Users\\sergi\\OneDrive\\Documentos\\GitHub\\PutOnYourMask\\Assets\\Resources\\BBDD\\EnglishCities.csv";//Change
-    
+    string ruteNameSpanishNamesPC = "C:\\Users\\cuenta\\Documents\\GitHub\\PutOnYourMask\\Assets\\Resources\\BBDD\\SpanishNames.csv";//Change
+    string ruteNameSpanishSurnamesPC = "C:\\Users\\cuenta\\Documents\\GitHub\\PutOnYourMask\\Assets\\Resources\\BBDD\\SpanishSurnames.csv";//Change
+    string ruteNameEnglishNamesPC = "C:\\Users\\cuenta\\Documents\\GitHub\\PutOnYourMask\\Assets\\Resources\\BBDD\\EnglishNames.csv";//Change
+    string ruteNameEnglishSurnamesPC = "C:\\Users\\cuenta\\Documents\\GitHub\\PutOnYourMask\\Assets\\Resources\\BBDD\\EnglishSurnames.csv";//Change
+    string ruteSpanishCitiesPC = "C:\\Users\\cuenta\\Documents\\GitHub\\PutOnYourMask\\Assets\\Resources\\BBDD\\Cities.csv";//Change
+
+    string ruteNameSpanishNames = "/BBDD/SpanishNames.csv";//Change
+    string ruteNameSpanishSurnames = "/BBDD/SpanishSurnames.csv";//Change
+    string ruteNameEnglishNames = "/BBDD/EnglishNames.csv";//Change
+    string ruteNameEnglishSurnames = "/BBDD/EnglishSurnames.csv";//Change
+    string ruteSpanishCities = "/BBDD/Cities.csv";//Change
+
     // Start is called before the first frame update
     void Start()
     {
-        ReadSpanishNames();
-        ReadSpanishSurnames();
-        ReadEnglishNames();
-        ReadEnglishSurnames();
-        ReadSpanishCityNames();
+#if UNITY_EDITOR 
+        ReadCSV(ruteNameSpanishNamesPC, out spanishNames);
+        ReadCSV(ruteNameSpanishSurnamesPC, out spanishSurnames);
+        ReadCSV(ruteSpanishCitiesPC, out spanishCitiesNames);//todas las ciudades en realidad
+        ReadCSV(ruteNameEnglishNamesPC, out englishNames);
+        ReadCSV(ruteNameEnglishSurnamesPC, out englishSurnames);
+
+#endif
+        /*
+#if UNITY_ANDROID
+        ReadCSVAndroid(ruteNameSpanishNames, out spanishNames);
+        ReadCSVAndroid(ruteNameSpanishSurnames, out spanishSurnames);
+        ReadCSVAndroid(ruteSpanishCities, out spanishCitiesNames);//todas las ciudades en realidad
+        ReadCSVAndroid(ruteNameEnglishNames, out englishNames);
+        ReadCSVAndroid(ruteNameEnglishSurnames, out englishSurnames);
+
+//#endif*/
     }
 
-    void ReadSpanishNames()
+    void ReadCSV(string path, out string[] data)
     {
-        StreamReader strReader = new StreamReader(ruteNameSpanishNames);
+        data = null;
+        StreamReader strReader = new StreamReader(path);
 
         bool endOfFile = false;
         while (!endOfFile)
         {
             string data_String = strReader.ReadLine();
-            if (data_String==null)
+            if (data_String == null)
             {
                 endOfFile = true;
                 break;
             }
 
-            spanishNames = data_String.Split(';');
+            data = data_String.Split(';');
+
         }
 
     }
 
-    void ReadSpanishSurnames()
+    void ReadCSVAndroid(string path, out string[] data)
     {
-        StreamReader strReader = new StreamReader(ruteNameSpanishSurnames);
+        data = null;
+        TextAsset theTextFile = Resources.Load<TextAsset>(path);
 
         bool endOfFile = false;
         while (!endOfFile)
         {
-            string data_String = strReader.ReadLine();
-            if (data_String==null)
+            if (theTextFile != null)
             {
                 endOfFile = true;
                 break;
             }
 
-            spanishSurnames = data_String.Split(';');
+            data = theTextFile.text.Split(';');
+
         }
 
     }
 
-    void ReadEnglishNames()
-    {
-        StreamReader strReader = new StreamReader(ruteNameEnglishNames);
-
-        bool endOfFile = false;
-        while (!endOfFile)
-        {
-            string data_String = strReader.ReadLine();
-            if (data_String==null)
-            {
-                endOfFile = true;
-                break;
-            }
-
-            englishNames = data_String.Split(';');
-        }
-
-    }
-
-    void ReadEnglishSurnames()
-    {
-        StreamReader strReader = new StreamReader(ruteNameEnglishSurnames);
-
-        bool endOfFile = false;
-        while (!endOfFile)
-        {
-            string data_String = strReader.ReadLine();
-            if (data_String==null)
-            {
-                endOfFile = true;
-                break;
-            }
-
-            englishSurnames = data_String.Split(';');
-        }
-
-    }
-
-    void ReadSpanishCityNames()
-    {
-        StreamReader strReader = new StreamReader(ruteSpanishCities);
-
-        bool endOfFile = false;
-        while (!endOfFile)
-        {
-            string data_String = strReader.ReadLine();
-            if (data_String==null)
-            {
-                endOfFile = true;
-                break;
-            }
-
-            spanishCitiesNames = data_String.Split(';');
-        }
-    }
-
-    void ReadEnglishCityNames()
-    {
-        StreamReader strReader = new StreamReader(ruteEnglishCities);
-
-        bool endOfFile = false;
-        while (!endOfFile)
-        {
-            string data_String = strReader.ReadLine();
-            if (data_String==null)
-            {
-                endOfFile = true;
-                break;
-            }
-
-            englishCitiesNames = data_String.Split(';');
-        }
-    }
 
 }
