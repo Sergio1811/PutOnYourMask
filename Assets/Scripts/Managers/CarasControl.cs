@@ -8,46 +8,16 @@ public class CarasControl : MonoBehaviour
 
     public Feelings currentState = Feelings.NEUTRAL;
 
-    public Material faceMat;
+    Material faceMat;
 
     public float time;
     void Start()
     {
+        Material newMaterial = GetComponent<MeshRenderer>().materials[0]; ;
+        faceMat = newMaterial;
         StartCoroutine(NeutralFace());
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeFace(Feelings.NEUTRAL);
-            FaceAnim("NeutralFace");
-
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeFace(Feelings.ANGRY);
-            FaceAnim("AngryFace");
-
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            StopAllCoroutines();
-
-            ChangeFace(Feelings.GROSS);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            StopAllCoroutines();
-            ChangeFace(Feelings.SURPRISE);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            ChangeFace(Feelings.SAD);
-            FaceAnim("SadFace");
-        }
-
-    }
     // Update is called once per frame
     void ChangeFace(Feelings state)
     {
@@ -97,7 +67,6 @@ public class CarasControl : MonoBehaviour
         StartCoroutine(corroutine);
     }
 
-
     public IEnumerator NeutralFace()
     {
         ChangeFace(Feelings.NEUTRAL);
@@ -138,5 +107,23 @@ public class CarasControl : MonoBehaviour
         ChangeFace(Feelings.ANGRY2);
         yield return new WaitForSeconds(time / 5);
         StartCoroutine(AngryFace());
+    }
+
+    public IEnumerator GrossFace(float l_time)
+    {
+        StopAllCoroutines();
+
+        ChangeFace(Feelings.GROSS);
+        yield return new WaitForSeconds(l_time);
+        StartCoroutine(NeutralFace());
+    }
+
+    public IEnumerator SurpriseFace(float l_time)
+    {
+        StopAllCoroutines();
+
+        ChangeFace(Feelings.SURPRISE);
+        yield return new WaitForSeconds(l_time);
+        StartCoroutine(NeutralFace());
     }
 }

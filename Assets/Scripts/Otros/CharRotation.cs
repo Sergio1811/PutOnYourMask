@@ -9,14 +9,8 @@ public class CharRotation : MonoBehaviour
     Vector3 lastTouchPos;
     public float forceMovement;
     float distance;
-    Quaternion initialRot;
-    // Start is called before the first frame update
-    void Start()
-    {
-        initialRot = this.transform.rotation;
-    }
+    Quaternion initialRot = new Quaternion(0,180,0,0);
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.touchCount > 0)
@@ -33,25 +27,23 @@ public class CharRotation : MonoBehaviour
             if (distance != 0)
             {
                 //distance = Mathf.Abs(distance);
-                character.transform.Rotate(Vector3.up, distance * forceMovement * Time.deltaTime);
-
+                character.transform.Rotate(Vector3.up, distance * forceMovement );
             }
         }
-
+        
         if (Input.GetMouseButton(0))
         {
             Vector3 currentMousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
             float distance = lastMousePos.x - currentMousePos.x;
 
-
             if (distance != 0)
             {
                 //distance = Mathf.Abs(distance);
                 character.transform.Rotate(Vector3.up, distance * forceMovement * Time.deltaTime);
-
             }
         }
+
     }
 
     public void ResetRot()

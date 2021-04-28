@@ -9,12 +9,13 @@ public class CharsPPMovement : MonoBehaviour
     public bool voted;
     public GameObject mask;
     Animator animator;
-   
+    public CarasControl faceControl;
+
 
     private void Start()
     {
         animator = this.GetComponent<Animator>();
-        
+
     }
 
     void Update()
@@ -22,26 +23,26 @@ public class CharsPPMovement : MonoBehaviour
         if (AccessControlManager.instance.currentState == AccessControlManager.GameState.Play)
         {
 
-        if (waypoint != null)
-        {
-            if (Vector3.Distance(this.transform.position, waypoint.transform.position)>0.1f)
+            if (waypoint != null)
             {
-                if (!animator.GetBool("Walking"))
+                if (Vector3.Distance(this.transform.position, waypoint.transform.position) > 0.1f)
                 {
-                    animator.SetBool("Walking", true);
+                    if (!animator.GetBool("Walking"))
+                    {
+                        animator.SetBool("Walking", true);
+                    }
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, waypoint.position, speed * Time.deltaTime);
                 }
-                this.transform.position = Vector3.MoveTowards(this.transform.position, waypoint.position, speed * Time.deltaTime);
+                else if (voted)
+                {
+                    Destroy(this.gameObject);
+                }
+                else if (animator.GetBool("Walking"))
+                {
+                    animator.SetBool("Walking", false);
+                }
             }
-            else if (voted)
-            {
-                Destroy(this.gameObject);
-            }
-            else if (animator.GetBool("Walking"))
-            {
-                animator.SetBool("Walking", false);
-            }
-        }
-        
+
         }
 
     }
@@ -49,6 +50,7 @@ public class CharsPPMovement : MonoBehaviour
     public void SmellActivate()
     {
         animator.SetTrigger("Smell");
+        StartCoroutine(faceControl.GrossFace(4));
     }
 
 }

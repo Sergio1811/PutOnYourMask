@@ -931,14 +931,14 @@ MonoBehaviour:
   - {fileID: 354804157}
   sympsText: {fileID: 796981657}
   charsToCheck:
-  - {fileID: 4290204741763702040, guid: 8481fdc1607df2c4ab2ce237a65ee11d, type: 3}
+  - {fileID: 2644939880401286677, guid: 859f88583423b8b4192ee855b0f8b40e, type: 3}
   buttonsCooldown: 3
   panelPostit: {fileID: 209857313}
   canvasFinal: {fileID: 1297268781}
   canvasFinale: {fileID: 0}
   howManyFailed: 0
   howManyPassed: 0
-  timeMinigame: 20
+  timeMinigame: 120
   timeText: {fileID: 987906747}
 --- !u!114 &554676302
 MonoBehaviour:

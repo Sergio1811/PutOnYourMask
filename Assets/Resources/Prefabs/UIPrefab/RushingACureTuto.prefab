@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 486189242474142220}
   - component: {fileID: 486189242474142221}
   m_Layer: 5
-  m_Name: TutoMasks
+  m_Name: RushingACureTuto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -975,8 +975,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The doctors want cures!\n Create as medicines as you can before the time
-    runs out!"
+  m_text: "The doctors want cures!\n Create as many medicines as you can before the
+    time runs out!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c88658ed65abe4499547c514a458a01, type: 2}
   m_sharedMaterial: {fileID: 5751422513862956402, guid: 7c88658ed65abe4499547c514a458a01,
@@ -1046,10 +1046,10 @@ MonoBehaviour:
   m_margin: {x: -769.42584, y: 0.00024112065, z: -771.5968, w: -379.57562}
   m_textInfo:
     textComponent: {fileID: 2364655298473115441}
-    characterCount: 81
+    characterCount: 86
     spriteCount: 0
-    spaceCount: 15
-    wordCount: 15
+    spaceCount: 16
+    wordCount: 16
     linkCount: 0
     lineCount: 3
     pageCount: 1

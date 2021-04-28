@@ -30,7 +30,6 @@ public class TimerChecker : MonoBehaviour
 
         //CurrentTime = TimeSpan.Parse(TimeManager.sharedInstance.getCurrentTimeNow());
 
-
         StartCoroutine(checkTime());
     }
     void LateUpdate()

@@ -111,7 +111,7 @@ public class LabManager : MonoBehaviour
                     break;
 
                 case "Warmer":
-                    player.nextPoint = warmer.gameObject.transform.position;
+                    player.nextPoint = warmerPos.position;                    
                     // GameObject Item3 = Instantiate(itemTemplate);
                     break;
 

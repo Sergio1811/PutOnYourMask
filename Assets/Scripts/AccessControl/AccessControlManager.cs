@@ -6,7 +6,7 @@ using TMPro;
 
 public class AccessControlManager : MonoBehaviour
 {
-   public enum GameState { Play, Finish };
+    public enum GameState { Play, Finish };
     public GameState currentState = GameState.Play;
     public static AccessControlManager instance;
 
@@ -102,7 +102,7 @@ public class AccessControlManager : MonoBehaviour
             {
                 OpenPostit();
                 GoInButton();
-                GoOutButton();
+                StartCoroutine(GoOutButton());
                 PalancaOlor();
                 PickMask();
             }
@@ -125,6 +125,7 @@ public class AccessControlManager : MonoBehaviour
         {
             if (InputManager.Instance.WhatAmIClicking().CompareTag("Go In"))
             {
+
                 MoveNextPoint();
                 Buttons.GetComponent<Animation>().clip = Buttons.GetComponent<Animation>().GetClip("BotonDer");
                 Buttons.GetComponent<Animation>().Play();
@@ -137,17 +138,35 @@ public class AccessControlManager : MonoBehaviour
         }
     }
 
-    void GoOutButton()//Denegate permission Button logic
+    IEnumerator GoOutButton()//Denegate permission Button logic
     {
         if (currentButtonState == ButtonState.Able)
         {
             if (InputManager.Instance.WhatAmIClicking().CompareTag("Go Out"))
             {
-                MoveBackPoint();
                 Buttons.GetComponent<Animation>().clip = Buttons.GetComponent<Animation>().GetClip("BotonIzq");
                 Buttons.GetComponent<Animation>().Play();
                 StartCoroutine("ButtonCooldown");
-                
+
+                int rnd = Random.Range(0, 3);
+                if (rnd == 0)
+                {
+                    currentChar.GetComponent<CharsPPMovement>().faceControl.FaceAnim("AngryFace");
+                }
+                else if (rnd == 1)
+                {
+                    StartCoroutine(currentChar.GetComponent<CharsPPMovement>().faceControl.SurpriseFace(4));
+                }
+                else
+                {
+                    currentChar.GetComponent<CharsPPMovement>().faceControl.FaceAnim("SadFace");
+                }
+
+                yield return new WaitForSeconds(1);
+
+                MoveBackPoint();
+
+
                 CheckDecision(false);
                 SpawnChar();
                 //New info in PC
@@ -170,7 +189,7 @@ public class AccessControlManager : MonoBehaviour
             currentCharCanPass = true;
             currentCharMask = false;
             int tempRnd = Random.Range(0, charsToCheck.Length - 1);
-            
+
 
             currentChar = Instantiate(charsToCheck[tempRnd], movementPoints[0].position, charsToCheck[tempRnd].transform.rotation);
             currentChar.GetComponent<LookGameObject>().objectToLookAt = movementPoints[1].gameObject;
@@ -226,7 +245,7 @@ public class AccessControlManager : MonoBehaviour
                 Debug.Log("I change it to false, mask");
                 currentCharCanPass = false;
 
-            }           
+            }
         }
     }
 
@@ -288,7 +307,7 @@ public class AccessControlManager : MonoBehaviour
         System.Random rnd = new System.Random();
 
         allSymptoms tempSymptom = (allSymptoms)rnd.Next(System.Enum.GetNames(typeof(allSymptoms)).Length);
-        
+
         while (tempSymptom == allSymptoms.RealSymptom || currentRandomCharSymptoms.Contains(tempSymptom))
         {
             rnd = new System.Random();
@@ -401,7 +420,7 @@ public class AccessControlManager : MonoBehaviour
             currentValue++;
         }
 
-        if (currentTimeMinigame>timeMinigame)
+        if (currentTimeMinigame > timeMinigame)
         {
             Finish();
         }

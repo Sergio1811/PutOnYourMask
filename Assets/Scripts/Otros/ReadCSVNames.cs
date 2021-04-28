@@ -73,7 +73,6 @@ public class ReadCSVNames : MonoBehaviour
             }
 
             data = data_String.Split(';');
-
         }
 
     }

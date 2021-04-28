@@ -27,7 +27,7 @@ public class PlayerLabMovement : MonoBehaviour
         {
             nextPoint.y = this.transform.position.y;
 
-            if (Vector3.Distance(this.transform.position, nextPoint) > .75f)
+            if (Vector3.Distance(this.transform.position, nextPoint) > .25f)
             {
                 if (!animator.GetBool("Run"))
                     animator.SetBool("Run", true);
