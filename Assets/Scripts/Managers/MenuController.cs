@@ -17,7 +17,7 @@ public class MenuController : MonoBehaviour
     public string currentLanguage;
     int currentNum = 0;
 
-    public enum Clothing { Head, Shirt, Pants, Shoes };
+    public enum Clothing { Head, Shirt, Pants, Shoes, Mask };
     public Clothing currentCloth = Clothing.Shirt;
     public Animation m_DropdownAnimation;
     public AnimationClip openAnim;
@@ -27,6 +27,7 @@ public class MenuController : MonoBehaviour
     bool maskOn = false;
     public GameObject maskChar;
     public GameObject canvasItem;
+    
 
     private void Awake()
     {
@@ -169,6 +170,9 @@ public class MenuController : MonoBehaviour
 
             case 3:
                 currentCloth = Clothing.Shoes;
+                break;
+            case 4:
+                currentCloth = Clothing.Mask;
                 break;
 
             default:

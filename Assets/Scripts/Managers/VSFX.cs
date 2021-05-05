@@ -11,8 +11,15 @@ public class VSFX : MonoBehaviour
 
     public GameObject AudioInstance;
 
-    public AudioClip monedas;
-    public AudioClip tachar;
+    public AudioClip monedasSound;
+    public AudioClip tacharSound;
+    public AudioClip clicSound;
+    public AudioClip backSound;
+    public AudioClip flipPageSound;
+    public AudioClip changeClothSound;
+    public AudioClip storeOpenSound;
+    public AudioClip infectionUpSound;
+
 
     [Header("Mascaretas al carrer")]
     public AudioClip convertedSound;
@@ -27,7 +34,24 @@ public class VSFX : MonoBehaviour
     public GameObject FireBunPS;
     public GameObject SmokeColumnPS;
     public AudioClip[] bottleSounds;
+    public AudioClip useWarmerSound;
+    public AudioClip useCentrifugatorSound;
+    public AudioClip centrifugatorUsageSound;
+    public AudioClip warmerUsageSound;
+    public AudioClip completedOrderSound;
+    public AudioClip failedOrderSound;
+    public AudioClip objectToTrashSound;
 
+
+    [Header("AccesControl")]
+    public AudioClip inaudibleSound;
+    public AudioClip greenButtonSound;
+    public AudioClip redButtonSound;
+    public AudioClip correctSound;
+    public AudioClip failSound;
+    public AudioClip pickMaskSound;
+    public AudioClip putMaskSound;
+    public AudioClip leverSound;
 
     private void Awake()
     {
@@ -35,6 +59,7 @@ public class VSFX : MonoBehaviour
         {
             instance = this;
         }
+        DontDestroyOnLoad(instance);
     }
 
     public void PlayAudio(AudioClip clip)

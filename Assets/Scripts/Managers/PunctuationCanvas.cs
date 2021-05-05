@@ -48,7 +48,7 @@ public class PunctuationCanvas : MonoBehaviour
 
 
         cross.SetActive(true);//Activar objeto cruz que tiene anim
-        VSFX.instance.PlayAudio(VSFX.instance.tachar); // audio para el tachar
+        VSFX.instance.PlayAudio(VSFX.instance.tacharSound); // audio para el tachar
         yield return new WaitForSeconds(1);
 
         //miro la resta entre ini y final para cambiar a color rojo o verde
