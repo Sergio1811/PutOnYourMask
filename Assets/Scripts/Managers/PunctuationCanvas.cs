@@ -35,7 +35,7 @@ public class PunctuationCanvas : MonoBehaviour
         }
 
         coinVFX.SetActive(true);
-        VSFX.instance.PlayAudio(VSFX.instance.monedas); //Audio coins
+        VSFX.instance.PlayAudio(VSFX.instance.monedasSound); //Audio coins
         yield return new WaitForSeconds(1);//1 sec de espera
 
         //anim texto percentage initial

@@ -28,6 +28,7 @@ public class TermometroController : MonoBehaviour
         int temp = AccessControlManager.instance.currentCharTemp;//get temp
         AssignToText(temp);//assign to therm display
         measured = true;
+        VSFX.instance.PlayAudio(VSFX.instance.thermometerSound);
     }
 
     public void AssignToText(int temp)

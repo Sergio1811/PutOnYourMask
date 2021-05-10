@@ -26,13 +26,11 @@ public class GameManager : MonoBehaviour
     public PercentageVirusControl vsControl;
 
     [Tooltip("Porcentaje en decimal de la probabilidad")]
-    [Range(0,1)]public float newProbability;
+    [Range(0, 1)] public float newProbability;
 
     private void Awake()
     {
-       
-
-        if (instance==null)
+        if (instance == null)
         {
             instance = this;
             SceneManager.sceneLoaded += LoadLevel0;
@@ -42,10 +40,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         DontDestroyOnLoad(instance);
     }
 
-    
+
     private void LoadLevel0(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex == 0)
@@ -56,7 +55,6 @@ public class GameManager : MonoBehaviour
             panelNoticias = GameObject.Find("PanelNoticias");
             panelNoticias.SetActive(false);
 
-            
             AddCoins(0);
 
             if (Random.value > 1 - newProbability)
@@ -69,7 +67,7 @@ public class GameManager : MonoBehaviour
             }
 
         }
-        
+
     }
 
     private void Update()
@@ -82,12 +80,12 @@ public class GameManager : MonoBehaviour
             SceneController.instance.ChargeMainMenu();
         }*/
 
-        
+
     }
 
     public void InstantiateMinigames()
     {
-        
+
         placesToMinigame = waypointsParent.GetComponentsInChildren<Transform>();
         placesNotUsed = placesToMinigame.OfType<Transform>().ToList();
         currentMiniGamesOnMenu = (int)(virusPercentage / 10);
@@ -104,6 +102,7 @@ public class GameManager : MonoBehaviour
                     miniGameButton.onClick.AddListener(
                       delegate
                       {
+                          VSFX.instance.PlayAudio(VSFX.instance.clicSound);
                           SceneController.instance.ChargeMiniGameAccessControl();
                       });
                     break;
@@ -112,6 +111,7 @@ public class GameManager : MonoBehaviour
                     miniGameButton2.onClick.AddListener(
                       delegate
                       {
+                          VSFX.instance.PlayAudio(VSFX.instance.clicSound);
                           SceneController.instance.ChargeMiniGameLab();
                       });
                     break;
@@ -120,20 +120,20 @@ public class GameManager : MonoBehaviour
                     miniGameButton3.onClick.AddListener(
                       delegate
                       {
+                          VSFX.instance.PlayAudio(VSFX.instance.clicSound);
                           SceneController.instance.ChargeMiniGameMasksAtStreet();
                       });
                     break;
                 default:
                     break;
             }
-           
+
         }
     }
 
     public void getTime()
     {
         System.DateTime time = System.DateTime.Now;
-        
     }
 
     public void AddCoins(int l_Coins)
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
         coins += l_Coins;
         coinsText.text = coins.ToString();
     }
-   
+
 
     public void NewNews()
     {
@@ -150,9 +150,10 @@ public class GameManager : MonoBehaviour
         GameObject go = Instantiate(noticias[Random.Range(0, noticias.Length)], panelNoticias.transform);
         go.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate
         {
-            virusPercentage = Mathf.Clamp(virusPercentage+20, 0,100);
+            virusPercentage = Mathf.Clamp(virusPercentage + 20, 0, 100);
             vsControl.PercentageUI();
             go.GetComponent<Animation>().Play();
+            VSFX.instance.PlayAudio(VSFX.instance.flipPageSound);
             InstantiateMinigames();
             panelNoticias.GetComponent<Button>().onClick.AddListener(delegate
             {

@@ -125,7 +125,6 @@ public class AccessControlManager : MonoBehaviour
         {
             if (InputManager.Instance.WhatAmIClicking().CompareTag("Go In"))
             {
-
                 MoveNextPoint();
                 Buttons.GetComponent<Animation>().clip = Buttons.GetComponent<Animation>().GetClip("BotonDer");
                 Buttons.GetComponent<Animation>().Play();
@@ -215,6 +214,7 @@ public class AccessControlManager : MonoBehaviour
         }
         else
         {
+            VSFX.instance.PlayAudio(VSFX.instance.inaudibleSound);
             AccesCanvasControler.instance.StartCoroutine("Tick");
             howManyPassed++;
             Debug.Log("Success");
@@ -373,6 +373,7 @@ public class AccessControlManager : MonoBehaviour
     {
         if (InputManager.Instance.WhatAmIClicking().CompareTag("PalancaOlor"))
         {
+            VSFX.instance.PlayAudio(VSFX.instance.leverSound);
             Palanca.GetComponent<Animation>().Play();
             Calcetin.GetComponent<Animation>().Play();
             if (currentCharCanSmell)
@@ -388,6 +389,7 @@ public class AccessControlManager : MonoBehaviour
         {
             Instantiate(_2DMaskPrefab, myCanvas.transform);
             //Activtae calcetin
+            VSFX.instance.PlayAudio(VSFX.instance.clicSound);
         }
     }
 
@@ -396,6 +398,7 @@ public class AccessControlManager : MonoBehaviour
         if (maskIsOnlyProblem)
         {
             currentCharCanPass = true;
+            VSFX.instance.PlayAudio(VSFX.instance.putMaskSound);
         }
     }
 

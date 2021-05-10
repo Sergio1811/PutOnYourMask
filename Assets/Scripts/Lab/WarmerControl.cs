@@ -73,6 +73,8 @@ public class WarmerControl : MonoBehaviour
             {
                 VSFX.instance.SmokeColumnPS.GetComponent<ParticleSystem>().Play();
                 VSFX.instance.FireBunPS.GetComponent<ParticleSystem>().Play();
+                VSFX.instance.PlayAudio(VSFX.instance.warmerUsageSound);
+
             }
 
             timeUI.gameObject.SetActive(true);

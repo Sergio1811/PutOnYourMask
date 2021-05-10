@@ -77,6 +77,7 @@ public class CentrifugatorControl : MonoBehaviour
             }
         }
 
+        VSFX.instance.PlayAudio(VSFX.instance.centrifugatorUsageSound);
         timeUI.gameObject.SetActive(true);
         batidora.rotSpeed = 120;
         liquido.SetActive(true);

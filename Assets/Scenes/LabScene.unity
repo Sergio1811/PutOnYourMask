@@ -616,7 +616,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359061083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -249.99997}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1908284725}
@@ -624,7 +624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -39.134766}
+  m_AnchoredPosition: {x: 0, y: -114}
   m_SizeDelta: {x: 0, y: 78.27024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &359061085
@@ -983,24 +983,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioInstance: {fileID: 404994785303232139, guid: 1d5acc4b1c966f24bb7e41b6e51f90be,
     type: 3}
-  monedas: {fileID: 8300000, guid: c4c8310fb9d36c848b94881e487b6ca4, type: 3}
-  tachar: {fileID: 8300000, guid: b06d1acbd7a8b754ebdb557bdb120a84, type: 3}
-  convertedSound: {fileID: 0}
-  convertPS: {fileID: 0}
-  infectedPS: {fileID: 0}
+  monedasSound: {fileID: 8300000, guid: c4c8310fb9d36c848b94881e487b6ca4, type: 3}
+  tacharSound: {fileID: 8300000, guid: b06d1acbd7a8b754ebdb557bdb120a84, type: 3}
+  clicSound: {fileID: 8300000, guid: 0c1c05446866cd941a5af811a9cff8f5, type: 3}
+  backSound: {fileID: 8300000, guid: 5df61ff51a1d16a4494bb7d6bd92b686, type: 3}
+  flipPageSound: {fileID: 8300000, guid: a9e96a08ef63a2646875556c19932328, type: 3}
+  changeClothSound: {fileID: 0}
+  storeOpenSound: {fileID: 0}
+  infectionUpSound: {fileID: 0}
+  convertedSound: {fileID: 8300000, guid: 28c310d6859faf345b323b3e05190694, type: 3}
+  convertPS: {fileID: 5015894723933006863, guid: 6d773dde21e98d54690960b8c4252b4c,
+    type: 3}
+  infectedPS: {fileID: 1596797231852468, guid: 23187b48ca1029f4f932b48a4a6b31d2, type: 3}
   happyPS: {fileID: 1099807837213918, guid: 92403893024b50b48b2e79ed46404a90, type: 3}
   unhappyPS: {fileID: 1177011836738656, guid: f52cf3e11efa97e4cb2c8e9a6f9ffb15, type: 3}
-  badSmellPS: {fileID: 0}
+  badSmellPS: {fileID: 1549509112934564, guid: 2add70bf3cd6d3a4b8e2b31e04dd1950, type: 3}
   SmokePuffPS: {fileID: 8328265388697460934, guid: d85484aa747094940ab184ab38a2ca15,
     type: 3}
-  FireBunPS: {fileID: 1907860726}
-  SmokeColumnPS: {fileID: 640883036}
+  FireBunPS: {fileID: 1549509112934564, guid: 0336544bb841fbb419d88a0ed794fe87, type: 3}
+  SmokeColumnPS: {fileID: 5477635851177680152, guid: a1f16980039cdb34f9d9676b559c0691,
+    type: 3}
   bottleSounds:
   - {fileID: 8300000, guid: c0fdf7902eeedd547ac5c2a03e41db66, type: 3}
   - {fileID: 8300000, guid: 2387075469b418849ab9fdbe770b05aa, type: 3}
   - {fileID: 8300000, guid: 02c0c5ce380ccbe4c811f33cbddc7766, type: 3}
   - {fileID: 8300000, guid: 584a36c5e3ba1934e96f031ff5d78190, type: 3}
   - {fileID: 8300000, guid: e1047b43e394f0245beaca868fe38a0b, type: 3}
+  useWarmerSound: {fileID: 8300000, guid: 816c701b6a8dc3c4d9d86e7898ab92c4, type: 3}
+  useCentrifugatorSound: {fileID: 8300000, guid: 0838817ca7c82f441b99a5d72f9b9507,
+    type: 3}
+  centrifugatorUsageSound: {fileID: 0}
+  warmerUsageSound: {fileID: 0}
+  completedOrderSound: {fileID: 0}
+  failedOrderSound: {fileID: 0}
+  objectToTrashSound: {fileID: 8300000, guid: 063f6bc66073cc14cbd46ca7687bbad9, type: 3}
+  inaudibleSound: {fileID: 8300000, guid: b52233ea69759214d8c707fb5ba7195d, type: 3}
+  greenButtonSound: {fileID: 0}
+  redButtonSound: {fileID: 0}
+  correctSound: {fileID: 0}
+  failSound: {fileID: 0}
+  pickMaskSound: {fileID: 8300000, guid: 75d4d4ea51b1f49438c134aa7aea4a9d, type: 3}
+  putMaskSound: {fileID: 8300000, guid: 75d4d4ea51b1f49438c134aa7aea4a9d, type: 3}
+  leverSound: {fileID: 8300000, guid: 60b41b1cac90d6c4f96de47f5ce567e3, type: 3}
+  thermometerSound: {fileID: 8300000, guid: 3d6783c17c89cb0489a854f300384df9, type: 3}
 --- !u!114 &554676304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,12 +1105,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &640883036 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5477635851177680152, guid: a1f16980039cdb34f9d9676b559c0691,
-    type: 3}
-  m_PrefabInstance: {fileID: 2013298654}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,7 +1323,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719080067}
   m_LocalRotation: {x: 0.000000029802319, y: 0.03610038, z: 0.063034825, w: 0.9973582}
-  m_LocalPosition: {x: 0, y: 0, z: -169}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 1908284725}
@@ -1884,7 +1903,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955683559}
   m_LocalRotation: {x: -0.0017162488, y: 0.036055468, z: 0.0156047195, w: 0.9992265}
-  m_LocalPosition: {x: 0, y: 0, z: -169.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 1908284725}
@@ -4308,7 +4327,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812658070}
   m_LocalRotation: {x: 0.00080618344, y: 0.036087286, z: 0.0853561, w: 0.9956964}
-  m_LocalPosition: {x: 0, y: 0, z: -165}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 1908284725}
@@ -4562,7 +4581,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867420228}
   m_LocalRotation: {x: -0.0055659483, y: 0.035664584, z: -0.09144722, w: 0.9951555}
-  m_LocalPosition: {x: 0, y: 0, z: -178}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 1908284725}
@@ -4609,12 +4628,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867420228}
   m_CullTransparentMesh: 0
---- !u!1 &1907860726 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1549509112934564, guid: 0336544bb841fbb419d88a0ed794fe87,
-    type: 3}
-  m_PrefabInstance: {fileID: 1381985400}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1908284721
 GameObject:
   m_ObjectHideFlags: 0
@@ -5614,7 +5627,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085369598}
   m_LocalRotation: {x: -0.003108489, y: 0.035962198, z: -0.023026465, w: 0.99908304}
-  m_LocalPosition: {x: 0, y: 0, z: -177}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 1908284725}

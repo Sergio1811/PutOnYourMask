@@ -52,6 +52,7 @@ public class VSFX : MonoBehaviour
     public AudioClip pickMaskSound;
     public AudioClip putMaskSound;
     public AudioClip leverSound;
+    public AudioClip thermometerSound;
 
     private void Awake()
     {

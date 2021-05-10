@@ -90,6 +90,7 @@ public class LabManager : MonoBehaviour
                 case "Bin":
                     //Nothing?
                     player.nextPoint = trash.gameObject.transform.position;
+                    VSFX.instance.PlayAudio(VSFX.instance.objectToTrashSound);
                     break;
 
                 case "LabSub1":
@@ -111,13 +112,14 @@ public class LabManager : MonoBehaviour
                     break;
 
                 case "Warmer":
-                    player.nextPoint = warmerPos.position;                    
+                    player.nextPoint = warmerPos.position;
                     // GameObject Item3 = Instantiate(itemTemplate);
                     break;
 
                 case "Centrifugator":
                     player.nextPoint = centrifugatorPos.transform.position;
                     //Instantiate(itemDB.GetItem(3).gameObject);
+
                     break;
 
                 case "Character":
@@ -131,6 +133,8 @@ public class LabManager : MonoBehaviour
 
                 case "Button":
                     panelChuleta.SetActive(true);
+                    VSFX.instance.PlayAudio(VSFX.instance.flipPageSound);
+
                     break;
 
                 default:
