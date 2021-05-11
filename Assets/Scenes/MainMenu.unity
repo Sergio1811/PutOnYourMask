@@ -1050,9 +1050,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 917608155}
-        m_MethodName: ChangeNot
-        m_Mode: 1
+      - m_Target: {fileID: 657568589}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2928,9 +2928,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 917608155}
-        m_MethodName: ChangeMusic
-        m_Mode: 1
+      - m_Target: {fileID: 866005218}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3915,7 +3915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &414635190
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5451,9 +5451,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 917608155}
-        m_MethodName: ChangeNot
-        m_Mode: 1
+      - m_Target: {fileID: 88094290}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6145,7 +6145,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 5527036894198762449}
+      - m_Target: {fileID: 1664153624}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -6529,9 +6529,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 917608155}
-        m_MethodName: ChangeMusic
-        m_Mode: 1
+      - m_Target: {fileID: 313835323}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7632,8 +7632,9 @@ MonoBehaviour:
   useWarmerSound: {fileID: 8300000, guid: 816c701b6a8dc3c4d9d86e7898ab92c4, type: 3}
   useCentrifugatorSound: {fileID: 8300000, guid: 0838817ca7c82f441b99a5d72f9b9507,
     type: 3}
-  centrifugatorUsageSound: {fileID: 0}
-  warmerUsageSound: {fileID: 0}
+  centrifugatorUsageSound: {fileID: 8300000, guid: 45ee6240e231079488a6abb786d2fc65,
+    type: 3}
+  warmerUsageSound: {fileID: 8300000, guid: 3625b1c709c81ce4ab190a7febdfdde1, type: 3}
   completedOrderSound: {fileID: 0}
   failedOrderSound: {fileID: 0}
   objectToTrashSound: {fileID: 8300000, guid: 063f6bc66073cc14cbd46ca7687bbad9, type: 3}
@@ -7645,7 +7646,7 @@ MonoBehaviour:
   pickMaskSound: {fileID: 8300000, guid: 75d4d4ea51b1f49438c134aa7aea4a9d, type: 3}
   putMaskSound: {fileID: 8300000, guid: 75d4d4ea51b1f49438c134aa7aea4a9d, type: 3}
   leverSound: {fileID: 8300000, guid: 60b41b1cac90d6c4f96de47f5ce567e3, type: 3}
-  thermometerSound: {fileID: 8300000, guid: 3d6783c17c89cb0489a854f300384df9, type: 3}
+  thermometerSound: {fileID: 8300000, guid: 4d51e9c7f9830264380ab28938c74ffc, type: 3}
 --- !u!1 &1024971826
 GameObject:
   m_ObjectHideFlags: 0
@@ -9611,9 +9612,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 917608155}
-        m_MethodName: ChangeSound
-        m_Mode: 1
+      - m_Target: {fileID: 1655179006}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11430,9 +11431,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 917608155}
-        m_MethodName: ChangeSound
-        m_Mode: 1
+      - m_Target: {fileID: 1348584691}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17355,7 +17356,7 @@ PrefabInstance:
     - target: {fileID: 2644939880401286677, guid: 68294bb3aa74add49b025c8fe4da13eb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3076584654503722155, guid: 68294bb3aa74add49b025c8fe4da13eb,
         type: 3}

@@ -178,6 +178,8 @@ public class AccessControlManager : MonoBehaviour
         if (InputManager.Instance.WhatAmIClicking().CompareTag("Postit"))
         {
             panelPostit.SetActive(true);
+            VSFX.instance.PlayAudio(VSFX.instance.flipPageSound);
+
         }
     }
 

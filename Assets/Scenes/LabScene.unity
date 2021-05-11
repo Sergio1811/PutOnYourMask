@@ -1012,8 +1012,9 @@ MonoBehaviour:
   useWarmerSound: {fileID: 8300000, guid: 816c701b6a8dc3c4d9d86e7898ab92c4, type: 3}
   useCentrifugatorSound: {fileID: 8300000, guid: 0838817ca7c82f441b99a5d72f9b9507,
     type: 3}
-  centrifugatorUsageSound: {fileID: 0}
-  warmerUsageSound: {fileID: 0}
+  centrifugatorUsageSound: {fileID: 8300000, guid: 0838817ca7c82f441b99a5d72f9b9507,
+    type: 3}
+  warmerUsageSound: {fileID: 8300000, guid: 816c701b6a8dc3c4d9d86e7898ab92c4, type: 3}
   completedOrderSound: {fileID: 0}
   failedOrderSound: {fileID: 0}
   objectToTrashSound: {fileID: 8300000, guid: 063f6bc66073cc14cbd46ca7687bbad9, type: 3}

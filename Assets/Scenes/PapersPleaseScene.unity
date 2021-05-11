@@ -1249,7 +1249,7 @@ MonoBehaviour:
   pickMaskSound: {fileID: 8300000, guid: 75d4d4ea51b1f49438c134aa7aea4a9d, type: 3}
   putMaskSound: {fileID: 8300000, guid: 75d4d4ea51b1f49438c134aa7aea4a9d, type: 3}
   leverSound: {fileID: 8300000, guid: 60b41b1cac90d6c4f96de47f5ce567e3, type: 3}
-  thermometerSound: {fileID: 8300000, guid: 3d6783c17c89cb0489a854f300384df9, type: 3}
+  thermometerSound: {fileID: 8300000, guid: 4d51e9c7f9830264380ab28938c74ffc, type: 3}
 --- !u!114 &554676304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2244,7 +2244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1297268782
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4717,7 +4717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1908284722
 MonoBehaviour:
   m_ObjectHideFlags: 0
