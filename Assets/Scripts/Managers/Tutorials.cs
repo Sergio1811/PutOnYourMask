@@ -23,6 +23,7 @@ public class Tutorials : MonoBehaviour
         boton.onClick.RemoveAllListeners();
         boton.onClick.AddListener(delegate { SecondTutoTran(); });
     }
+
     public void SecondTutoTran()
     {
         animControl.SetTrigger("SecondTrans");
