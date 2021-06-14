@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("Porcentaje en decimal de la probabilidad")]
     [Range(0, 1)] public float newProbability;
 
+    public bool onlineShopping;
     private void Awake()
     {
         if (instance == null)
