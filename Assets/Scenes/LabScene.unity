@@ -943,7 +943,7 @@ MonoBehaviour:
   itemDB: {fileID: 554676304}
   itemTemplate: {fileID: 2260030738460196171, guid: 70b5a90c3c65017419ecd8763a2b4c4f,
     type: 3}
-  timeMinigame: 30
+  timeMinigame: 120
   timeText: {fileID: 1568937030}
   panelChuleta: {fileID: 1844786482}
   canvasFinal: {fileID: 193832492}
@@ -6989,7 +6989,7 @@ PrefabInstance:
     - target: {fileID: 2902798741570514790, guid: 40a0d92b075813e45bc2e1328011c846,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 38
+      value: 38.000122
       objectReference: {fileID: 0}
     - target: {fileID: 2902798741570514790, guid: 40a0d92b075813e45bc2e1328011c846,
         type: 3}

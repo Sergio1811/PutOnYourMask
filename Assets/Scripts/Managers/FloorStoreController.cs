@@ -21,7 +21,6 @@ public class FloorStoreController : MonoBehaviour
         InitializeStore();
     }
 
-   
     public void InitializeStore()
     {
         virus = (int)GameManager.instance.virusPercentage;
@@ -43,7 +42,6 @@ public class FloorStoreController : MonoBehaviour
 
         storeButtons[0].onClick.RemoveAllListeners();
         storeButtons[0].onClick.AddListener(delegate { divisasTienda.SetActive(true); });
-
         
         for (int i = currentFloor+1; i < closedStore.Length; i++)
         {
@@ -53,7 +51,6 @@ public class FloorStoreController : MonoBehaviour
             { 
                 GameManager.instance.onlineShopping = true;
             });
-
         }
 
     }
