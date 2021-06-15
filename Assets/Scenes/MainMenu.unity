@@ -2864,6 +2864,7 @@ GameObject:
   - component: {fileID: 197237829}
   - component: {fileID: 197237828}
   - component: {fileID: 197237827}
+  - component: {fileID: 197237830}
   m_Layer: 5
   m_Name: PostItMask
   m_TagString: Untagged
@@ -2932,7 +2933,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 197237828}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 613123260}
+        m_MethodName: PostItClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 197237825}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &197237828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2969,6 +2981,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197237825}
   m_CullTransparentMesh: 0
+--- !u!114 &197237830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197237825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a1de14cd45c224695e4a381208ca8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  section: {fileID: 0}
 --- !u!1 &201842702
 GameObject:
   m_ObjectHideFlags: 0
@@ -6500,6 +6525,7 @@ GameObject:
   - component: {fileID: 524907073}
   - component: {fileID: 524907072}
   - component: {fileID: 524907071}
+  - component: {fileID: 524907074}
   m_Layer: 5
   m_Name: PostItPantalones
   m_TagString: Untagged
@@ -6568,7 +6594,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 524907072}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 613123260}
+        m_MethodName: PostItClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 524907069}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &524907072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6605,6 +6642,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524907069}
   m_CullTransparentMesh: 0
+--- !u!114 &524907074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524907069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a1de14cd45c224695e4a381208ca8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  section: {fileID: 0}
 --- !u!1001 &530595203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7859,13 +7909,14 @@ GameObject:
   - component: {fileID: 613123257}
   - component: {fileID: 613123259}
   - component: {fileID: 613123258}
+  - component: {fileID: 613123260}
   m_Layer: 5
   m_Name: Catalogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &613123257
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7930,6 +7981,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613123256}
   m_CullTransparentMesh: 0
+--- !u!114 &613123260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613123256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e696ef49512b34882399af79b82a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postIts:
+  - {fileID: 1830694480}
+  - {fileID: 197237825}
+  - {fileID: 1150702795}
+  - {fileID: 524907069}
+  - {fileID: 1823742374}
+  - {fileID: 1638048383}
+  collections: []
+  parent: {fileID: 613123257}
 --- !u!1 &617953930
 GameObject:
   m_ObjectHideFlags: 0
@@ -12661,6 +12733,7 @@ GameObject:
   - component: {fileID: 1150702799}
   - component: {fileID: 1150702798}
   - component: {fileID: 1150702797}
+  - component: {fileID: 1150702800}
   m_Layer: 5
   m_Name: PostItCamiseta
   m_TagString: Untagged
@@ -12729,7 +12802,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1150702798}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 613123260}
+        m_MethodName: PostItClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1150702795}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1150702798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12766,6 +12850,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150702795}
   m_CullTransparentMesh: 0
+--- !u!114 &1150702800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150702795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a1de14cd45c224695e4a381208ca8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  section: {fileID: 0}
 --- !u!1 &1152690142
 GameObject:
   m_ObjectHideFlags: 0
@@ -13966,7 +14063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.20175515, y: 0.75746256}
   m_AnchorMax: {x: 0.82600003, y: 0.8738437}
-  m_AnchoredPosition: {x: -18.00003, y: 17}
+  m_AnchoredPosition: {x: -18, y: 17}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1269732004
@@ -17294,7 +17391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -17663,6 +17760,7 @@ GameObject:
   - component: {fileID: 1638048387}
   - component: {fileID: 1638048386}
   - component: {fileID: 1638048385}
+  - component: {fileID: 1638048388}
   m_Layer: 5
   m_Name: PostItEspecial
   m_TagString: Untagged
@@ -17731,7 +17829,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1638048386}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 613123260}
+        m_MethodName: PostItClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1638048383}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1638048386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17768,6 +17877,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638048383}
   m_CullTransparentMesh: 0
+--- !u!114 &1638048388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638048383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a1de14cd45c224695e4a381208ca8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  section: {fileID: 1327776598}
 --- !u!1 &1655179006
 GameObject:
   m_ObjectHideFlags: 0
@@ -19359,6 +19481,7 @@ GameObject:
   - component: {fileID: 1823742378}
   - component: {fileID: 1823742377}
   - component: {fileID: 1823742376}
+  - component: {fileID: 1823742379}
   m_Layer: 5
   m_Name: PostItZapatos
   m_TagString: Untagged
@@ -19427,7 +19550,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1823742377}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 613123260}
+        m_MethodName: PostItClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1823742374}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1823742377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19464,6 +19598,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823742374}
   m_CullTransparentMesh: 0
+--- !u!114 &1823742379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823742374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a1de14cd45c224695e4a381208ca8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  section: {fileID: 0}
 --- !u!1 &1826204647
 GameObject:
   m_ObjectHideFlags: 0
@@ -19548,6 +19695,7 @@ GameObject:
   - component: {fileID: 1830694484}
   - component: {fileID: 1830694483}
   - component: {fileID: 1830694482}
+  - component: {fileID: 1830694485}
   m_Layer: 5
   m_Name: PostItGorra
   m_TagString: Untagged
@@ -19616,7 +19764,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1830694483}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 613123260}
+        m_MethodName: PostItClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: SectionScriptableObject, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1830694483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19653,6 +19812,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830694480}
   m_CullTransparentMesh: 0
+--- !u!114 &1830694485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830694480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a1de14cd45c224695e4a381208ca8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  section: {fileID: 0}
 --- !u!1 &1836597886
 GameObject:
   m_ObjectHideFlags: 0
@@ -20449,7 +20621,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938449198}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
