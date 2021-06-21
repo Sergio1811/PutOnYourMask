@@ -10,9 +10,11 @@ public class CharRotation : MonoBehaviour
     public float forceMovement;
     float distance;
     Quaternion initialRot = new Quaternion(0,180,0,0);
-
+    bool rotateRight;
+    bool rotateLeft;
     void Update()
     {
+        /*
         if (Input.touchCount > 0)
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
@@ -42,12 +44,46 @@ public class CharRotation : MonoBehaviour
                 //distance = Mathf.Abs(distance);
                 character.transform.Rotate(Vector3.up, distance * forceMovement * Time.deltaTime);
             }
+        }*/
+        if (rotateRight)
+        {
+            RotateRight();
         }
-
+        else if (rotateLeft)
+        {
+            RotateLeft();
+        }
     }
 
     public void ResetRot()
     {
         this.transform.rotation = initialRot;
+    }
+
+    public void RotateRight()
+    {
+        character.transform.Rotate(Vector3.up, forceMovement * Time.deltaTime);
+    }
+    
+    public void RotateLeft()
+    {
+        character.transform.Rotate(Vector3.up, -forceMovement * Time.deltaTime);
+    }
+
+    public void RotateLeftStart()
+    {
+        rotateLeft = true;
+    }
+    public void RotateLeftStop()
+    {
+        rotateLeft = false;
+    }
+    public void RotateRightStart()
+    {
+        rotateRight = true;
+    }
+    public void RotateRightStop()
+    {
+        rotateRight = false;
     }
 }

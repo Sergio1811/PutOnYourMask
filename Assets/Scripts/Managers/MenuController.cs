@@ -17,7 +17,8 @@ public class MenuController : MonoBehaviour
     public string currentLanguage;
     int currentNum = 0;
 
-    public enum Clothing { Head, Shirt, Pants, Shoes, Mask };
+    public enum Clothing { Head, Shirt, Pants, Shoes, Mask, Special };
+    public Sprite[] clothIcons;
     public Clothing currentCloth = Clothing.Shirt;
     public Animation m_DropdownAnimation;
     public AnimationClip openAnim;
@@ -133,46 +134,37 @@ public class MenuController : MonoBehaviour
         //rellenar datos
     }
 
-    public void SelectCloth(Sprite l_Cloth)
-    {
-        if (!ddOpened)
-        {
-            m_DropdownAnimation.clip = openAnim;
-            m_DropdownAnimation.Play();
-            ddOpened = true;
-        }
-        else
-        {
-            m_DropdownAnimation.clip = closedAnim;
-            m_DropdownAnimation.Play();
-            ddOpened = false;
-        }
 
-        if (l_Cloth != null)
-            currentIcon.sprite = l_Cloth;
-       
-    }
     public void SelectCloth(int l_Cloth)
     {
         switch (l_Cloth)
         {
             case 0:
                 currentCloth = Clothing.Head;
+                currentIcon.sprite = clothIcons[0];
                 break;
 
             case 1:
-                currentCloth = Clothing.Shirt;
+                currentCloth = Clothing.Mask;
+                currentIcon.sprite = clothIcons[1];
                 break;
 
             case 2:
-                currentCloth = Clothing.Pants;
+                currentCloth = Clothing.Shirt;
+                currentIcon.sprite = clothIcons[2];
                 break;
 
             case 3:
-                currentCloth = Clothing.Shoes;
+                currentCloth = Clothing.Pants;
+                currentIcon.sprite = clothIcons[3];
                 break;
             case 4:
-                currentCloth = Clothing.Mask;
+                currentCloth = Clothing.Shoes;
+                currentIcon.sprite = clothIcons[4];
+                break;
+            case 5:
+                currentCloth = Clothing.Special;
+                currentIcon.sprite = clothIcons[5];
                 break;
 
             default:
