@@ -12,7 +12,7 @@ public class TextTranslator : MonoBehaviour
         var text = GetComponent<TextMeshProUGUI>();
         if (text != null) { 
             if (TextId == "ISOCode")
-                text.text = LocaleHelper.GetSupportedLanguageCode();
+                text.text = GameManager.instance.language;
             else
                 text.text = LanguageManager.Fields[TextId];
             print("EH");

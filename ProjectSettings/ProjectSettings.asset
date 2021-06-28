@@ -166,7 +166,7 @@ PlayerSettings:
   buildNumber: {}
   AndroidBundleVersionCode: 2
   AndroidMinSdkVersion: 19
-  AndroidTargetSdkVersion: 30
+  AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -776,10 +776,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: b824d405-f80e-440a-bc89-0eb5bcd55ee0
+  cloudProjectId: 
   framebufferDepthMemorylessMode: 0
-  projectName: The Last Mask!
-  organizationId: rollingcat
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

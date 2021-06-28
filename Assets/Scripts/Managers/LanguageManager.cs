@@ -93,7 +93,7 @@ class LanguageManager
 
         Fields.Clear();
 
-        string lang = LocaleHelper.GetSupportedLanguageCode().ToLower();
+        string lang = GameManager.instance.language.ToLower();
         Debug.Log(lang);
         //lang = "es";
         var textAsset = Resources.Load(@"Translation/" + lang); //no .txt needed

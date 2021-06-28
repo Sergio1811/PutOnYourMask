@@ -50,8 +50,25 @@ public class MenuController : MonoBehaviour
         {
             item.SetActive(false);
         }
-        languageObjectArray[currentNum].SetActive(true);
+        currentLanguage = GameManager.instance.language;
+
+        switch (currentLanguage)
+        {
+            case "EN":
+                
+                break;
+            case "ES":
+                currentNum = 1;
+                break;
+            case "CA":
+                currentNum = 2;
+                break;
+            default:
+                break;
+        }
+
         currentLanguage = languageStringArray[currentNum];
+        languageObjectArray[currentNum].SetActive(true);
     }
 
     public void TwitterAcces()
@@ -83,8 +100,11 @@ public class MenuController : MonoBehaviour
             currentNum = 0;
         }
 
+        
+
         languageObjectArray[currentNum].SetActive(true);
         currentLanguage = languageStringArray[currentNum];
+        GameManager.instance.language = currentLanguage;
     }
 
     public void ChangeSound()

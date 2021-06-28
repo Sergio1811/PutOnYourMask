@@ -15903,7 +15903,7 @@ MonoBehaviour:
   languageStringArray:
   - en
   - es
-  - cat
+  - ca
   currentLanguage: 
   clothIcons:
   - {fileID: 21300000, guid: e7932087dad4eb442a436cc420df1502, type: 3}
@@ -17388,6 +17388,7 @@ MonoBehaviour:
   vsControl: {fileID: 0}
   newProbability: 0.211
   onlineShopping: 0
+  language: 
 --- !u!4 &1008423086
 Transform:
   m_ObjectHideFlags: 0
@@ -23523,7 +23524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1371473106
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24842,7 +24843,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1504607485
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31848,10 +31849,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735f5ad78f071f448813b9a40cd78e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageCount: 7
-  _materialToSave: {fileID: 2100000, guid: 67eaa13148e619c43b4bbf265d00fcf8, type: 2}
-  _cameraWithRendTexture: {fileID: 1263480888}
-  _heightInPixelsOfCertificate: 256
 --- !u!1 &1994467717
 GameObject:
   m_ObjectHideFlags: 0

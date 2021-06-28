@@ -453,7 +453,7 @@ public class AccessControlManager : MonoBehaviour
 
         canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
         canvasFinale.finalPercentage = (GameManager.instance.virusPercentage - 20).ToString();
-        GameManager.instance.virusPercentage -= 20;
+        GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage - 20, 0, 100);
         canvasFinal.SetActive(true);
     }
 

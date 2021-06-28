@@ -29,13 +29,15 @@ public class GameManager : MonoBehaviour
     [Range(0, 1)] public float newProbability;
 
     public bool onlineShopping;
+
+    public string language;
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
             SceneManager.sceneLoaded += LoadLevel0;
-
+            language = LocaleHelper.GetSupportedLanguageCode();
         }
         else
         {
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadLevel0(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 0)
+        if (scene.buildIndex == 1)
         {
             vsControl = GameObject.Find("ScriptHolder").GetComponent<PercentageVirusControl>();
             coinsText = GameObject.FindGameObjectWithTag("CoinText").GetComponent<TextMeshProUGUI>();

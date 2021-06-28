@@ -20,7 +20,7 @@ public class AdManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Advertisement.Initialize(gameId, testMode);
+       // Advertisement.Initialize(gameId, testMode);
     }
 
 
@@ -29,7 +29,7 @@ public class AdManager : MonoBehaviour
         void OnUnityAdsReady(string placementId);
         void OnUnityAdsDidError(string message);
         void OnUnityAdsDidStart(string placementId);
-        void OnUnityAdsDidFinish(string placementId, ShowResult showResult);
+      //  void OnUnityAdsDidFinish(string placementId, ShowResult showResult);
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class AdManager : MonoBehaviour
 
     }
 
-
+    /*
     public void ShowRewardedAd(int _number)
     {
         if (Advertisement.IsReady(myPlacementId))
@@ -49,7 +49,7 @@ public class AdManager : MonoBehaviour
 
             Advertisement.Show(myPlacementId, options);
         }
-
+        
     }
 
     private void HandleShowResult(ShowResult result)
