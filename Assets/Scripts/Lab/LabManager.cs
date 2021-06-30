@@ -6,7 +6,7 @@ using TMPro;
 
 public class LabManager : MonoBehaviour
 {
-    public enum GameState { Play, Finish };
+    public enum GameState { Stopped, Play, Finish };
     public GameState currentState = GameState.Play;
     public static LabManager instance;
 

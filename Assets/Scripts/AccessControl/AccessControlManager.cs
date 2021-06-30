@@ -6,7 +6,7 @@ using TMPro;
 
 public class AccessControlManager : MonoBehaviour
 {
-    public enum GameState { Play, Finish };
+    public enum GameState { Stopped, Play, Finish };
     public GameState currentState = GameState.Play;
     public static AccessControlManager instance;
 

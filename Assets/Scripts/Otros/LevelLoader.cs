@@ -12,7 +12,7 @@ public class LevelLoader : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LoadAsynchronously());
+        StartCoroutine(WaitForLoadingBar(2));
     }
 
 
@@ -22,12 +22,25 @@ public class LevelLoader : MonoBehaviour
         
         while (!operation.isDone)
         {
-            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            /*float progress = Mathf.Clamp01(operation.progress / 0.9f);
             Debug.Log(progress);
             slider.value = progress;
-            progressText.text = progress * 100 + "%";
+            progressText.text = progress * 100 + "%";*/
             yield return null;
         }
+
+    }
+    IEnumerator WaitForLoadingBar(float seconds)
+    {
+        float currentTime = seconds;
+
+        while (currentTime > 0)
+        {
+            currentTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        StartCoroutine(LoadAsynchronously());
 
     }
 }

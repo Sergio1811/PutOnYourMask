@@ -11,9 +11,21 @@ public class Tutorials : MonoBehaviour
     private void Start()
     {
         boton.onClick.AddListener(delegate { FirstTutoTran(); });
+
         if (PlayerPrefs.GetString(this.gameObject.name) == "Completed")
         {
             this.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (GameObject.Find("ScriptHolder").GetComponent<AccessControlManager>() != null)
+            {
+                AccessControlManager.instance.currentState = AccessControlManager.GameState.Stopped;
+            }
+            else if (GameObject.Find("ScriptHolder").GetComponent<LabManager>() != null)
+            {
+                LabManager.instance.currentState = LabManager.GameState.Stopped;
+            }
         }
     }
 
@@ -30,10 +42,20 @@ public class Tutorials : MonoBehaviour
         boton.onClick.RemoveAllListeners();
         boton.onClick.AddListener(delegate
         {
+            PlayerPrefs.SetString(this.gameObject.name, "Completed");
+
+            if (GameObject.Find("ScriptHolder").GetComponent<AccessControlManager>() != null)
+            {
+                AccessControlManager.instance.currentState = AccessControlManager.GameState.Play;
+            }
+            else if (GameObject.Find("ScriptHolder").GetComponent<LabManager>() != null)
+            {
+                LabManager.instance.currentState = LabManager.GameState.Play;
+            }
             this.gameObject.SetActive(false);
             Reset();
         });
-        PlayerPrefs.SetString(this.gameObject.name, "Completed");
+        
     }
 
     public void Reset()

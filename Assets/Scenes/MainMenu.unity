@@ -21616,7 +21616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.20175515, y: 0.75746256}
   m_AnchorMax: {x: 0.82600003, y: 0.8738437}
-  m_AnchoredPosition: {x: -18.00003, y: 17}
+  m_AnchoredPosition: {x: -18, y: 17}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1269732004
@@ -31849,6 +31849,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735f5ad78f071f448813b9a40cd78e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageCount: 1
+  _materialToSave: {fileID: 2100000, guid: 67eaa13148e619c43b4bbf265d00fcf8, type: 2}
+  _cameraWithRendTexture: {fileID: 1263480888}
+  _heightInPixelsOfCertificate: 256
 --- !u!1 &1994467717
 GameObject:
   m_ObjectHideFlags: 0

@@ -1143,7 +1143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2e427738151eb4d868cc6224580a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
+  currentState: 1
   Termometro: {fileID: 6168404284648744455}
   Palanca: {fileID: 8625930678372158748}
   Buttons: {fileID: 1834732703604364835}
@@ -2691,7 +2691,7 @@ PrefabInstance:
     - target: {fileID: 2415730082137924342, guid: f7d60512d0713184d9d5089ce4732f92,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2415730082137924343, guid: f7d60512d0713184d9d5089ce4732f92,
         type: 3}
@@ -3001,7 +3001,7 @@ PrefabInstance:
     - target: {fileID: 7410654874237362318, guid: f7d60512d0713184d9d5089ce4732f92,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7496214640159712281, guid: f7d60512d0713184d9d5089ce4732f92,
         type: 3}

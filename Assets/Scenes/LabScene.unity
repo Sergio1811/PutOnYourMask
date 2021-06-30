@@ -931,7 +931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d18576cedb9fb44863598f798c001a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
+  currentState: 1
   substanceOne: {fileID: 4203573749653469805, guid: 042ef2fd8604af543b8ee72a7dd7dafd,
     type: 3}
   substanceTwo: {fileID: 5607132711454424454, guid: e622748a4078dcb409f605b7fb1cd0ae,
@@ -3713,7 +3713,7 @@ PrefabInstance:
     - target: {fileID: 486189242474142223, guid: d3cdb5176b93675499c7c9693112884a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 486189243077041551, guid: d3cdb5176b93675499c7c9693112884a,
         type: 3}
@@ -7065,7 +7065,7 @@ PrefabInstance:
     - target: {fileID: 2902798741570514790, guid: 40a0d92b075813e45bc2e1328011c846,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 38.000122
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 2902798741570514790, guid: 40a0d92b075813e45bc2e1328011c846,
         type: 3}
