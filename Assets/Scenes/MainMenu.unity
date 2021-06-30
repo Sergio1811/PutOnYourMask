@@ -21415,7 +21415,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 1024
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 8b773ead91df96640a3ebb4b27c61ccf, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 3088c9ad331fad44f80808b5fd64e47d, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -31852,7 +31852,7 @@ MonoBehaviour:
   imageCount: 1
   _materialToSave: {fileID: 2100000, guid: 67eaa13148e619c43b4bbf265d00fcf8, type: 2}
   _cameraWithRendTexture: {fileID: 1263480888}
-  _heightInPixelsOfCertificate: 256
+  _heightInPixelsOfCertificate: 128
 --- !u!1 &1994467717
 GameObject:
   m_ObjectHideFlags: 0
