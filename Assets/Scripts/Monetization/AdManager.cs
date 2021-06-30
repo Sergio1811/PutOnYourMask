@@ -20,7 +20,7 @@ public class AdManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // Advertisement.Initialize(gameId, testMode);
+        Advertisement.Initialize(gameId, testMode);
     }
 
 
@@ -29,7 +29,7 @@ public class AdManager : MonoBehaviour
         void OnUnityAdsReady(string placementId);
         void OnUnityAdsDidError(string message);
         void OnUnityAdsDidStart(string placementId);
-      //  void OnUnityAdsDidFinish(string placementId, ShowResult showResult);
+        void OnUnityAdsDidFinish(string placementId, ShowResult showResult);
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class AdManager : MonoBehaviour
 
     }
 
-    /*
+    
     public void ShowRewardedAd(int _number)
     {
         if (Advertisement.IsReady(myPlacementId))
@@ -66,7 +66,7 @@ public class AdManager : MonoBehaviour
             case ShowResult.Finished:
                 if (lastNumberAd==0)
                 {
-                    GameManager.instance.coins += 500;
+                    GameManager.instance.AddCoins(500);
                 }
                 if (lastNumberAd == 1)
                 {
