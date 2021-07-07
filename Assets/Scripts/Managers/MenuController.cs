@@ -28,7 +28,12 @@ public class MenuController : MonoBehaviour
     bool maskOn = false;
     public GameObject maskChar;
     public GameObject canvasItem;
+
+    public GameObject[] pages;
+    public int currentPage;
     
+    public GameObject[] pagesVer;
+    public int currentPageVer;
 
     private void Awake()
     {
@@ -206,9 +211,62 @@ public class MenuController : MonoBehaviour
             m_DropdownAnimation.clip = closedAnim;
             m_DropdownAnimation.Play();
             ddOpened = false;
-        }
+        }       
+    }
 
-       
-       
+    public void NextPage()
+    {
+        foreach (var item in pages)
+        {
+            item.SetActive(false);
+        }
+        currentPage++;
+        if (currentPage<pages.Length)
+        {
+            pages[currentPage].SetActive(true);
+
+        }
+    } 
+    
+    public void PrevPage()
+    {
+        foreach (var item in pages)
+        {
+            item.SetActive(false);
+        }
+        currentPage--;
+        if (currentPage >= 0)
+        {
+            pages[currentPage].SetActive(true);
+
+        }
+    }
+    
+    public void NextPageVer()
+    {
+        foreach (var item in pagesVer)
+        {
+            item.SetActive(false);
+        }
+        currentPageVer++;
+        if (currentPage<pagesVer.Length)
+        {
+            pagesVer[currentPageVer].SetActive(true);
+
+        }
+    } 
+    
+    public void PrevPageVer()
+    {
+        foreach (var item in pagesVer)
+        {
+            item.SetActive(false);
+        }
+        currentPageVer--;
+        if (currentPageVer >= 0)
+        {
+            pagesVer[currentPageVer].SetActive(true);
+
+        }
     }
 }
