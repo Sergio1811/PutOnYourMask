@@ -13,11 +13,16 @@ public class WarmerControl : MonoBehaviour
 
     public float timeToWarmer;
     float currentTimeWarming;
+    public GameObject liquido;
+
 
     bool isWarming = false;
 
     [HideInInspector]
     public bool objectInMachine;
+
+    public Animator m_Animator;
+
     void Start()
     {
         if (VSFX.instance.SmokeColumnPS != null && VSFX.instance.FireBunPS != null)
@@ -26,6 +31,8 @@ public class WarmerControl : MonoBehaviour
             VSFX.instance.FireBunPS.GetComponent<ParticleSystem>().Stop();
         }
         collectButton.gameObject.SetActive(false);
+        liquido.SetActive(false);
+        liquido.GetComponent<Rotation>().rotSpeed = 0;
     }
 
     void Update()
@@ -43,6 +50,7 @@ public class WarmerControl : MonoBehaviour
         else
         {
             isWarming = MachineFull();
+            m_Animator.SetBool("MachineFull", MachineFull());
 
         }
     }
@@ -50,7 +58,10 @@ public class WarmerControl : MonoBehaviour
     public void FinishWarming()
     {
         PopUpObject();
+
         objectInMachine = true;
+        liquido.GetComponent<Rotation>().rotSpeed = 0;
+
         if (VSFX.instance.SmokeColumnPS != null && VSFX.instance.FireBunPS != null)
         {
             VSFX.instance.SmokeColumnPS.GetComponent<ParticleSystem>().Stop();
@@ -76,7 +87,9 @@ public class WarmerControl : MonoBehaviour
                 VSFX.instance.PlayAudio(VSFX.instance.warmerUsageSound);
 
             }
-
+            liquido.SetActive(true);
+            
+            liquido.GetComponent<Rotation>().rotSpeed = 240;
             timeUI.gameObject.SetActive(true);
             return true;
         }
@@ -110,12 +123,16 @@ public class WarmerControl : MonoBehaviour
 
         Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
         itemCollectable.sprite = itemToCollect.icon;
+        Material mymat = liquido.GetComponent<MeshRenderer>().material;
+        mymat.SetColor("_EmissionColor", itemToCollect.color);
 
         collectButton.onClick.AddListener(
            delegate
            {
                objectInMachine = false;
                collectButton.gameObject.SetActive(false);
+               mymat.SetColor("_EmissionColor", Color.white);
+
            });
 
         collectButton.onClick.AddListener(

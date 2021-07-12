@@ -81,7 +81,7 @@ public class CentrifugatorControl : MonoBehaviour
         timeUI.gameObject.SetActive(true);
         batidora.rotSpeed = 120;
         liquido.SetActive(true);
-        liquido.GetComponent<SkinnedMeshRenderer>().material.color = Color.black;
+
         liquido.GetComponent<Rotation>().rotSpeed = 240;
         return true;
     }
@@ -122,6 +122,8 @@ public class CentrifugatorControl : MonoBehaviour
         Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
         itemCollectable.sprite = itemToCollect.icon;
 
+        Material mymat = liquido.GetComponent<SkinnedMeshRenderer>().material;
+        mymat.SetColor("_EmissionColor", itemToCollect.color);
         //poner cambio color del liquidillo
 
         collectButton.onClick.AddListener(
@@ -130,6 +132,8 @@ public class CentrifugatorControl : MonoBehaviour
               collectButton.gameObject.SetActive(false);
               liquido.SetActive(false);
               objectInMachine = false;
+              
+              mymat.SetColor("_EmissionColor", Color.white);
           });
 
         collectButton.onClick.AddListener(
@@ -146,6 +150,5 @@ public class CentrifugatorControl : MonoBehaviour
            });
 
     }
-
 }
 
