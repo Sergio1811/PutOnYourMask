@@ -29,6 +29,7 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
                         Debug.Log(sprite.name.Remove(sprite.name.Length - 1, 1));
                         LabManager.instance.warmer.AddObject(LabManager.instance.itemDB.GetItem(sprite));
                         InventoryLab.instance.DeletePosition(int.Parse(transform.parent.name));
+                        VSFX.instance.PlayAudio(VSFX.instance.useWarmerSound);
                         Destroy(gameObject);
                     }
                 }
@@ -38,6 +39,7 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
                     {
                         LabManager.instance.centrifugator.AddObject(LabManager.instance.itemDB.GetItem(sprite));
                         InventoryLab.instance.DeletePosition(int.Parse(transform.parent.name));
+                        VSFX.instance.PlayAudio(VSFX.instance.useCentrifugatorSound);
                         Destroy(gameObject);
                     }
                 }

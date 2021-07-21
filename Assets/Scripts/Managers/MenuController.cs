@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-    private MenuController instance;
+    public static MenuController instance;
 
     public bool soundOn;
     public bool musicOn;

@@ -140,6 +140,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.41835895, y: 0.30569094, z: 0.38576707}
   m_Center: {x: 0, y: 0, z: 0.19288354}
+--- !u!1 &113219758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 113219759}
+  m_Layer: 0
+  m_Name: vFXPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &113219759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113219758}
+  m_LocalRotation: {x: -0, y: -0.68574446, z: -0, w: 0.7278424}
+  m_LocalPosition: {x: -0.06887873, y: 0.18557733, z: 0.027245658}
+  m_LocalScale: {x: 0.091250576, y: 0.091250576, z: 0.091250576}
+  m_Children: []
+  m_Father: {fileID: 178615076}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &119988784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -345,6 +375,13 @@ MonoBehaviour:
   batidora: {fileID: 1595776970}
   objectInMachine: 0
   m_Animator: {fileID: 1785964878}
+  m_ExplosionPos: {fileID: 113219759}
+--- !u!4 &178615076 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 8fd8cdb659dd0044f84986f725efe942,
+    type: 3}
+  m_PrefabInstance: {fileID: 926959251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &193832492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,21 +1174,27 @@ MonoBehaviour:
   FireBunPS: {fileID: 1549509112934564, guid: 0336544bb841fbb419d88a0ed794fe87, type: 3}
   SmokeColumnPS: {fileID: 5477635851177680152, guid: a1f16980039cdb34f9d9676b559c0691,
     type: 3}
+  explosionMachinePS: {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56,
+    type: 3}
+  finishedPS: {fileID: 100018, guid: a40b64bf23366dc42a892af2c6ff6140, type: 3}
   bottleSounds:
   - {fileID: 8300000, guid: c0fdf7902eeedd547ac5c2a03e41db66, type: 3}
   - {fileID: 8300000, guid: 2387075469b418849ab9fdbe770b05aa, type: 3}
   - {fileID: 8300000, guid: 02c0c5ce380ccbe4c811f33cbddc7766, type: 3}
   - {fileID: 8300000, guid: 584a36c5e3ba1934e96f031ff5d78190, type: 3}
   - {fileID: 8300000, guid: e1047b43e394f0245beaca868fe38a0b, type: 3}
-  useWarmerSound: {fileID: 8300000, guid: 816c701b6a8dc3c4d9d86e7898ab92c4, type: 3}
-  useCentrifugatorSound: {fileID: 8300000, guid: 0838817ca7c82f441b99a5d72f9b9507,
+  useWarmerSound: {fileID: 8300000, guid: 3519f33ffb46ab14987f2385002c8d6e, type: 3}
+  useCentrifugatorSound: {fileID: 8300000, guid: 3519f33ffb46ab14987f2385002c8d6e,
     type: 3}
-  centrifugatorUsageSound: {fileID: 8300000, guid: 0838817ca7c82f441b99a5d72f9b9507,
+  centrifugatorUsageSound: {fileID: 8300000, guid: 0f0f8edef85ddc645ae305661a9537ac,
     type: 3}
   warmerUsageSound: {fileID: 8300000, guid: 816c701b6a8dc3c4d9d86e7898ab92c4, type: 3}
   completedOrderSound: {fileID: 0}
   failedOrderSound: {fileID: 0}
   objectToTrashSound: {fileID: 8300000, guid: 063f6bc66073cc14cbd46ca7687bbad9, type: 3}
+  explosionMachineSound: {fileID: 8300000, guid: 716926407bf5b3f4191985eb12e83605,
+    type: 3}
+  popUpSound: {fileID: 8300000, guid: 075a15ba95e6414439646e8364c11ce5, type: 3}
   inaudibleSound: {fileID: 8300000, guid: b52233ea69759214d8c707fb5ba7195d, type: 3}
   greenButtonSound: {fileID: 0}
   redButtonSound: {fileID: 0}
@@ -1239,6 +1282,36 @@ Transform:
   - {fileID: 126545559}
   m_Father: {fileID: 0}
   m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &704896782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 704896783}
+  m_Layer: 0
+  m_Name: vFXPos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &704896783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704896782}
+  m_LocalRotation: {x: -0, y: -0.4635418, z: -0, w: 0.88607514}
+  m_LocalPosition: {x: -0.029, y: 0.2143782, z: 0.008}
+  m_LocalScale: {x: 0.07276149, y: 0.07276149, z: 0.07276149}
+  m_Children: []
+  m_Father: {fileID: 1422230298}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -3330,6 +3403,7 @@ MonoBehaviour:
   liquido: {fileID: 262115434064848154}
   objectInMachine: 0
   m_Animator: {fileID: 1790494251}
+  m_ExplosionPos: {fileID: 704896783}
 --- !u!4 &1422230298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 59aa072a64716c4459defb02a9afef79,

@@ -22,7 +22,7 @@ public class WarmerControl : MonoBehaviour
     public bool objectInMachine;
 
     public Animator m_Animator;
-
+    public Transform m_ExplosionPos;
     void Start()
     {
         if (VSFX.instance.SmokeColumnPS != null && VSFX.instance.FireBunPS != null)
@@ -113,11 +113,17 @@ public class WarmerControl : MonoBehaviour
 
         collectButton.gameObject.SetActive(true);
         int itemIDFromRecipe = LabManager.instance.recipeDB.GetItemFromRecipe(inWarmer);
+        VSFX.instance.PlayAudio(VSFX.instance.popUpSound);
 
         if (itemIDFromRecipe == 0)
         {
+            LabManager.instance.player.animator.SetTrigger("Susto");
+            VSFX.instance.CreateParticleSystem(VSFX.instance.explosionMachinePS, m_ExplosionPos.position, false);
             //PONER EXPLOSION DE LA MAQUINA O REACCION DEL PLAYER
-
+        }
+        else
+        {
+            VSFX.instance.CreateParticleSystem(VSFX.instance.finishedPS, m_ExplosionPos.position, false);
         }
 
 
@@ -125,7 +131,9 @@ public class WarmerControl : MonoBehaviour
         itemCollectable.sprite = itemToCollect.icon;
         Material mymat = liquido.GetComponent<MeshRenderer>().material;
         mymat.SetColor("_EmissionColor", itemToCollect.color);
+        mymat.SetColor("_Color", itemToCollect.color);
 
+        print(itemToCollect.color);
         collectButton.onClick.AddListener(
            delegate
            {

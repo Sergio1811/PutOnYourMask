@@ -33,7 +33,7 @@ public class CatalogueController : MonoBehaviour
             item.SetActive(false);
         }
 
-        postItClicked.transform.SetSiblingIndex(postIts.Length);
+        postItClicked.transform.SetSiblingIndex(postIts.Length+1);
         postItClicked.GetComponent<SectionActivator>().section.SetActive(true);
     }
 
@@ -48,7 +48,7 @@ public class CatalogueController : MonoBehaviour
             item.SetActive(false);
         }
 
-        postIts[cloth[clothing]].transform.SetSiblingIndex(postIts.Length);
+        postIts[cloth[clothing]].transform.SetSiblingIndex(postIts.Length+1);
         postIts[cloth[clothing]].GetComponent<SectionActivator>().section.SetActive(true);
     }
     public void PostItClickedObject(int clothing)
@@ -65,7 +65,7 @@ public class CatalogueController : MonoBehaviour
 
         if (clothing == 2)
         {
-            postIts[clothing].transform.SetSiblingIndex(postIts.Length);
+            postIts[clothing].transform.SetSiblingIndex(postIts.Length+1);
             postIts[clothing].GetComponent<SectionActivator>().section.SetActive(true);
             postIts[clothing].SetActive(true);
 
@@ -76,7 +76,7 @@ public class CatalogueController : MonoBehaviour
         }
         else
         {
-            postIts[clothing].transform.SetSiblingIndex(postIts.Length);
+            postIts[clothing].transform.SetSiblingIndex(postIts.Length+1);
             postIts[clothing].GetComponent<SectionActivator>().section.SetActive(true);
             postIts[clothing].SetActive(true);
 

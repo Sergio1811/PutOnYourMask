@@ -33,6 +33,8 @@ public class VSFX : MonoBehaviour
     public GameObject SmokePuffPS;
     public GameObject FireBunPS;
     public GameObject SmokeColumnPS;
+    public GameObject explosionMachinePS;
+    public GameObject finishedPS;
     public AudioClip[] bottleSounds;
     public AudioClip useWarmerSound;
     public AudioClip useCentrifugatorSound;
@@ -41,6 +43,8 @@ public class VSFX : MonoBehaviour
     public AudioClip completedOrderSound;
     public AudioClip failedOrderSound;
     public AudioClip objectToTrashSound;
+    public AudioClip explosionMachineSound;
+    public AudioClip popUpSound;
 
 
     [Header("AccesControl")]
@@ -60,6 +64,7 @@ public class VSFX : MonoBehaviour
         {
             instance = this;
         }
+
         DontDestroyOnLoad(instance);
     }
 

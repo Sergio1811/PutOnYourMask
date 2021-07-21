@@ -22,9 +22,13 @@ public class CentrifugatorControl : MonoBehaviour
     public bool objectInMachine;
 
     public Animator m_Animator;
-
+    public Transform m_ExplosionPos;
+    Material mymat;
+    Color32 futureColor;
     void Start()
     {
+        mymat = liquido.GetComponent<SkinnedMeshRenderer>().material;
+
         timeUI.gameObject.SetActive(false);
         collectButton.gameObject.SetActive(false);
         batidora.rotSpeed = 0;
@@ -41,6 +45,7 @@ public class CentrifugatorControl : MonoBehaviour
 
         if (isCentrifugating)
         {
+          
             currentTimeCentrifugating += Time.deltaTime;
             timeUI.fillAmount = currentTimeCentrifugating / timeToCentrifugate;
         }
@@ -83,6 +88,7 @@ public class CentrifugatorControl : MonoBehaviour
         liquido.SetActive(true);
 
         liquido.GetComponent<Rotation>().rotSpeed = 240;
+       futureColor = LabManager.instance.itemDB.GetItem(LabManager.instance.recipeDB.GetItemFromRecipe(inCentrifugator)).color;
         return true;
     }
 
@@ -113,17 +119,26 @@ public class CentrifugatorControl : MonoBehaviour
     {
         int itemIDFromRecipe = LabManager.instance.recipeDB.GetItemFromRecipe(inCentrifugator);
         collectButton.gameObject.SetActive(true);
+        VSFX.instance.PlayAudio(VSFX.instance.popUpSound);
 
         if (itemIDFromRecipe == 0)
         {
+            LabManager.instance.player.animator.SetTrigger("Susto");
+            VSFX.instance.CreateParticleSystem(VSFX.instance.explosionMachinePS, m_ExplosionPos.position, false);
+            VSFX.instance.PlayAudio(VSFX.instance.explosionMachineSound);
             //PONER EXPLOSION DE LA MAQUINA O REACCION DEL PLAYER
+        }
+        else
+        {
+            GameObject vfx = VSFX.instance.CreateParticleSystem(VSFX.instance.finishedPS, m_ExplosionPos.position, false);
         }
 
         Item itemToCollect = LabManager.instance.itemDB.GetItem(itemIDFromRecipe);
         itemCollectable.sprite = itemToCollect.icon;
 
-        Material mymat = liquido.GetComponent<SkinnedMeshRenderer>().material;
+        mymat = liquido.GetComponent<SkinnedMeshRenderer>().material;
         mymat.SetColor("_EmissionColor", itemToCollect.color);
+        mymat.SetColor("_Color", itemToCollect.color);
         //poner cambio color del liquidillo
 
         collectButton.onClick.AddListener(
