@@ -48,7 +48,7 @@ public class SceneController : MonoBehaviour
 
     public void ChargeMainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0); //o 1
 
     }
 

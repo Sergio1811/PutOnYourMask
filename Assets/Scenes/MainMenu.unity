@@ -909,6 +909,7 @@ MonoBehaviour:
   currentMaskGO: {fileID: 514783406}
   disfrazGO: {fileID: 1725071825}
   parent: {fileID: 8296172669076308409}
+  maskParent: {fileID: 4436829760672518605}
 --- !u!4 &15142580
 Transform:
   m_ObjectHideFlags: 0
@@ -15690,12 +15691,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 15142579}
+        m_MethodName: PrevCloth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -17948,7 +17949,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &414635190
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31300,12 +31301,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 15142579}
+        m_MethodName: NextCloth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -50656,7 +50657,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.20175515, y: 0.75746256}
   m_AnchorMax: {x: 0.82600003, y: 0.8738437}
-  m_AnchoredPosition: {x: -18.00003, y: 17}
+  m_AnchoredPosition: {x: -18, y: 17}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1269732004
@@ -54788,7 +54789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1371473106
 RectTransform:
   m_ObjectHideFlags: 0
@@ -58217,7 +58218,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d5a9067adf160554e81801b5e9c66b21, type: 2}
+      objectReference: {fileID: 2100000, guid: 10a240aab6e12b7468cd5dc464a0ae4c, type: 2}
     - target: {fileID: -1504981713932161579, guid: b0a3d9f998e4da04bb8fd038ae3e3406,
         type: 3}
       propertyPath: m_CastShadows
@@ -58605,7 +58606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1504607485
 RectTransform:
   m_ObjectHideFlags: 0
@@ -85823,17 +85824,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 15142579}
-        m_MethodName: ChangeHat
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 6187219731004542590}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.SkinnedMeshRenderer, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

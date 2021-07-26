@@ -31,6 +31,14 @@ public class GameManager : MonoBehaviour
     public bool onlineShopping;
 
     public string language;
+
+    #region  
+    public GameObject headGO;
+    public GameObject maskGO;
+    public GameObject shirtGO;
+    public GameObject pantsGO;
+    public GameObject shoeGO;
+    #endregion
     private void Awake()
     {
         if (instance == null)

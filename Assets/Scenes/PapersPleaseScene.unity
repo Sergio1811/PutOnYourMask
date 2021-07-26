@@ -1085,6 +1085,7 @@ GameObject:
   - component: {fileID: 554676301}
   - component: {fileID: 554676304}
   - component: {fileID: 554676302}
+  - component: {fileID: 554676305}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -1227,6 +1228,8 @@ MonoBehaviour:
   FireBunPS: {fileID: 1549509112934564, guid: 0336544bb841fbb419d88a0ed794fe87, type: 3}
   SmokeColumnPS: {fileID: 5477635851177680152, guid: a1f16980039cdb34f9d9676b559c0691,
     type: 3}
+  explosionMachinePS: {fileID: 0}
+  finishedPS: {fileID: 0}
   bottleSounds:
   - {fileID: 8300000, guid: c0fdf7902eeedd547ac5c2a03e41db66, type: 3}
   - {fileID: 8300000, guid: 2387075469b418849ab9fdbe770b05aa, type: 3}
@@ -1241,6 +1244,8 @@ MonoBehaviour:
   completedOrderSound: {fileID: 0}
   failedOrderSound: {fileID: 0}
   objectToTrashSound: {fileID: 8300000, guid: 063f6bc66073cc14cbd46ca7687bbad9, type: 3}
+  explosionMachineSound: {fileID: 0}
+  popUpSound: {fileID: 0}
   inaudibleSound: {fileID: 8300000, guid: b52233ea69759214d8c707fb5ba7195d, type: 3}
   greenButtonSound: {fileID: 0}
   redButtonSound: {fileID: 0}
@@ -1262,6 +1267,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c2693d7b21edc4ca21b33b843f05e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &554676305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554676298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8651510d7b8a78e4286bb12c34beb991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundOn: 0
+  musicOn: 0
+  notificationsOn: 0
+  languageObjectArray: []
+  languageStringArray: []
+  currentLanguage: 
+  clothIcons: []
+  currentCloth: 1
+  m_DropdownAnimation: {fileID: 0}
+  openAnim: {fileID: 0}
+  closedAnim: {fileID: 0}
+  currentIcon: {fileID: 0}
+  maskChar: {fileID: 0}
+  canvasItem: {fileID: 0}
+  pages: []
+  currentPage: 0
+  pagesVer: []
+  currentPageVer: 0
 --- !u!1 &604764924
 GameObject:
   m_ObjectHideFlags: 0

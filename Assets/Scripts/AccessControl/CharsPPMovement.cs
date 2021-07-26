@@ -10,11 +10,12 @@ public class CharsPPMovement : MonoBehaviour
     public GameObject mask;
     Animator animator;
     public CarasControl faceControl;
-
+    public ClothManager clothManager;
 
     private void Start()
     {
         animator = this.GetComponent<Animator>();
+        clothManager.RandomCloth();
 
     }
 

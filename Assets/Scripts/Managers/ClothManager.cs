@@ -38,7 +38,6 @@ public class ClothManager : MonoBehaviour
         {
             Destroy(this);
         }
-        DontDestroyOnLoad(this);
     }
 
     public void NextCloth()
@@ -56,6 +55,8 @@ public class ClothManager : MonoBehaviour
                 {
                     currentHair = 0;
                 }
+
+                GameManager.instance.headGO = hair[currentHair];
                 currentHeadGO = Instantiate(hair[currentHair], parent.transform);
                 Relocate(currentHeadGO, tempPos, tempScale);
 
@@ -71,6 +72,7 @@ public class ClothManager : MonoBehaviour
                 {
                     currentShirt = 0;
                 }
+                GameManager.instance.shirtGO = shirts[currentShirt];
                 currentShirtGO = Instantiate(shirts[currentShirt], parent.transform);
                 Relocate(currentShirtGO, tempPosS, tempScaleS);
 
@@ -87,6 +89,8 @@ public class ClothManager : MonoBehaviour
                 {
                     currentPants = 0;
                 }
+
+                GameManager.instance.pantsGO = pants[currentPants];
                 currentPantsGO = Instantiate(pants[currentPants], parent.transform);
                 Relocate(currentPantsGO, tempPosP, tempScaleP);
 
@@ -104,6 +108,7 @@ public class ClothManager : MonoBehaviour
                     currentShoes = 0;
                 }
 
+                GameManager.instance.shoeGO = shoes[currentShoes];
                 currentShoesGO = Instantiate(shoes[currentShoes], parent.transform);
                 Relocate(currentShoesGO, tempPosSh, tempScaleSh);
 
@@ -120,8 +125,9 @@ public class ClothManager : MonoBehaviour
                 {
                     currentMasks = 0;
                 }
+                GameManager.instance.maskGO = masks[currentMasks];
                 currentMaskGO = Instantiate(masks[currentMasks], maskParent.transform);
-                Relocate(currentMaskGO, tempPosM, tempScaleM);
+                //(currentMaskGO, tempPosM, tempScaleM);
 
                 break;
 
@@ -205,7 +211,7 @@ public class ClothManager : MonoBehaviour
                 {
                     currentMasks = masks.Length - 1;
                 }
-                currentMaskGO = Instantiate(masks[currentMasks], parent.transform);
+                currentMaskGO = Instantiate(masks[currentMasks], maskParent.transform);
 
                 break;
 
@@ -248,36 +254,40 @@ public class ClothManager : MonoBehaviour
 
     public void RandomCloth()
     {
+        MenuController.instance.currentCloth = MenuController.Clothing.Head;
         for (int i = 0; i < Random.Range(2, 7); i++)
         {
-            MenuController.instance.currentCloth = MenuController.Clothing.Head;
             NextCloth();
         }
+
+        MenuController.instance.currentCloth = MenuController.Clothing.Mask;
         for (int i = 0; i < Random.Range(2, 7); i++)
         {
-            MenuController.instance.currentCloth = MenuController.Clothing.Mask;
             NextCloth();
         }
+
+        MenuController.instance.currentCloth = MenuController.Clothing.Pants;
         for (int i = 0; i < Random.Range(2, 7); i++)
         {
-            MenuController.instance.currentCloth = MenuController.Clothing.Pants;
             NextCloth();
         }
+
+        MenuController.instance.currentCloth = MenuController.Clothing.Shirt;
         for (int i = 0; i < Random.Range(2, 7); i++)
         {
-            MenuController.instance.currentCloth = MenuController.Clothing.Shirt;
             NextCloth();
         }
+
+        MenuController.instance.currentCloth = MenuController.Clothing.Shoes;
         for (int i = 0; i < Random.Range(2, 7); i++)
         {
-            MenuController.instance.currentCloth = MenuController.Clothing.Shoes;
             NextCloth();
         }
     }
 
     public void Relocate(GameObject objectToAdapt, Vector3 pos, Vector3 scale)
     {
-        objectToAdapt.transform.position = pos;
+        //objectToAdapt.transform.position = pos;
         //objectToAdapt.transform.localScale = scale;
     }
 }

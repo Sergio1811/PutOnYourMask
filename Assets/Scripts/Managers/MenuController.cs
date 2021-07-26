@@ -147,10 +147,10 @@ public class MenuController : MonoBehaviour
         maskOn = !maskOn;
 
         if (maskOn)
-            maskChar.SetActive(true);
+            ClothManager.instance.currentMaskGO.SetActive(true);
 
         else
-            maskChar.SetActive(false);
+            ClothManager.instance.currentMaskGO.SetActive(false);
     }
 
     public void PurchaseItem()
