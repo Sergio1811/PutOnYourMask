@@ -6,18 +6,17 @@ public class ClothManager : MonoBehaviour
 {
     public static ClothManager instance;
 
-    public GameObject[] hats;
+    public GameObject[] heads;
     public GameObject[] shirts;
     public GameObject[] pants;
     public GameObject[] masks;
     public GameObject[] shoes;
-    public GameObject[] hair;
 
     int currentShirt;
     int currentPants;
     int currentMasks;
     int currentShoes;
-    int currentHair;
+    int currentHead;
 
     public GameObject currentHeadGO;
     public GameObject currentShirtGO;
@@ -40,31 +39,55 @@ public class ClothManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("Pijama")==1)
+        {
+            ActivateDisfraz();
+        }
+        else
+        {
+            DeactivateDisfraz();
+        }
+
+        MenuController.instance.currentCloth = MenuController.Clothing.Mask;
+        print(PlayerPrefs.GetInt("Mask"));
+        ChoseCloth(PlayerPrefs.GetInt("Mask"));
+        MenuController.instance.currentCloth = MenuController.Clothing.Shirt;
+        ChoseCloth(PlayerPrefs.GetInt("Shirt"));
+        MenuController.instance.currentCloth = MenuController.Clothing.Pants;
+        ChoseCloth(PlayerPrefs.GetInt("Pants"));
+        MenuController.instance.currentCloth = MenuController.Clothing.Shoes;
+        ChoseCloth(PlayerPrefs.GetInt("Shoes"));
+        MenuController.instance.currentCloth = MenuController.Clothing.Head;
+        ChoseCloth(PlayerPrefs.GetInt("Head"));
+
+    }
+
     public void NextCloth()
     {
         switch (MenuController.instance.currentCloth)
         {
             case MenuController.Clothing.Head:
 
-                Vector3 tempPos = currentHeadGO.transform.position;
-                Vector3 tempScale = currentHeadGO.transform.localScale;
                 Destroy(currentHeadGO);
-                currentHair++;
+                currentHead++;
 
-                if (currentHair >= hair.Length)
+                if (currentHead >= heads.Length)
                 {
-                    currentHair = 0;
+                    currentHead = 0;
                 }
 
-                GameManager.instance.headGO = hair[currentHair];
-                currentHeadGO = Instantiate(hair[currentHair], parent.transform);
-                Relocate(currentHeadGO, tempPos, tempScale);
+                GameManager.instance.headGO = heads[currentHead];
+                currentHeadGO = Instantiate(heads[currentHead], parent.transform);
+                Relocate(currentHeadGO);
 
+                PlayerPrefs.SetInt("Head", currentHead);
                 break;
+
             case MenuController.Clothing.Shirt:
 
-                Vector3 tempPosS = currentShirtGO.transform.position;
-                Vector3 tempScaleS = currentShirtGO.transform.localScale;
+
                 Destroy(currentShirtGO);
                 currentShirt++;
 
@@ -74,14 +97,12 @@ public class ClothManager : MonoBehaviour
                 }
                 GameManager.instance.shirtGO = shirts[currentShirt];
                 currentShirtGO = Instantiate(shirts[currentShirt], parent.transform);
-                Relocate(currentShirtGO, tempPosS, tempScaleS);
+                Relocate(currentShirtGO);
 
                 break;
 
             case MenuController.Clothing.Pants:
 
-                Vector3 tempPosP = currentPantsGO.transform.position;
-                Vector3 tempScaleP = currentPantsGO.transform.localScale;
                 Destroy(currentPantsGO);
                 currentPants++;
 
@@ -92,14 +113,13 @@ public class ClothManager : MonoBehaviour
 
                 GameManager.instance.pantsGO = pants[currentPants];
                 currentPantsGO = Instantiate(pants[currentPants], parent.transform);
-                Relocate(currentPantsGO, tempPosP, tempScaleP);
+                Relocate(currentPantsGO);
 
                 break;
 
             case MenuController.Clothing.Shoes:
 
-                Vector3 tempPosSh = currentShoesGO.transform.position;
-                Vector3 tempScaleSh = currentShoesGO.transform.localScale;
+
                 Destroy(currentShoesGO);
                 currentShoes++;
 
@@ -110,7 +130,7 @@ public class ClothManager : MonoBehaviour
 
                 GameManager.instance.shoeGO = shoes[currentShoes];
                 currentShoesGO = Instantiate(shoes[currentShoes], parent.transform);
-                Relocate(currentShoesGO, tempPosSh, tempScaleSh);
+                Relocate(currentShoesGO);
 
                 break;
 
@@ -127,23 +147,19 @@ public class ClothManager : MonoBehaviour
                 }
                 GameManager.instance.maskGO = masks[currentMasks];
                 currentMaskGO = Instantiate(masks[currentMasks], maskParent.transform);
-                //(currentMaskGO, tempPosM, tempScaleM);
+                currentMaskGO.transform.localPosition = tempPosM;
+                currentMaskGO.transform.localScale = tempScaleM;
 
                 break;
 
             case MenuController.Clothing.Special:
-                disfrazGO.SetActive(true);
-
-                currentHeadGO.SetActive(false);
-                currentMaskGO.SetActive(false);
-                currentShirtGO.SetActive(false);
-                currentPantsGO.SetActive(false);
-                currentShoesGO.SetActive(false);
+                ActivateDisfraz();
                 break;
 
             default:
                 break;
         }
+        SaveCurrent();
     }
 
     public void PrevCloth()
@@ -153,14 +169,14 @@ public class ClothManager : MonoBehaviour
             case MenuController.Clothing.Head:
 
                 Destroy(currentHeadGO);
-                currentHair--;
+                currentHead--;
 
-                if (currentHair < 0)
+                if (currentHead < 0)
                 {
-                    currentHair = hair.Length - 1;
+                    currentHead = heads.Length - 1;
                 }
-                currentHeadGO = Instantiate(hair[currentHair], parent.transform);
-
+                currentHeadGO = Instantiate(heads[currentHead], parent.transform);
+                Relocate(currentHeadGO);
                 break;
             case MenuController.Clothing.Shirt:
 
@@ -172,7 +188,7 @@ public class ClothManager : MonoBehaviour
                     currentShirt = shirts.Length - 1;
                 }
                 currentShirtGO = Instantiate(shirts[currentShirt], parent.transform);
-
+                Relocate(currentShirtGO);
                 break;
 
             case MenuController.Clothing.Pants:
@@ -185,7 +201,7 @@ public class ClothManager : MonoBehaviour
                     currentPants = pants.Length - 1;
                 }
                 currentPantsGO = Instantiate(pants[currentPants], parent.transform);
-
+                Relocate(currentPantsGO);
                 break;
 
             case MenuController.Clothing.Shoes:
@@ -199,11 +215,14 @@ public class ClothManager : MonoBehaviour
                 }
 
                 currentShoesGO = Instantiate(shoes[currentShoes], parent.transform);
+                Relocate(currentShoesGO);
 
                 break;
 
             case MenuController.Clothing.Mask:
 
+                Vector3 tempPosM = currentMaskGO.transform.localPosition;
+                Vector3 tempScaleM = currentMaskGO.transform.localScale;
                 Destroy(currentMaskGO);
                 currentMasks--;
 
@@ -212,25 +231,23 @@ public class ClothManager : MonoBehaviour
                     currentMasks = masks.Length - 1;
                 }
                 currentMaskGO = Instantiate(masks[currentMasks], maskParent.transform);
-
+                currentMaskGO.transform.localPosition = tempPosM;
+                currentMaskGO.transform.localScale = tempScaleM;
                 break;
 
             case MenuController.Clothing.Special:
-                disfrazGO.SetActive(true);
 
-                currentHeadGO.SetActive(false);
-                currentMaskGO.SetActive(false);
-                currentShirtGO.SetActive(false);
-                currentPantsGO.SetActive(false);
-                currentShoesGO.SetActive(false);
+                ActivateDisfraz();
                 break;
 
             default:
                 break;
         }
+        SaveCurrent();
     }
     public void ActivateDisfraz()
     {
+        PlayerPrefs.SetInt("Pijama", 1);
         disfrazGO.SetActive(true);
 
         currentHeadGO.SetActive(false);
@@ -242,6 +259,7 @@ public class ClothManager : MonoBehaviour
 
     public void DeactivateDisfraz()
     {
+        PlayerPrefs.SetInt("Pijama", 0);
         disfrazGO.SetActive(false);
 
         currentHeadGO.SetActive(true);
@@ -283,11 +301,93 @@ public class ClothManager : MonoBehaviour
         {
             NextCloth();
         }
+        SaveCurrent();
     }
 
-    public void Relocate(GameObject objectToAdapt, Vector3 pos, Vector3 scale)
+    public void Relocate(GameObject objectToAdapt)
     {
-        //objectToAdapt.transform.position = pos;
-        //objectToAdapt.transform.localScale = scale;
+        objectToAdapt.transform.localScale *= 1.5f;
+
+    }
+    public void ChoseCloth(int clothNum)
+    {
+        switch (MenuController.instance.currentCloth)
+        {
+            case MenuController.Clothing.Head:
+
+                Destroy(currentHeadGO);
+                
+                GameManager.instance.headGO = heads[clothNum];
+                currentHeadGO = Instantiate(heads[clothNum], parent.transform);
+                Relocate(currentHeadGO);
+
+                break;
+            case MenuController.Clothing.Shirt:
+
+
+                Destroy(currentShirtGO);
+                
+                GameManager.instance.shirtGO = shirts[clothNum];
+                currentShirtGO = Instantiate(shirts[clothNum], parent.transform);
+                Relocate(currentShirtGO);
+
+                break;
+
+            case MenuController.Clothing.Pants:
+
+                Destroy(currentPantsGO);
+                
+                GameManager.instance.pantsGO = pants[clothNum];
+                currentPantsGO = Instantiate(pants[clothNum], parent.transform);
+                Relocate(currentPantsGO);
+
+                break;
+
+            case MenuController.Clothing.Shoes:
+
+                Destroy(currentShoesGO);               
+
+                GameManager.instance.shoeGO = shoes[clothNum];
+                currentShoesGO = Instantiate(shoes[clothNum], parent.transform);
+                Relocate(currentShoesGO);
+
+                break;
+
+            case MenuController.Clothing.Mask:
+
+                Vector3 tempPosM = currentMaskGO.transform.localPosition;
+                Vector3 tempScaleM = currentMaskGO.transform.localScale;
+                Destroy(currentMaskGO);
+                
+                GameManager.instance.maskGO = masks[clothNum];
+                currentMaskGO = Instantiate(masks[clothNum], maskParent.transform);
+                currentMaskGO.transform.localPosition = tempPosM;
+                currentMaskGO.transform.localScale = tempScaleM;
+
+                break;
+
+            case MenuController.Clothing.Special:
+                disfrazGO.SetActive(true);
+
+                currentHeadGO.SetActive(false);
+                currentMaskGO.SetActive(false);
+                currentShirtGO.SetActive(false);
+                currentPantsGO.SetActive(false);
+                currentShoesGO.SetActive(false);
+                break;
+
+            default:
+                break;
+        }
+        SaveCurrent();
+    }
+
+    public void SaveCurrent()
+    {
+        PlayerPrefs.SetInt("Head", currentHead);
+        PlayerPrefs.SetInt("Mask", currentMasks);
+        PlayerPrefs.SetInt("Shirt", currentShirt);
+        PlayerPrefs.SetInt("Pants", currentPants);
+        PlayerPrefs.SetInt("Shoes", currentShoes);
     }
 }

@@ -40,6 +40,7 @@ public class TimeController : MonoBehaviour
         TimeFromLastSession();
     }
 
+
     private void Update()
     {
         currentSecondsInSession += Time.deltaTime;
@@ -124,6 +125,7 @@ public class TimeController : MonoBehaviour
     }
     void TimeBetweenSessions()
     {
+        print(prevDateTry + " " + prevTimeTry);
         getDateandTime(prevDateTry, prevTimeTry);
         DateTime departure = new DateTime(anyo, mes, dia, horas, min, sec);
         getDateandTime(_currentDate, _currentTime);
