@@ -763,6 +763,8 @@ MonoBehaviour:
   speed: 3
   voted: 0
   mask: {fileID: 7184071275461685011}
+  faceControl: {fileID: 0}
+  clothManager: {fileID: 0}
 --- !u!114 &328413197538880979
 MonoBehaviour:
   m_ObjectHideFlags: 0

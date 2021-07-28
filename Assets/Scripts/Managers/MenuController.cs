@@ -7,6 +7,7 @@ public class MenuController : MonoBehaviour
 {
     public static MenuController instance;
 
+    public Transform Canvas;
     public bool soundOn;
     public bool musicOn;
     public bool notificationsOn;
@@ -28,6 +29,7 @@ public class MenuController : MonoBehaviour
     bool maskOn = false;
     public GameObject maskChar;
     public GameObject canvasItem;
+    public GameObject canvasNoMoney;
 
     public GameObject[] pages;
     public int currentPage;
@@ -35,6 +37,8 @@ public class MenuController : MonoBehaviour
     public GameObject[] pagesVer;
     public int currentPageVer;
 
+    public GameObject tiendaDivisas;
+    public GameObject catalogo;
     private void Awake()
     {
         if (instance == null)
@@ -74,6 +78,10 @@ public class MenuController : MonoBehaviour
 
         currentLanguage = languageStringArray[currentNum];
         languageObjectArray[currentNum].SetActive(true);
+        tiendaDivisas = GameObject.Find("TiendaDivisas");
+        catalogo = GameObject.Find("Catalogo");
+        tiendaDivisas.SetActive(false);
+        catalogo.SetActive(false);
     }
 
     public void TwitterAcces()
@@ -127,21 +135,6 @@ public class MenuController : MonoBehaviour
         notificationsOn = !notificationsOn;
     }
 
-    public void RandomOutfit()
-    {
-
-    }
-
-    public void NextCloth()
-    {
-
-    }
-
-    public void PrevCloth()
-    {
-
-    }
-
     public void MaskChange()
     {
         maskOn = !maskOn;
@@ -153,9 +146,38 @@ public class MenuController : MonoBehaviour
             ClothManager.instance.currentMaskGO.SetActive(false);
     }
 
-    public void PurchaseItem()
+    public GameObject PurchaseItem(GameObject canvas)
     {
-        canvasItem.SetActive(true);
+        GameObject objetoCanvas = Instantiate(canvasItem, Canvas);
+        //0 acceot comprar con dinero
+        //1 decline
+        objetoCanvas.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(
+            delegate
+            {
+                Destroy(objetoCanvas);
+            });
+
+        return objetoCanvas;
+        //rellenar datos
+    }
+    
+    public void NoMoneyPurchaseItem(GameObject canvas)
+    {
+        GameObject objetoCanvas =Instantiate(canvasNoMoney, Canvas);
+        //0 acceot
+        objetoCanvas.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(
+          delegate
+          {
+              canvas.SetActive(false);
+              tiendaDivisas.SetActive(true);
+              Destroy(objetoCanvas);
+          });
+        //1 decline Lllevar a latienda
+        objetoCanvas.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(
+           delegate
+           {
+               Destroy(objetoCanvas);
+           });
         //rellenar datos
     }
 

@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     public GameObject shirtGO;
     public GameObject pantsGO;
     public GameObject shoeGO;
-    #endregion
+    #endregion Ropa
     private void Awake()
     {
         if (instance == null)
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
             panelNoticias = GameObject.Find("PanelNoticias");
             panelNoticias.SetActive(false);
 
-            AddCoins(0);
+            AddCoins(1750);
 
             if (Random.value > 1 - newProbability)
             {
