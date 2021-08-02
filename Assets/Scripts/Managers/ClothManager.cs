@@ -27,6 +27,9 @@ public class ClothManager : MonoBehaviour
 
     public GameObject parent;
     public GameObject maskParent;
+
+    public GameObject animCabeza;
+    public GameObject currentCabeza;
     private void Awake()
     {
         if (instance == null)
@@ -52,6 +55,7 @@ public class ClothManager : MonoBehaviour
         ChoseCloth(PlayerPrefs.GetInt("Shoes"));
         MenuController.instance.currentCloth = MenuController.Clothing.Head;
         ChoseCloth(PlayerPrefs.GetInt("Head"));
+
         if (PlayerPrefs.GetInt("Pijama") == 1)
         {
             ActivateDisfraz();
@@ -63,7 +67,32 @@ public class ClothManager : MonoBehaviour
 
 
     }
+    /*
+    IEnumerator ResetAnimations()
+    {
 
+        currentHeadGO.GetComponent<Animator>().enabled = false;
+        currentPantsGO.GetComponent<Animator>().enabled = false;
+        currentShirtGO.GetComponent<Animator>().enabled = false;
+        currentShoesGO.GetComponent<Animator>().enabled = false;
+        animCabeza.GetComponent<Animator>().enabled = false;
+        print("desactivado");
+        yield return new WaitForSeconds(0.1f);
+
+        ResetAll();
+    }
+
+    public void ResetAll()
+    {
+        print("activado");
+
+        currentHeadGO.GetComponent<Animator>().enabled = true;
+        currentShirtGO.GetComponent<Animator>().enabled = true;
+        currentPantsGO.GetComponent<Animator>().enabled = true;
+        currentShoesGO.GetComponent<Animator>().enabled = true;
+        animCabeza.GetComponent<Animator>().enabled = true;
+    }
+    */
     public void NextCloth()
     {
         switch (MenuController.instance.currentCloth)
@@ -160,6 +189,7 @@ public class ClothManager : MonoBehaviour
                 break;
         }
         SaveCurrent();
+        //StartCoroutine("ResetAnimations");
     }
 
     public void PrevCloth()
@@ -390,5 +420,32 @@ public class ClothManager : MonoBehaviour
         PlayerPrefs.SetInt("Shirt", currentShirt);
         PlayerPrefs.SetInt("Pants", currentPants);
         PlayerPrefs.SetInt("Shoes", currentShoes);
+
+        ResetAnimations();
+    }
+
+    public void ResetAnimations()
+    {
+        
+        Destroy(currentHeadGO);
+        currentHeadGO = Instantiate(heads[currentHead], parent.transform);
+        Relocate(currentHeadGO);
+
+        Destroy(currentShirtGO);
+        currentShirtGO = Instantiate(shirts[currentShirt], parent.transform);
+        Relocate(currentShirtGO);
+
+        Destroy(currentPantsGO);
+        currentPantsGO = Instantiate(pants[currentPants], parent.transform);
+        Relocate(currentPantsGO);
+
+        Destroy(currentShoesGO);
+        currentShoesGO = Instantiate(shoes[currentShoes], parent.transform);
+        Relocate(currentShoesGO);
+
+        Vector3 posCabeza = currentCabeza.transform.localPosition;
+        Destroy(currentCabeza);
+         currentCabeza = Instantiate(animCabeza, parent.transform);
+        currentCabeza.transform.localPosition = posCabeza;
     }
 }
