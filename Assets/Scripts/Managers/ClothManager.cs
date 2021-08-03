@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClothManager : MonoBehaviour
 {
@@ -45,7 +46,6 @@ public class ClothManager : MonoBehaviour
     private void Start()
     {
         MenuController.instance.currentCloth = MenuController.Clothing.Mask;
-        print(PlayerPrefs.GetInt("Mask"));
         ChoseCloth(PlayerPrefs.GetInt("Mask"));
         MenuController.instance.currentCloth = MenuController.Clothing.Shirt;
         ChoseCloth(PlayerPrefs.GetInt("Shirt"));
@@ -54,7 +54,9 @@ public class ClothManager : MonoBehaviour
         MenuController.instance.currentCloth = MenuController.Clothing.Shoes;
         ChoseCloth(PlayerPrefs.GetInt("Shoes"));
         MenuController.instance.currentCloth = MenuController.Clothing.Head;
-        ChoseCloth(PlayerPrefs.GetInt("Head"));
+        ChoseCloth(PlayerPrefs.GetInt("Head")); 
+        MenuController.instance.currentCloth = MenuController.Clothing.Mask;
+        ChoseCloth(PlayerPrefs.GetInt("Mask"));
 
         if (PlayerPrefs.GetInt("Pijama") == 1)
         {
@@ -446,6 +448,16 @@ public class ClothManager : MonoBehaviour
         Vector3 posCabeza = currentCabeza.transform.localPosition;
         Destroy(currentCabeza);
          currentCabeza = Instantiate(animCabeza, parent.transform);
-        currentCabeza.transform.localPosition = posCabeza;
+        Relocate(currentCabeza);
+
+        Vector3 tempPosM = currentMaskGO.transform.localPosition;
+        Vector3 tempScaleM = currentMaskGO.transform.localScale;
+        Destroy(currentMaskGO);
+
+        maskParent = currentCabeza.GetComponent<Cabeza>().cabeza.gameObject;
+        currentMaskGO = Instantiate(masks[currentMasks], maskParent.transform);
+        currentMaskGO.transform.localPosition = tempPosM;
+        currentMaskGO.transform.localScale = tempScaleM;
+
     }
 }
