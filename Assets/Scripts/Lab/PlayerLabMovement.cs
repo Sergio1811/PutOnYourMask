@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerLabMovement : MonoBehaviour
 {
-    [HideInInspector]public Animator animator;
+    public List<Animator> animator;
     public Vector3 nextPoint;
     public float speed;
     private Vector3 targetPoint;
@@ -16,8 +16,10 @@ public class PlayerLabMovement : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponent<Animator>();
-        animator.SetBool("Walking", false);
+        foreach (var item in animator)
+        {
+            item.SetBool("Walking", false);
+        }
     }
 
     // Update is called once per frame
@@ -29,22 +31,29 @@ public class PlayerLabMovement : MonoBehaviour
 
             if (Vector3.Distance(this.transform.position, nextPoint) > .25f)
             {
-                if (!animator.GetBool("Run"))
-                    animator.SetBool("Run", true);
+                foreach (var item in animator)
+                {
+                    if (!item.GetBool("Run"))
+                        item.SetBool("Run", true);
+                }
+
 
                 objectToLookAt = nextPoint;
 
                 targetPoint = new Vector3(nextPoint.x, transform.position.y, nextPoint.z) - transform.position;
                 targetRotation = Quaternion.LookRotation(targetPoint, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-                this.transform.position = Vector3.MoveTowards(this.transform.position, nextPoint, speed * Time.deltaTime);                
+                this.transform.position = Vector3.MoveTowards(this.transform.position, nextPoint, speed * Time.deltaTime);
             }
             else
             {
-                if (animator.GetBool("Run"))
+                foreach (var item in animator)
                 {
-                    animator.SetBool("Run", false);
-                    CDToLookCamera = 2;
+                    if (item.GetBool("Run"))
+                    {
+                        item.SetBool("Run", false);
+                        CDToLookCamera = 2;
+                    }
                 }
 
                 if (CDToLookCamera <= 0)

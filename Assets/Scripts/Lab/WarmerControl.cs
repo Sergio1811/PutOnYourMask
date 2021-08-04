@@ -88,7 +88,7 @@ public class WarmerControl : MonoBehaviour
 
             }
             liquido.SetActive(true);
-            
+
             liquido.GetComponent<Rotation>().rotSpeed = 240;
             timeUI.gameObject.SetActive(true);
             return true;
@@ -117,7 +117,11 @@ public class WarmerControl : MonoBehaviour
 
         if (itemIDFromRecipe == 0)
         {
-            LabManager.instance.player.animator.SetTrigger("Susto");
+            foreach (var item in LabManager.instance.player.animator)
+            {
+                item.SetTrigger("Susto");
+            }
+
             VSFX.instance.CreateParticleSystem(VSFX.instance.explosionMachinePS, m_ExplosionPos.position, false);
             //PONER EXPLOSION DE LA MAQUINA O REACCION DEL PLAYER
         }

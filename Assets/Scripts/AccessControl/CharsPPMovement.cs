@@ -8,19 +8,24 @@ public class CharsPPMovement : MonoBehaviour
     public int speed = 3;
     public bool voted;
     public GameObject mask;
-    Animator animator;
+    public List<Animator> animator;
+    public RuntimeAnimatorController animatorController;
     public CarasControl faceControl;
     public ClothManager clothManager;
 
     private void Start()
     {
-        animator = this.GetComponent<Animator>();
         clothManager.RandomCloth();
+
 
     }
 
     void Update()
     {
+
+        GetObjects();
+
+
         if (AccessControlManager.instance.currentState == AccessControlManager.GameState.Play)
         {
 
@@ -28,9 +33,13 @@ public class CharsPPMovement : MonoBehaviour
             {
                 if (Vector3.Distance(this.transform.position, waypoint.transform.position) > 0.1f)
                 {
-                    if (!animator.GetBool("Walking"))
+                    foreach (var item in animator)
                     {
-                        animator.SetBool("Walking", true);
+                        if (!item.GetBool("Walking"))
+                        {
+                            item.SetBool("Walking", true);
+                        }
+
                     }
                     this.transform.position = Vector3.MoveTowards(this.transform.position, waypoint.position, speed * Time.deltaTime);
                 }
@@ -38,9 +47,12 @@ public class CharsPPMovement : MonoBehaviour
                 {
                     Destroy(this.gameObject);
                 }
-                else if (animator.GetBool("Walking"))
+                else if (animator[0].GetBool("Walking") == true)
                 {
-                    animator.SetBool("Walking", false);
+                    foreach (var item in animator)
+                    {
+                        item.SetBool("Walking", false);
+                    }
                 }
             }
 
@@ -50,8 +62,29 @@ public class CharsPPMovement : MonoBehaviour
 
     public void SmellActivate()
     {
-        animator.SetTrigger("Smell");
+        GetObjects();
+        foreach (var item in animator)
+        {
+            item.SetTrigger("Smell");
+        }
         StartCoroutine(faceControl.GrossFace(4));
     }
 
+    public void GetObjects()
+    {
+        animator.Clear();
+        animator.Add(clothManager.currentCabeza.GetComponent<Animator>());
+        animator.Add(clothManager.currentHeadGO.GetComponent<Animator>());
+        animator.Add(clothManager.currentMaskGO.GetComponent<Animator>());
+        animator.Add(clothManager.currentPantsGO.GetComponent<Animator>());
+        animator.Add(clothManager.currentShirtGO.GetComponent<Animator>());
+        animator.Add(clothManager.currentShoesGO.GetComponent<Animator>());
+
+        foreach (var item in animator)
+        {
+            item.runtimeAnimatorController = animatorController;
+        }
+        mask = clothManager.currentMaskGO;
+        faceControl = clothManager.currentCabeza.GetComponent<Cabeza>().cabeza.GetChild(1).GetComponent<CarasControl>();
+    }
 }

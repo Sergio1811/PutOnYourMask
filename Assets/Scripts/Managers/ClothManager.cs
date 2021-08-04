@@ -54,7 +54,7 @@ public class ClothManager : MonoBehaviour
         MenuController.instance.currentCloth = MenuController.Clothing.Shoes;
         ChoseCloth(PlayerPrefs.GetInt("Shoes"));
         MenuController.instance.currentCloth = MenuController.Clothing.Head;
-        ChoseCloth(PlayerPrefs.GetInt("Head")); 
+        ChoseCloth(PlayerPrefs.GetInt("Head"));
         MenuController.instance.currentCloth = MenuController.Clothing.Mask;
         ChoseCloth(PlayerPrefs.GetInt("Mask"));
 
@@ -428,7 +428,7 @@ public class ClothManager : MonoBehaviour
 
     public void ResetAnimations()
     {
-        
+
         Destroy(currentHeadGO);
         currentHeadGO = Instantiate(heads[currentHead], parent.transform);
         Relocate(currentHeadGO);
@@ -445,9 +445,8 @@ public class ClothManager : MonoBehaviour
         currentShoesGO = Instantiate(shoes[currentShoes], parent.transform);
         Relocate(currentShoesGO);
 
-        Vector3 posCabeza = currentCabeza.transform.localPosition;
         Destroy(currentCabeza);
-         currentCabeza = Instantiate(animCabeza, parent.transform);
+        currentCabeza = Instantiate(animCabeza, parent.transform);
         Relocate(currentCabeza);
 
         Vector3 tempPosM = currentMaskGO.transform.localPosition;

@@ -147,18 +147,21 @@ public class AccessControlManager : MonoBehaviour
                 Buttons.GetComponent<Animation>().Play();
                 StartCoroutine("ButtonCooldown");
 
+                CharsPPMovement tempPPMov = currentChar.GetComponent<CharsPPMovement>();
+                tempPPMov.GetObjects();
+
                 int rnd = Random.Range(0, 3);
                 if (rnd == 0)
                 {
-                    currentChar.GetComponent<CharsPPMovement>().faceControl.FaceAnim("AngryFace");
+                    tempPPMov.faceControl.FaceAnim("AngryFace");
                 }
                 else if (rnd == 1)
                 {
-                    StartCoroutine(currentChar.GetComponent<CharsPPMovement>().faceControl.SurpriseFace(4));
+                    StartCoroutine(tempPPMov.faceControl.SurpriseFace(4));
                 }
                 else
                 {
-                    currentChar.GetComponent<CharsPPMovement>().faceControl.FaceAnim("SadFace");
+                    tempPPMov.faceControl.FaceAnim("SadFace");
                 }
 
                 yield return new WaitForSeconds(1);

@@ -45,7 +45,7 @@ public class CentrifugatorControl : MonoBehaviour
 
         if (isCentrifugating)
         {
-          
+
             currentTimeCentrifugating += Time.deltaTime;
             timeUI.fillAmount = currentTimeCentrifugating / timeToCentrifugate;
         }
@@ -88,7 +88,7 @@ public class CentrifugatorControl : MonoBehaviour
         liquido.SetActive(true);
 
         liquido.GetComponent<Rotation>().rotSpeed = 240;
-       futureColor = LabManager.instance.itemDB.GetItem(LabManager.instance.recipeDB.GetItemFromRecipe(inCentrifugator)).color;
+        futureColor = LabManager.instance.itemDB.GetItem(LabManager.instance.recipeDB.GetItemFromRecipe(inCentrifugator)).color;
         return true;
     }
 
@@ -123,7 +123,10 @@ public class CentrifugatorControl : MonoBehaviour
 
         if (itemIDFromRecipe == 0)
         {
-            LabManager.instance.player.animator.SetTrigger("Susto");
+            foreach (var item in LabManager.instance.player.animator)
+            {
+                item.SetTrigger("Susto");
+            }
             VSFX.instance.CreateParticleSystem(VSFX.instance.explosionMachinePS, m_ExplosionPos.position, false);
             VSFX.instance.PlayAudio(VSFX.instance.explosionMachineSound);
             //PONER EXPLOSION DE LA MAQUINA O REACCION DEL PLAYER
@@ -147,7 +150,7 @@ public class CentrifugatorControl : MonoBehaviour
               collectButton.gameObject.SetActive(false);
               liquido.SetActive(false);
               objectInMachine = false;
-              
+
               mymat.SetColor("_EmissionColor", Color.white);
           });
 
