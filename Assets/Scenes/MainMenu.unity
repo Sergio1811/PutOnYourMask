@@ -587,7 +587,7 @@ MonoBehaviour:
         m_CallState: 2
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
-  priceText: {fileID: 1710877093}
+  priceText: {fileID: 11584127}
 --- !u!114 &11584129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4049,7 +4049,7 @@ MonoBehaviour:
         m_CallState: 2
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
-  priceText: {fileID: 1710877093}
+  priceText: {fileID: 80393126}
 --- !u!114 &80393128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8028,7 +8028,7 @@ MonoBehaviour:
         m_CallState: 2
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
-  priceText: {fileID: 1710877093}
+  priceText: {fileID: 158642159}
 --- !u!114 &158642161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10125,7 +10125,7 @@ MonoBehaviour:
         m_CallState: 2
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
-  priceText: {fileID: 1710877093}
+  priceText: {fileID: 202697109}
 --- !u!114 &202697111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14755,7 +14755,7 @@ MonoBehaviour:
         m_CallState: 2
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
-  priceText: {fileID: 1710877093}
+  priceText: {fileID: 316911170}
 --- !u!114 &316911172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26431,7 +26431,7 @@ MonoBehaviour:
         m_CallState: 2
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
-  priceText: {fileID: 1710877093}
+  priceText: {fileID: 600384034}
 --- !u!114 &600384036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40560,7 +40560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a5f511b0d8142cba0aeb92d0b264c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productId: com.rollingcatgames.thelastmask.vaccinestierfour
+  productId: com.rollingcatgames.thelastmask.vaccinestierone
   buttonType: 0
   consumePurchase: 1
   onPurchaseComplete:
@@ -40593,7 +40593,7 @@ MonoBehaviour:
         m_CallState: 2
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
-  priceText: {fileID: 1710877093}
+  priceText: {fileID: 936918868}
 --- !u!114 &936918870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43565,25 +43565,27 @@ MonoBehaviour:
   FireBunPS: {fileID: 1549509112934564, guid: 0336544bb841fbb419d88a0ed794fe87, type: 3}
   SmokeColumnPS: {fileID: 5477635851177680152, guid: a1f16980039cdb34f9d9676b559c0691,
     type: 3}
-  explosionMachinePS: {fileID: 0}
-  finishedPS: {fileID: 0}
+  explosionMachinePS: {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56,
+    type: 3}
+  finishedPS: {fileID: 100018, guid: a40b64bf23366dc42a892af2c6ff6140, type: 3}
   bottleSounds:
   - {fileID: 8300000, guid: c0fdf7902eeedd547ac5c2a03e41db66, type: 3}
   - {fileID: 8300000, guid: 2387075469b418849ab9fdbe770b05aa, type: 3}
   - {fileID: 8300000, guid: 02c0c5ce380ccbe4c811f33cbddc7766, type: 3}
   - {fileID: 8300000, guid: 584a36c5e3ba1934e96f031ff5d78190, type: 3}
   - {fileID: 8300000, guid: e1047b43e394f0245beaca868fe38a0b, type: 3}
-  useWarmerSound: {fileID: 8300000, guid: 816c701b6a8dc3c4d9d86e7898ab92c4, type: 3}
-  useCentrifugatorSound: {fileID: 8300000, guid: 0838817ca7c82f441b99a5d72f9b9507,
+  useWarmerSound: {fileID: 8300000, guid: 3519f33ffb46ab14987f2385002c8d6e, type: 3}
+  useCentrifugatorSound: {fileID: 8300000, guid: 3519f33ffb46ab14987f2385002c8d6e,
     type: 3}
-  centrifugatorUsageSound: {fileID: 8300000, guid: 45ee6240e231079488a6abb786d2fc65,
+  centrifugatorUsageSound: {fileID: 8300000, guid: 0f0f8edef85ddc645ae305661a9537ac,
     type: 3}
-  warmerUsageSound: {fileID: 8300000, guid: 3625b1c709c81ce4ab190a7febdfdde1, type: 3}
+  warmerUsageSound: {fileID: 8300000, guid: 816c701b6a8dc3c4d9d86e7898ab92c4, type: 3}
   completedOrderSound: {fileID: 0}
   failedOrderSound: {fileID: 0}
   objectToTrashSound: {fileID: 8300000, guid: 063f6bc66073cc14cbd46ca7687bbad9, type: 3}
-  explosionMachineSound: {fileID: 0}
-  popUpSound: {fileID: 0}
+  explosionMachineSound: {fileID: 8300000, guid: 716926407bf5b3f4191985eb12e83605,
+    type: 3}
+  popUpSound: {fileID: 8300000, guid: 075a15ba95e6414439646e8364c11ce5, type: 3}
   inaudibleSound: {fileID: 8300000, guid: b52233ea69759214d8c707fb5ba7195d, type: 3}
   greenButtonSound: {fileID: 0}
   redButtonSound: {fileID: 0}
@@ -46733,7 +46735,7 @@ MonoBehaviour:
         m_CallState: 2
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
-  priceText: {fileID: 1710877093}
+  priceText: {fileID: 1074304219}
 --- !u!114 &1074304221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59077,7 +59079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a5f511b0d8142cba0aeb92d0b264c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productId: com.rollingcatgames.thelastmask.vaccinestierfive
+  productId: com.rollingcatgames.thelastmask.vaccinestiertwo
   buttonType: 0
   consumePurchase: 1
   onPurchaseComplete:
@@ -59110,7 +59112,7 @@ MonoBehaviour:
         m_CallState: 2
   titleText: {fileID: 0}
   descriptionText: {fileID: 0}
-  priceText: {fileID: 1710877093}
+  priceText: {fileID: 1437874118}
 --- !u!114 &1437874120
 MonoBehaviour:
   m_ObjectHideFlags: 0

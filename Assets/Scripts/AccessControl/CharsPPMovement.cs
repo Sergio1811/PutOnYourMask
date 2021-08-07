@@ -25,7 +25,6 @@ public class CharsPPMovement : MonoBehaviour
 
         GetObjects();
 
-
         if (AccessControlManager.instance.currentState == AccessControlManager.GameState.Play)
         {
 

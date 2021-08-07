@@ -8,7 +8,6 @@ public class TextTranslator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        print("hey");
         var text = GetComponent<TextMeshProUGUI>();
         if (text != null) { 
             if (TextId == "ISOCode")
