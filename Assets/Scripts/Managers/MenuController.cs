@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class MenuController : MonoBehaviour
     public AnimationClip closedAnim;
     bool ddOpened = false;
     public Image currentIcon;
-    bool maskOn = false;
+    bool maskOn = true;
     public GameObject maskChar;
     public GameObject canvasItem;
     public GameObject canvasNoMoney;
@@ -44,6 +45,7 @@ public class MenuController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            SceneManager.sceneLoaded += LoadLevel0;
         }
         else
         {
@@ -51,6 +53,35 @@ public class MenuController : MonoBehaviour
         }
 
         DontDestroyOnLoad(instance);
+    }
+
+    private void LoadLevel0(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 1)
+        {
+           
+            switch (currentLanguage)
+            {
+                case "EN":
+
+                    break;
+                case "ES":
+                    currentNum = 1;
+                    break;
+                case "CA":
+                    currentNum = 2;
+                    break;
+                default:
+                    break;
+            }
+
+           
+            tiendaDivisas = GameObject.Find("TiendaDivisas");
+            catalogo = GameObject.Find("Catalogo");
+            tiendaDivisas.SetActive(false);
+            catalogo.SetActive(false);
+        }
+
     }
 
     private void Start()
@@ -78,10 +109,7 @@ public class MenuController : MonoBehaviour
 
         currentLanguage = languageStringArray[currentNum];
         languageObjectArray[currentNum].SetActive(true);
-        tiendaDivisas = GameObject.Find("TiendaDivisas");
-        catalogo = GameObject.Find("Catalogo");
-        tiendaDivisas.SetActive(false);
-        catalogo.SetActive(false);
+
     }
 
     public void TwitterAcces()

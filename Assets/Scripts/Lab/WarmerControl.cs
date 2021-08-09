@@ -144,7 +144,7 @@ public class WarmerControl : MonoBehaviour
                objectInMachine = false;
                collectButton.gameObject.SetActive(false);
                mymat.SetColor("_EmissionColor", Color.white);
-
+               liquido.SetActive(false);
            });
 
         collectButton.onClick.AddListener(

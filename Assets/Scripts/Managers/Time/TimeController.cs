@@ -137,6 +137,10 @@ public class TimeController : MonoBehaviour
         GameManager.instance.vsControl.PercentageUI();
 
         currentSecondsInSession = (int)travelTime.TotalSeconds % 600;
+        if (!GameManager.instance.GeneratedMiniGames)
+        {
+            GameManager.instance.InstantiateMinigames();
+        }
     }
 
     void getDateandTime(string date, string time)

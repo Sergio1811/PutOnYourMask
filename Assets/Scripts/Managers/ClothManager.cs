@@ -45,8 +45,7 @@ public class ClothManager : MonoBehaviour
 
     private void Start()
     {
-        MenuController.instance.currentCloth = MenuController.Clothing.Mask;
-        ChoseCloth(PlayerPrefs.GetInt("Mask"));
+      
         MenuController.instance.currentCloth = MenuController.Clothing.Shirt;
         ChoseCloth(PlayerPrefs.GetInt("Shirt"));
         MenuController.instance.currentCloth = MenuController.Clothing.Pants;
@@ -58,6 +57,12 @@ public class ClothManager : MonoBehaviour
         MenuController.instance.currentCloth = MenuController.Clothing.Mask;
         ChoseCloth(PlayerPrefs.GetInt("Mask"));
 
+        if (!MenuController.instance.maskChar)
+        {
+            currentMaskGO.SetActive(false);
+        }
+
+        MenuController.instance.currentCloth = MenuController.Clothing.Head;
         if (PlayerPrefs.GetInt("Pijama") == 1)
         {
             ActivateDisfraz();
@@ -281,7 +286,7 @@ public class ClothManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Pijama", 1);
         disfrazGO.SetActive(true);
-
+        HeadReset();
         currentHeadGO.SetActive(false);
         currentMaskGO.SetActive(false);
         currentShirtGO.SetActive(false);
@@ -295,10 +300,15 @@ public class ClothManager : MonoBehaviour
         disfrazGO.SetActive(false);
 
         currentHeadGO.SetActive(true);
-        currentMaskGO.SetActive(true);
+        if (MenuController.instance.maskChar)
+        {
+
+            currentMaskGO.SetActive(true);
+        }
         currentShirtGO.SetActive(true);
         currentPantsGO.SetActive(true);
         currentShoesGO.SetActive(true);
+        ResetAnimations();
 
     }
 
@@ -458,5 +468,32 @@ public class ClothManager : MonoBehaviour
         currentMaskGO.transform.localPosition = tempPosM;
         currentMaskGO.transform.localScale = tempScaleM;
 
+        if (!MenuController.instance.maskChar)
+        {
+            currentMaskGO.SetActive(false);
+        }
+
+    }
+
+    public void HeadReset()
+    {
+        Destroy(currentCabeza);
+        currentCabeza = Instantiate(animCabeza, parent.transform);
+        Relocate(currentCabeza);
+
+        Vector3 tempPosM = currentMaskGO.transform.localPosition;
+        Vector3 tempScaleM = currentMaskGO.transform.localScale;
+        Destroy(currentMaskGO);
+
+        maskParent = currentCabeza.GetComponent<Cabeza>().cabeza.gameObject;
+        currentMaskGO = Instantiate(masks[currentMasks], maskParent.transform);
+        currentMaskGO.transform.localPosition = tempPosM;
+        currentMaskGO.transform.localScale = tempScaleM;
+
+        if (!MenuController.instance.maskChar)
+        {
+            currentMaskGO.SetActive(false);
+
+        }
     }
 }

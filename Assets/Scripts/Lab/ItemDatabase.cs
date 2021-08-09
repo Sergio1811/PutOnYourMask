@@ -41,14 +41,12 @@ public class ItemDatabase : MonoBehaviour
     void BuildItemDatabase()
     {
         items = new List<Item>()
-        {
-            
-
+        {           
             new Item(1, "Amarillo", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Amarillo"), new Color32 (240, 230, 68, 255)),
 
             new Item(2, "Azul", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Azul"), new Color32(78, 179, 215, 255)),
 
-            new Item(3, "Rojo", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Rojo"), new Color32(231, 102, 72, 255)),
+            new Item(3, "Rojo", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Rojo"), new Color32(218, 100, 107, 255)),
 
             new Item(4, "Naranja", "combo item.", Resources.Load<Sprite>("Sprites/Lab/Items/Naranja"), new Color32 (225,153,41,255)),
 
@@ -60,7 +58,7 @@ public class ItemDatabase : MonoBehaviour
 
             new Item(8, "Azul_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Azul_Burbuja"), new Color32(78, 179, 215, 255)),
 
-            new Item(9, "Rojo_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Rojo_Burbuja"), new Color32(231, 102, 72, 255)),
+            new Item(9, "Rojo_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Rojo_Burbuja"), new Color32(218, 100, 107, 255)),
 
             new Item(10, "Naranja_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Naranja_Burbuja"), new Color32 (225,153,41,255)),
 
@@ -69,7 +67,6 @@ public class ItemDatabase : MonoBehaviour
             new Item(12, "Lila_Burbuja", "warmed item.", Resources.Load<Sprite>("Sprites/Lab/Items/Lila_Burbuja"), new Color32(166,124,211,255)),
 
             new Item(0, "Error", "simple item.", Resources.Load<Sprite>("Sprites/Lab/Items/Marron"), Color.grey),
-
         };
         
     }

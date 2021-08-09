@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     public GameObject shirtGO;
     public GameObject pantsGO;
     public GameObject shoeGO;
+
+    [HideInInspector] public bool GeneratedMiniGames = false;
     #endregion Ropa
     private void Awake()
     {
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
     {
         if (scene.buildIndex == 1)
         {
+            GeneratedMiniGames = false;
             vsControl = GameObject.Find("ScriptHolder").GetComponent<PercentageVirusControl>();
             coinsText = GameObject.FindGameObjectWithTag("CoinText").GetComponent<TextMeshProUGUI>();
             waypointsParent = GameObject.Find("WaypointsSpawnMinigames");
@@ -74,7 +77,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                InstantiateMinigames();
+                StartCoroutine("NeedMinigames");
             }
 
         }
@@ -94,12 +97,27 @@ public class GameManager : MonoBehaviour
 
     }
 
+    IEnumerator NeedMinigames()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (!GeneratedMiniGames)
+        {
+            InstantiateMinigames();
+        }
+    }
     public void InstantiateMinigames()
     {
-
+        GeneratedMiniGames = true;
         placesToMinigame = waypointsParent.GetComponentsInChildren<Transform>();
         placesNotUsed = placesToMinigame.OfType<Transform>().ToList();
+        virusPercentage = Mathf.Clamp(virusPercentage, 0, 100);
         currentMiniGamesOnMenu = (int)(virusPercentage / 10);
+
+        if (currentMiniGamesOnMenu>10)
+        {
+            currentMiniGamesOnMenu = 10;
+        }
+
         for (int i = 0; i < currentMiniGamesOnMenu; i++)
         {
             int rnd = Random.Range(0, placesNotUsed.Count);

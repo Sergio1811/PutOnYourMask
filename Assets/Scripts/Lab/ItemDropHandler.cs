@@ -46,6 +46,7 @@ public class ItemDropHandler : MonoBehaviour, IDropHandler
                 else if (hit.collider.CompareTag("Bin"))
                 {
                     InventoryLab.instance.DeletePosition(int.Parse(transform.parent.name));
+                    VSFX.instance.PlayAudio(VSFX.instance.objectToTrashSound);
                     Destroy(gameObject);
                 }
                 else if (hit.collider.CompareTag("Character"))
