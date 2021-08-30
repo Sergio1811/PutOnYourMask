@@ -808,7 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4797e2c31af2eda43ae1419aded85302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllCloth: 010000000200000003000000
+  AllCloth: 
   heads:
   - {fileID: 2914884836281610526, guid: 61e35e360c7c85749b15dd5129b4ac1d, type: 3}
   - {fileID: 307737177230236356, guid: 0c835465c4e9845478c8586a53ea1476, type: 3}
@@ -39783,7 +39783,8 @@ MonoBehaviour:
   maskChar: {fileID: 514783406}
   canvasItem: {fileID: 4280958673801185933, guid: 1be70d653e20fae4ca8e29689b343aee,
     type: 3}
-  canvasNoMoney: {fileID: 0}
+  canvasNoMoney: {fileID: 4280958673801185933, guid: dd9765f09e30c8642aa03fa93c84a7ab,
+    type: 3}
   pages: []
   currentPage: 0
   pagesVer: []
@@ -43513,8 +43514,9 @@ MonoBehaviour:
   completedOrderSound: {fileID: 0}
   failedOrderSound: {fileID: 0}
   objectToTrashSound: {fileID: 8300000, guid: 063f6bc66073cc14cbd46ca7687bbad9, type: 3}
-  explosionMachineSound: {fileID: 0}
-  popUpSound: {fileID: 0}
+  explosionMachineSound: {fileID: 8300000, guid: 716926407bf5b3f4191985eb12e83605,
+    type: 3}
+  popUpSound: {fileID: 8300000, guid: 075a15ba95e6414439646e8364c11ce5, type: 3}
   inaudibleSound: {fileID: 8300000, guid: b52233ea69759214d8c707fb5ba7195d, type: 3}
   greenButtonSound: {fileID: 0}
   redButtonSound: {fileID: 0}
@@ -52738,7 +52740,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.20175515, y: 0.75746256}
   m_AnchorMax: {x: 0.82600003, y: 0.8738437}
-  m_AnchoredPosition: {x: -18.00003, y: 17}
+  m_AnchoredPosition: {x: -18, y: 17}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1269732004

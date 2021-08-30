@@ -14,7 +14,6 @@ public class TextTranslator : MonoBehaviour
                 text.text = GameManager.instance.language;
             else
                 text.text = LanguageManager.Fields[TextId];
-            print("EH");
         }
     }
 
