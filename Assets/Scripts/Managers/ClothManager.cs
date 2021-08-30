@@ -7,6 +7,7 @@ public class ClothManager : MonoBehaviour
 {
     public static ClothManager instance;
 
+    public int[] AllCloth;
     public GameObject[] heads;
     public GameObject[] shirts;
     public GameObject[] pants;
