@@ -8,11 +8,15 @@ public class Shopping : MonoBehaviour
 {
     private void Start()
     {
-        this.gameObject.GetComponent<Button>().onClick.AddListener(delegate
+        if (!CheckBought())
         {
-           // print("Done");
-            Buy();
-        });
+            this.gameObject.GetComponent<Button>().onClick.AddListener(delegate
+            {
+                // print("Done");
+                Buy();
+            });
+        }
+        
     }
     public void Buy()
     {
@@ -46,8 +50,9 @@ public class Shopping : MonoBehaviour
             GameObject GOBuy = MenuController.instance.PurchaseItem(MenuController.instance.catalogo);
             GOBuy.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { GameManager.instance.AddCoins(-price);
                 Destroy(GOBuy);
-                this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-                this.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+                ClothManager.instance.AllCloth.Add(int.Parse(this.transform.parent.GetChild(1).GetComponent<RawImage>().texture.name));
+                ClothManager.instance.SaveData();
+                BoughtDisplayed();
             });
             
         }
@@ -57,5 +62,31 @@ public class Shopping : MonoBehaviour
             print("puto pobre");
             //Instantiate PopUP
         }
+    }
+
+    public bool CheckBought()
+    {
+        print(this.transform.parent.GetChild(1).GetComponent<RawImage>().texture.name);
+        int num = int.Parse(this.transform.parent.GetChild(1).GetComponent<RawImage>().texture.name);
+        foreach (var item in ClothManager.instance.AllCloth)
+        {
+            if (item==num)
+            {
+                BoughtDisplayed();
+                print("displayed" + num);
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+    public void BoughtDisplayed()
+    {
+        this.GetComponent<Button>().interactable = false;
+        this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        this.gameObject.transform.GetChild(2).gameObject.SetActive(true);
     }
 }

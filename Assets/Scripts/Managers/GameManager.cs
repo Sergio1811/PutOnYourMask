@@ -94,7 +94,10 @@ public class GameManager : MonoBehaviour
             SceneController.instance.ChargeMainMenu();
         }*/
 
-
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            AddCoins(1000);
+        }
     }
 
     IEnumerator NeedMinigames()

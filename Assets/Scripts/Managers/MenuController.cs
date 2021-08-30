@@ -176,7 +176,7 @@ public class MenuController : MonoBehaviour
 
     public GameObject PurchaseItem(GameObject canvas)
     {
-        GameObject objetoCanvas = Instantiate(canvasItem, Canvas);
+        GameObject objetoCanvas = Instantiate(canvasItem, canvas.transform);
         //0 acceot comprar con dinero
         //1 decline
         objetoCanvas.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(
@@ -191,7 +191,7 @@ public class MenuController : MonoBehaviour
     
     public void NoMoneyPurchaseItem(GameObject canvas)
     {
-        GameObject objetoCanvas =Instantiate(canvasNoMoney, Canvas);
+        GameObject objetoCanvas =Instantiate(canvasNoMoney, canvas.transform);
         //0 acceot
         objetoCanvas.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(
           delegate

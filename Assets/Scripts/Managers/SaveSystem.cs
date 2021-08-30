@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-public class SaveSystem
+public static class SaveSystem
 {
     public static void SavePlayer(ClothManager controller)
     {
@@ -31,7 +31,7 @@ public class SaveSystem
         }
         else
         {
-            Debug.LogError("Save file can not be found" + path));
+            Debug.LogError("Save file can not be found" + path);
             return null;
         }
     }

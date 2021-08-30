@@ -9,6 +9,6 @@ public class Data
 
     public Data (ClothManager controller)
     {
-        ropa[0] = controller.AllCloth[0];
+        ropa = controller.AllCloth.ToArray();        
     }
 }

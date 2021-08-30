@@ -7,7 +7,8 @@ public class ClothManager : MonoBehaviour
 {
     public static ClothManager instance;
 
-    public int[] AllCloth;
+    public List<int> AllCloth;
+
     public GameObject[] heads;
     public GameObject[] shirts;
     public GameObject[] pants;
@@ -36,6 +37,7 @@ public class ClothManager : MonoBehaviour
     {
         if (instance == null)
         {
+            LoadData();
             instance = this;
         }
         else
@@ -496,5 +498,17 @@ public class ClothManager : MonoBehaviour
             currentMaskGO.SetActive(false);
 
         }
+    }
+
+    public void SaveData()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadData()
+    {
+        Data data = SaveSystem.LoadData();
+
+        AllCloth = new List<int>(data.ropa);
     }
 }
