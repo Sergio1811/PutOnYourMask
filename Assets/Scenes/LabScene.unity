@@ -370,7 +370,7 @@ MonoBehaviour:
   timeUI: {fileID: 746690275}
   collectButton: {fileID: 746690274}
   itemCollectable: {fileID: 1826142573}
-  timeToCentrifugate: 3
+  timeToCentrifugate: 4
   liquido: {fileID: 286564273}
   batidora: {fileID: 1595776970}
   objectInMachine: 0
@@ -1132,7 +1132,7 @@ MonoBehaviour:
   itemDB: {fileID: 554676304}
   itemTemplate: {fileID: 2260030738460196171, guid: 70b5a90c3c65017419ecd8763a2b4c4f,
     type: 3}
-  timeMinigame: 120
+  timeMinigame: 60
   timeText: {fileID: 1568937030}
   panelChuleta: {fileID: 1844786482}
   canvasFinal: {fileID: 193832492}
@@ -3447,7 +3447,7 @@ MonoBehaviour:
   timeUI: {fileID: 2902798740046128510}
   collectButton: {fileID: 1864649246}
   itemCollectable: {fileID: 325987857}
-  timeToWarmer: 3
+  timeToWarmer: 2
   liquido: {fileID: 262115434064848154}
   objectInMachine: 0
   m_Animator: {fileID: 1790494251}
@@ -5907,6 +5907,11 @@ PrefabInstance:
         type: 3}
       propertyPath: currentState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675134485499618961, guid: 940f01c9e084142448154d075dea4d65,
+        type: 3}
+      propertyPath: timeToWait
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4675134485499618962, guid: 940f01c9e084142448154d075dea4d65,
         type: 3}
@@ -10458,6 +10463,11 @@ PrefabInstance:
         type: 3}
       propertyPath: currentState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675134485499618961, guid: 940f01c9e084142448154d075dea4d65,
+        type: 3}
+      propertyPath: timeToWait
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4675134485499618962, guid: 940f01c9e084142448154d075dea4d65,
         type: 3}

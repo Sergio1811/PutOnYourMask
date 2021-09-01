@@ -99,6 +99,7 @@ public class ClientControl : MonoBehaviour
         currentTimeToZero = timeToWait;
         wantedItem = LabManager.instance.itemDB.GetRandomItem();
         imageItemWanted.sprite = wantedItem.icon;
+        
     }
 
     public void ItemDropped(Item item)
@@ -118,6 +119,8 @@ public class ClientControl : MonoBehaviour
         VSFX.instance.CreateParticleSystem(VSFX.instance.unhappyPS, this.transform.position+Vector3.up, false);
         ChangeState(States.Huye);
         VSFX.instance.PlayAudio(VSFX.instance.failedOrderSound);
+        LabManager.instance.requests++;
+
     }
 
     public void Happy()
@@ -125,6 +128,8 @@ public class ClientControl : MonoBehaviour
         VSFX.instance.CreateParticleSystem(VSFX.instance.happyPS, this.transform.position+Vector3.zero, false);
         ChangeState(States.Huye);
         VSFX.instance.PlayAudio(VSFX.instance.completedOrderSound);
+        LabManager.instance.requests++;
+        LabManager.instance.completedRequests++;
     }
 
     public void ChangeState(States newState)

@@ -43518,7 +43518,7 @@ MonoBehaviour:
   centrifugatorUsageSound: {fileID: 8300000, guid: 137ebda8f600a5b4cbbbf2aa8a638dbf,
     type: 3}
   warmerUsageSound: {fileID: 8300000, guid: 816c701b6a8dc3c4d9d86e7898ab92c4, type: 3}
-  completedOrderSound: {fileID: 0}
+  completedOrderSound: {fileID: 8300000, guid: 46f0df46b5cae8d4a896fc00d53e0613, type: 3}
   failedOrderSound: {fileID: 8300000, guid: 337129d02732e5241b9e8aa6bf193938, type: 3}
   objectToTrashSound: {fileID: 8300000, guid: 063f6bc66073cc14cbd46ca7687bbad9, type: 3}
   explosionMachineSound: {fileID: 8300000, guid: 716926407bf5b3f4191985eb12e83605,

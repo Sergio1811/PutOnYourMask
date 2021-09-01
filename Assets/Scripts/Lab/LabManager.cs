@@ -199,12 +199,45 @@ public class LabManager : MonoBehaviour
     {
         currentState = GameState.Finish;
         //calculos de puntuacion
+        int finalCoins = 0;
+        float requestRatio = (float)completedRequests / (float)requests;
+        print(requestRatio);
+        if (requestRatio >= 0.6f)
+        {
+            if (requestRatio >= 1f)
+            {
+                finalCoins = 2000;
+            }
+            else if (requestRatio >= 0.9f)
+            {
+                finalCoins = 1800;
+            }
+            else if (requestRatio >= 0.8f)
+            {
+                finalCoins = 1600;
+            }
+            else if (requestRatio >= 0.7f)
+            {
+                finalCoins = 1400;
+            }
+            else if (requestRatio >= 0.6f)
+            {
+                finalCoins = 1200;
+            }
+            canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
+            canvasFinale.finalPercentage = (GameManager.instance.virusPercentage - 20).ToString();
+            GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage - 20, 0, 100);
+        }
+        else
+        {
+            canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
+            canvasFinale.finalPercentage = (GameManager.instance.virusPercentage + 20).ToString();
+            GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage + 20, 0, 100);
+        }
+        canvasFinale.coins = finalCoins.ToString();
+        GameManager.instance.AddCoins(finalCoins);
+        
 
-        canvasFinale.coins = "100";
-        GameManager.instance.AddCoins(100);
-        canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
-        canvasFinale.finalPercentage = (GameManager.instance.virusPercentage - 20).ToString();
-        GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage - 20, 0, 100);
         canvasFinal.SetActive(true);
     }
 }
