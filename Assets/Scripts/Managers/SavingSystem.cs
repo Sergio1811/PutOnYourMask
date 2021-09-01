@@ -21,7 +21,7 @@ public class SavingSystem : MonoBehaviour
     }
     void Start()
     {
-        GameManager.instance.AddCoins(PlayerPrefs.GetInt("Coins"));
+        GameManager.instance.AddCoins(PlayerPrefs.GetInt("Coins") - GameManager.instance.coins);
 
     }
 

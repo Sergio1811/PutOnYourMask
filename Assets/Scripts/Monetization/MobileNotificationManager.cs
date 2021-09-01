@@ -20,7 +20,7 @@ public class MobileNotificationManager : MonoBehaviour
             c.Id = "full_money";
             c.Name = "playerReminder";
             c.Importance = Importance.High;       
-            c.Description= "Reminds the player has full money in chest";
+            c.Description= "Reminds the player to come back to the game.";
         };
         AndroidNotificationCenter.RegisterNotificationChannel(c);
     }
@@ -28,9 +28,9 @@ public class MobileNotificationManager : MonoBehaviour
     void SendNotification()
     {
         var notification = new AndroidNotification();
-        notification.Title = "Your chests are full!";
-        notification.Text = "Pick up all your gold to keep winning more.";
-        notification.FireTime = System.DateTime.Now.AddSeconds(10);
+        notification.Title = "The virus is growing!";
+        notification.Text = "Enter the game and fight against it.";
+        notification.FireTime = System.DateTime.Now.AddSeconds(3600);
         notification.LargeIcon = "icon_1";
 
         AndroidNotificationCenter.SendNotification(notification, "full_money");

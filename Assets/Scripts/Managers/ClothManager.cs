@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 using UnityEngine.SceneManagement;
 
 public class ClothManager : MonoBehaviour
@@ -37,7 +38,15 @@ public class ClothManager : MonoBehaviour
     {
         if (instance == null)
         {
-            LoadData();
+            if (File.Exists(Application.persistentDataPath + "/data.dat"))
+            {
+                LoadData();
+
+            }
+            else
+            {
+                SaveData();
+            }
             instance = this;
         }
         else
@@ -48,7 +57,7 @@ public class ClothManager : MonoBehaviour
 
     private void Start()
     {
-      
+
         MenuController.instance.currentCloth = MenuController.Clothing.Shirt;
         ChoseCloth(PlayerPrefs.GetInt("Shirt"));
         MenuController.instance.currentCloth = MenuController.Clothing.Pants;

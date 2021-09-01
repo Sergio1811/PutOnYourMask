@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             panelNoticias = GameObject.Find("PanelNoticias");
             panelNoticias.SetActive(false);
 
-            AddCoins(1750);
+            
 
             if (Random.value > 1 - newProbability)
             {

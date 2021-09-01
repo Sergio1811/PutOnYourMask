@@ -109,7 +109,7 @@ MonoBehaviour:
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 122.61282, y: 3.9470248, z: 121.69867, w: 0}
+  m_margin: {x: 118.885925, y: 7.1536293, z: 117.97174, w: 4.388733}
   m_textInfo:
     textComponent: {fileID: 1122140898745295839}
     characterCount: 2
@@ -443,12 +443,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30.1
+  m_fontSize: 26.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 30.1
-  m_fontSizeMax: 72
+  m_fontSizeMin: 26.14
+  m_fontSizeMax: 71.7
   m_fontStyle: 1
   m_textAlignment: 514
   m_characterSpacing: 0
@@ -481,16 +481,16 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 112.27528, y: 11.103861, z: 113.71536, w: 3.4178834}
+  m_margin: {x: 119.09914, y: 5.853739, z: 120.539215, w: 6.5267086}
   m_textInfo:
     textComponent: {fileID: 869922834554821071}
-    characterCount: 6
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
