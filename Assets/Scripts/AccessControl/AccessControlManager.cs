@@ -213,6 +213,8 @@ public class AccessControlManager : MonoBehaviour
     {
         if (passed != currentCharCanPass)
         {
+            VSFX.instance.PlayAudio(VSFX.instance.failSound);
+
             AccesCanvasControler.instance.StartCoroutine("Cross");
             howManyFailed++;
             Debug.Log("Failed");

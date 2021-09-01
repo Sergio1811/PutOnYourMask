@@ -117,12 +117,14 @@ public class ClientControl : MonoBehaviour
     {
         VSFX.instance.CreateParticleSystem(VSFX.instance.unhappyPS, this.transform.position+Vector3.up, false);
         ChangeState(States.Huye);
+        VSFX.instance.PlayAudio(VSFX.instance.failedOrderSound);
     }
 
     public void Happy()
     {
         VSFX.instance.CreateParticleSystem(VSFX.instance.happyPS, this.transform.position+Vector3.zero, false);
         ChangeState(States.Huye);
+        VSFX.instance.PlayAudio(VSFX.instance.completedOrderSound);
     }
 
     public void ChangeState(States newState)

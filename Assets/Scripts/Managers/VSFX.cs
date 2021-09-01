@@ -70,17 +70,20 @@ public class VSFX : MonoBehaviour
 
     public void PlayAudio(AudioClip clip)
     {
-        GameObject audio = Instantiate(AudioInstance, gameObject.transform.parent);
-        audio.GetComponent<AudioSource>().clip = clip;
-        audio.GetComponent<AudioSource>().Play();
-        Destroy(audio, clip.length + 0.25f);
+        if (MenuController.instance.soundOn)
+        {
+            GameObject audio = Instantiate(AudioInstance, gameObject.transform.parent);
+            audio.GetComponent<AudioSource>().clip = clip;
+            audio.GetComponent<AudioSource>().Play();
+            Destroy(audio, clip.length + 0.25f);
+        }
     }
 
     public GameObject CreateParticleSystem(GameObject particleSystem, Vector3 position, bool loop)
     {
         GameObject psLocal = Instantiate(particleSystem, position, particleSystem.transform.rotation);
-       /* if(!loop)
-        Destroy(psLocal, psLocal.GetComponent<ParticleSystem>().startLifetime);*/
+        /* if(!loop)
+         Destroy(psLocal, psLocal.GetComponent<ParticleSystem>().startLifetime);*/
 
         return psLocal;
     }

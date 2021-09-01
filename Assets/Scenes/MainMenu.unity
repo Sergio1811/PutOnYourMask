@@ -7797,7 +7797,7 @@ PrefabInstance:
     - target: {fileID: 1406252872332930961, guid: eac51dac1d0a26d4aa7f08b540147101,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -20.999992
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 1406252872332930961, guid: eac51dac1d0a26d4aa7f08b540147101,
         type: 3}
@@ -39785,9 +39785,15 @@ MonoBehaviour:
     type: 3}
   canvasNoMoney: {fileID: 4280958673801185933, guid: dd9765f09e30c8642aa03fa93c84a7ab,
     type: 3}
-  pages: []
+  pages:
+  - {fileID: 655722454}
+  - {fileID: 644579631}
+  - {fileID: 1447691756}
   currentPage: 0
-  pagesVer: []
+  pagesVer:
+  - {fileID: 1627314894}
+  - {fileID: 1691913723}
+  - {fileID: 2025553813}
   currentPageVer: 0
   tiendaDivisas: {fileID: 0}
   catalogo: {fileID: 0}
@@ -43513,7 +43519,7 @@ MonoBehaviour:
     type: 3}
   warmerUsageSound: {fileID: 8300000, guid: 816c701b6a8dc3c4d9d86e7898ab92c4, type: 3}
   completedOrderSound: {fileID: 0}
-  failedOrderSound: {fileID: 0}
+  failedOrderSound: {fileID: 8300000, guid: 337129d02732e5241b9e8aa6bf193938, type: 3}
   objectToTrashSound: {fileID: 8300000, guid: 063f6bc66073cc14cbd46ca7687bbad9, type: 3}
   explosionMachineSound: {fileID: 8300000, guid: 716926407bf5b3f4191985eb12e83605,
     type: 3}
@@ -43522,7 +43528,7 @@ MonoBehaviour:
   greenButtonSound: {fileID: 0}
   redButtonSound: {fileID: 0}
   correctSound: {fileID: 0}
-  failSound: {fileID: 0}
+  failSound: {fileID: 8300000, guid: ff356b09a2090b64db3b54265f5a28b1, type: 3}
   pickMaskSound: {fileID: 8300000, guid: 75d4d4ea51b1f49438c134aa7aea4a9d, type: 3}
   putMaskSound: {fileID: 8300000, guid: 75d4d4ea51b1f49438c134aa7aea4a9d, type: 3}
   leverSound: {fileID: 8300000, guid: 60b41b1cac90d6c4f96de47f5ce567e3, type: 3}
@@ -46484,7 +46490,7 @@ PrefabInstance:
     - target: {fileID: 1406252872332930961, guid: eac51dac1d0a26d4aa7f08b540147101,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -21.593742
+      value: -21.59375
       objectReference: {fileID: 0}
     - target: {fileID: 1406252872332930961, guid: eac51dac1d0a26d4aa7f08b540147101,
         type: 3}
@@ -52741,7 +52747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.20175515, y: 0.75746256}
   m_AnchorMax: {x: 0.82600003, y: 0.8738437}
-  m_AnchoredPosition: {x: -18.00003, y: 17}
+  m_AnchoredPosition: {x: -18, y: 17}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1269732004
@@ -59300,6 +59306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1446363739}
   - component: {fileID: 1446363738}
+  - component: {fileID: 1446363740}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -59417,6 +59424,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1446363740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446363737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d1780bed47f7d42bb248f950111894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1447185416
 GameObject:
   m_ObjectHideFlags: 0
@@ -80322,7 +80341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1994249688
 Transform:
   m_ObjectHideFlags: 0

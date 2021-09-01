@@ -1279,6 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8651510d7b8a78e4286bb12c34beb991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Canvas: {fileID: 0}
   soundOn: 0
   musicOn: 0
   notificationsOn: 0
@@ -1293,10 +1294,13 @@ MonoBehaviour:
   currentIcon: {fileID: 0}
   maskChar: {fileID: 0}
   canvasItem: {fileID: 0}
+  canvasNoMoney: {fileID: 0}
   pages: []
   currentPage: 0
   pagesVer: []
   currentPageVer: 0
+  tiendaDivisas: {fileID: 0}
+  catalogo: {fileID: 0}
 --- !u!1 &604764924
 GameObject:
   m_ObjectHideFlags: 0
@@ -5176,6 +5180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1997655927}
   - component: {fileID: 1997655926}
+  - component: {fileID: 1997655928}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -5293,6 +5298,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1997655928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997655925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d1780bed47f7d42bb248f950111894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2128999565
 GameObject:
   m_ObjectHideFlags: 0
