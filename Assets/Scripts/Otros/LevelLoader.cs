@@ -22,10 +22,10 @@ public class LevelLoader : MonoBehaviour
         
         while (!operation.isDone)
         {
-            /*float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
             Debug.Log(progress);
             slider.value = progress;
-            progressText.text = progress * 100 + "%";*/
+            progressText.text = progress * 100 + "%";
             yield return null;
         }
 

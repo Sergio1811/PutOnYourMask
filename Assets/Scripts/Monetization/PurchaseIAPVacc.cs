@@ -11,6 +11,7 @@ public class PurchaseIAPVacc : MonoBehaviour
     public void OnPurchaseComplete(Product product)
     {
         GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage - percentage, 0, 100);
+        GameManager.instance.vsControl.PercentageUI();
     }
 
     public void OnPurchaseFailure(Product product, PurchaseFailureReason reason)

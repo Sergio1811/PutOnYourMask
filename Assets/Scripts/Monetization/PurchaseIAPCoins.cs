@@ -6,12 +6,11 @@ using UnityEngine.Purchasing;
 public class PurchaseIAPCoins : MonoBehaviour
 {
     public int coins;
-    public GameObject pruebaActivador;
 
     public void OnPurchaseComplete(Product product)
     {
         GameManager.instance.AddCoins(coins);
-        pruebaActivador.SetActive(true);
+
     }
 
     public void OnPurchaseFailure(Product product, PurchaseFailureReason reason)

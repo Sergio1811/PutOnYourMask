@@ -27,14 +27,14 @@ public class MenuController : MonoBehaviour
     public AnimationClip closedAnim;
     bool ddOpened = false;
     public Image currentIcon;
-    bool maskOn = true;
+    public bool maskOn = true;
     public GameObject maskChar;
     public GameObject canvasItem;
     public GameObject canvasNoMoney;
 
     public GameObject[] pages;
     public int currentPage;
-    
+
     public GameObject[] pagesVer;
     public int currentPageVer;
 
@@ -59,7 +59,7 @@ public class MenuController : MonoBehaviour
     {
         if (scene.buildIndex == 1)
         {
-           
+
             switch (currentLanguage)
             {
                 case "EN":
@@ -75,7 +75,7 @@ public class MenuController : MonoBehaviour
                     break;
             }
 
-           
+
             tiendaDivisas = GameObject.Find("TiendaDivisas");
             catalogo = GameObject.Find("Catalogo");
             tiendaDivisas.SetActive(false);
@@ -95,7 +95,7 @@ public class MenuController : MonoBehaviour
         switch (currentLanguage)
         {
             case "EN":
-                
+
                 break;
             case "ES":
                 currentNum = 1;
@@ -141,7 +141,7 @@ public class MenuController : MonoBehaviour
             currentNum = 0;
         }
 
-        
+
 
         languageObjectArray[currentNum].SetActive(true);
         currentLanguage = languageStringArray[currentNum];
@@ -188,16 +188,18 @@ public class MenuController : MonoBehaviour
         return objetoCanvas;
         //rellenar datos
     }
-    
+
     public void NoMoneyPurchaseItem(GameObject canvas)
     {
-        GameObject objetoCanvas =Instantiate(canvasNoMoney, canvas.transform);
+        GameObject objetoCanvas = Instantiate(canvasNoMoney, canvas.transform);
         //0 acceot
         objetoCanvas.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(
           delegate
           {
               canvas.SetActive(false);
               tiendaDivisas.SetActive(true);
+              tiendaDivisas.transform.GetChild(4).gameObject.SetActive(true);
+              tiendaDivisas.transform.GetChild(5).gameObject.SetActive(false);
               Destroy(objetoCanvas);
           });
         //1 decline Lllevar a latienda
@@ -261,7 +263,7 @@ public class MenuController : MonoBehaviour
             m_DropdownAnimation.clip = closedAnim;
             m_DropdownAnimation.Play();
             ddOpened = false;
-        }       
+        }
     }
 
     public void NextPage()
@@ -271,13 +273,13 @@ public class MenuController : MonoBehaviour
             item.SetActive(false);
         }
         currentPage++;
-        if (currentPage<pages.Length)
+        if (currentPage < pages.Length)
         {
             pages[currentPage].SetActive(true);
 
         }
-    } 
-    
+    }
+
     public void PrevPage()
     {
         foreach (var item in pages)
@@ -291,7 +293,7 @@ public class MenuController : MonoBehaviour
 
         }
     }
-    
+
     public void NextPageVer()
     {
         foreach (var item in pagesVer)
@@ -299,13 +301,13 @@ public class MenuController : MonoBehaviour
             item.SetActive(false);
         }
         currentPageVer++;
-        if (currentPage<pagesVer.Length)
+        if (currentPage < pagesVer.Length)
         {
             pagesVer[currentPageVer].SetActive(true);
 
         }
-    } 
-    
+    }
+
     public void PrevPageVer()
     {
         foreach (var item in pagesVer)
@@ -319,4 +321,6 @@ public class MenuController : MonoBehaviour
 
         }
     }
+
+   
 }

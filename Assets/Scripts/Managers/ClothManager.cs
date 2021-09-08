@@ -41,7 +41,6 @@ public class ClothManager : MonoBehaviour
             if (File.Exists(Application.persistentDataPath + "/data.dat"))
             {
                 LoadData();
-
             }
             else
             {
@@ -69,7 +68,9 @@ public class ClothManager : MonoBehaviour
         MenuController.instance.currentCloth = MenuController.Clothing.Mask;
         ChoseCloth(PlayerPrefs.GetInt("Mask"));
 
-        if (!MenuController.instance.maskChar)
+        MenuController.instance.maskChar = currentMaskGO;
+
+        if (!MenuController.instance.maskOn)
         {
             currentMaskGO.SetActive(false);
         }
@@ -126,6 +127,15 @@ public class ClothManager : MonoBehaviour
                     currentHead = 0;
                 }
 
+                while (!AllCloth.Contains(currentHead + 49)) //Comprueba que esta en la lista para añadirlo o pasar al siguiente, el 49 es el offset respecto a todas las ropas
+                {
+                    currentHead++;
+                    if (currentHead >= heads.Length)
+                    {
+                        currentHead = 0;
+                    }
+                }
+
                 GameManager.instance.headGO = heads[currentHead];
                 currentHeadGO = Instantiate(heads[currentHead], parent.transform);
                 Relocate(currentHeadGO);
@@ -143,6 +153,16 @@ public class ClothManager : MonoBehaviour
                 {
                     currentShirt = 0;
                 }
+
+                while (!AllCloth.Contains(currentShirt + 1))
+                {
+                    currentShirt++;
+                    if (currentShirt >= shirts.Length)
+                    {
+                        currentShirt = 0;
+                    }
+                }
+
                 GameManager.instance.shirtGO = shirts[currentShirt];
                 currentShirtGO = Instantiate(shirts[currentShirt], parent.transform);
                 Relocate(currentShirtGO);
@@ -157,6 +177,15 @@ public class ClothManager : MonoBehaviour
                 if (currentPants >= pants.Length)
                 {
                     currentPants = 0;
+                }
+
+                while (!AllCloth.Contains(currentPants + 13))
+                {
+                    currentPants++;
+                    if (currentPants >= pants.Length)
+                    {
+                        currentPants = 0;
+                    }
                 }
 
                 GameManager.instance.pantsGO = pants[currentPants];
@@ -176,6 +205,15 @@ public class ClothManager : MonoBehaviour
                     currentShoes = 0;
                 }
 
+                while (!AllCloth.Contains(currentShoes + 79))
+                {
+                    currentShoes++;
+                    if (currentShoes >= shoes.Length)
+                    {
+                        currentShoes = 0;
+                    }
+                }
+
                 GameManager.instance.shoeGO = shoes[currentShoes];
                 currentShoesGO = Instantiate(shoes[currentShoes], parent.transform);
                 Relocate(currentShoesGO);
@@ -193,10 +231,21 @@ public class ClothManager : MonoBehaviour
                 {
                     currentMasks = 0;
                 }
+
+                while (!AllCloth.Contains(currentMasks + 87))
+                {
+                    currentMasks++;
+                    if (currentMasks >= masks.Length)
+                    {
+                        currentMasks = 0;
+                    }
+                }
+
                 GameManager.instance.maskGO = masks[currentMasks];
                 currentMaskGO = Instantiate(masks[currentMasks], maskParent.transform);
                 currentMaskGO.transform.localPosition = tempPosM;
                 currentMaskGO.transform.localScale = tempScaleM;
+                MenuController.instance.maskChar = currentMaskGO;
 
                 break;
 
@@ -224,6 +273,15 @@ public class ClothManager : MonoBehaviour
                 {
                     currentHead = heads.Length - 1;
                 }
+
+                while (!AllCloth.Contains(currentHead + 49))
+                {
+                    currentHead--;
+                    if (currentHead < 0)
+                    {
+                        currentHead = heads.Length - 1;
+                    }
+                }
                 currentHeadGO = Instantiate(heads[currentHead], parent.transform);
                 Relocate(currentHeadGO);
                 break;
@@ -236,6 +294,16 @@ public class ClothManager : MonoBehaviour
                 {
                     currentShirt = shirts.Length - 1;
                 }
+
+                while (!AllCloth.Contains(currentShirt + 1))
+                {
+                    currentShirt--;
+                    if (currentShirt < 0)
+                    {
+                        currentShirt = shirts.Length - 1;
+                    }
+                }
+
                 currentShirtGO = Instantiate(shirts[currentShirt], parent.transform);
                 Relocate(currentShirtGO);
                 break;
@@ -249,6 +317,16 @@ public class ClothManager : MonoBehaviour
                 {
                     currentPants = pants.Length - 1;
                 }
+
+                while (!AllCloth.Contains(currentPants + 13))
+                {
+                    currentPants--;
+                    if (currentPants < 0)
+                    {
+                        currentPants = pants.Length - 1;
+                    }
+                }
+
                 currentPantsGO = Instantiate(pants[currentPants], parent.transform);
                 Relocate(currentPantsGO);
                 break;
@@ -261,6 +339,15 @@ public class ClothManager : MonoBehaviour
                 if (currentShoes < 0)
                 {
                     currentShoes = shoes.Length - 1;
+                }
+
+                while (!AllCloth.Contains(currentShoes + 79))
+                {
+                    currentShoes--;
+                    if (currentShoes < 0)
+                    {
+                        currentShoes = shoes.Length - 1;
+                    }
                 }
 
                 currentShoesGO = Instantiate(shoes[currentShoes], parent.transform);
@@ -279,9 +366,21 @@ public class ClothManager : MonoBehaviour
                 {
                     currentMasks = masks.Length - 1;
                 }
+
+                while (!AllCloth.Contains(currentMasks + 87))
+                {
+                    currentMasks--;
+                    if (currentMasks < 0)
+                    {
+                        currentMasks = masks.Length - 1;
+                    }
+                }
+
                 currentMaskGO = Instantiate(masks[currentMasks], maskParent.transform);
                 currentMaskGO.transform.localPosition = tempPosM;
                 currentMaskGO.transform.localScale = tempScaleM;
+                MenuController.instance.maskChar = currentMaskGO;
+
                 break;
 
             case MenuController.Clothing.Special:
@@ -296,14 +395,18 @@ public class ClothManager : MonoBehaviour
     }
     public void ActivateDisfraz()
     {
-        PlayerPrefs.SetInt("Pijama", 1);
-        disfrazGO.SetActive(true);
-        HeadReset();
-        currentHeadGO.SetActive(false);
-        currentMaskGO.SetActive(false);
-        currentShirtGO.SetActive(false);
-        currentPantsGO.SetActive(false);
-        currentShoesGO.SetActive(false);
+        if (AllCloth.Contains(78))
+        {
+            PlayerPrefs.SetInt("Pijama", 1);
+            disfrazGO.SetActive(true);
+            HeadReset();
+            currentHeadGO.SetActive(false);
+            currentMaskGO.SetActive(false);
+            currentShirtGO.SetActive(false);
+            currentPantsGO.SetActive(false);
+            currentShoesGO.SetActive(false);
+        }
+
     }
 
     public void DeactivateDisfraz()
@@ -312,9 +415,8 @@ public class ClothManager : MonoBehaviour
         disfrazGO.SetActive(false);
 
         currentHeadGO.SetActive(true);
-        if (MenuController.instance.maskChar)
+        if (MenuController.instance.maskOn)
         {
-
             currentMaskGO.SetActive(true);
         }
         currentShirtGO.SetActive(true);
@@ -418,6 +520,7 @@ public class ClothManager : MonoBehaviour
                 currentMaskGO = Instantiate(masks[clothNum], maskParent.transform);
                 currentMaskGO.transform.localPosition = tempPosM;
                 currentMaskGO.transform.localScale = tempScaleM;
+                MenuController.instance.maskChar = currentMaskGO;
 
                 break;
 
@@ -479,8 +582,9 @@ public class ClothManager : MonoBehaviour
         currentMaskGO = Instantiate(masks[currentMasks], maskParent.transform);
         currentMaskGO.transform.localPosition = tempPosM;
         currentMaskGO.transform.localScale = tempScaleM;
+        MenuController.instance.maskChar = currentMaskGO;
 
-        if (!MenuController.instance.maskChar)
+        if (!MenuController.instance.maskOn)
         {
             currentMaskGO.SetActive(false);
         }
@@ -501,8 +605,9 @@ public class ClothManager : MonoBehaviour
         currentMaskGO = Instantiate(masks[currentMasks], maskParent.transform);
         currentMaskGO.transform.localPosition = tempPosM;
         currentMaskGO.transform.localScale = tempScaleM;
+        MenuController.instance.maskChar = currentMaskGO;
 
-        if (!MenuController.instance.maskChar)
+        if (!MenuController.instance.maskOn)
         {
             currentMaskGO.SetActive(false);
 

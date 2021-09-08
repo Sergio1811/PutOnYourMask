@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Shopping : MonoBehaviour
 {
+    public int vaccPerc;
     private void Start()
     {
         if (!CheckBought())
@@ -16,12 +17,20 @@ public class Shopping : MonoBehaviour
                 Buy();
             });
         }
-        
+
     }
     public void Buy()
     {
         print("Done");
-        string text = this.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        string text = "";
+        if (this.transform.name != "ButtonTobuy")
+        {
+             text = this.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+        }
+        else
+        {
+             text = this.gameObject.transform.GetChild(0).GetComponent<Text>().text;
+        }
         char[] tablaDeChars = text.ToCharArray();
         int value = 99;
 
@@ -34,31 +43,56 @@ public class Shopping : MonoBehaviour
         }
 
         string finalText = text;
-        if (value!=99)
+        if (value != 99)
         {
+
             finalText = text.Substring(0, value);
-            finalText += text.Substring(value + 1, text.Length-2);
+            finalText += text.Substring(value + 1, text.Length - (value + 1));
 
         }
 
 
         int price = int.Parse(finalText);
 
-        if (price<=GameManager.instance.coins)
+        if (price <= GameManager.instance.coins)
         {
             print("Comprado");
-            GameObject GOBuy = MenuController.instance.PurchaseItem(MenuController.instance.catalogo);
-            GOBuy.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate { GameManager.instance.AddCoins(-price);
-                Destroy(GOBuy);
-                ClothManager.instance.AllCloth.Add(int.Parse(this.transform.parent.GetChild(1).GetComponent<RawImage>().texture.name));
-                ClothManager.instance.SaveData();
-                BoughtDisplayed();
-            });
+            if (this.transform.name != "ButtonTobuy")
+            {
+                GameObject GOBuy = MenuController.instance.PurchaseItem(MenuController.instance.catalogo);
+                GOBuy.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate
+                {
+                    GameManager.instance.AddCoins(-price);
+                    Destroy(GOBuy);
+                    ClothManager.instance.AllCloth.Add(int.Parse(this.transform.parent.GetChild(1).GetComponent<RawImage>().texture.name));
+                    ClothManager.instance.SaveData();
+                    BoughtDisplayed();
+                });
+            }
+            else
+            {
+                GameObject GOBuy = MenuController.instance.PurchaseItem(MenuController.instance.tiendaDivisas);
+                GOBuy.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate
+                {
+                    GameManager.instance.AddCoins(-price);
+                    GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage - vaccPerc, 0, 100);
+                    GameManager.instance.vsControl.PercentageUI();
+                    Destroy(GOBuy);                    
+                });
+            }
             
+
         }
         else
         {
-            MenuController.instance.NoMoneyPurchaseItem(MenuController.instance.catalogo);
+            if (this.transform.name != "ButtonTobuy")
+            {
+                MenuController.instance.NoMoneyPurchaseItem(MenuController.instance.catalogo);
+            }
+            else
+            {
+                MenuController.instance.NoMoneyPurchaseItem(MenuController.instance.tiendaDivisas);
+            }
             print("puto pobre");
             //Instantiate PopUP
         }
@@ -66,17 +100,20 @@ public class Shopping : MonoBehaviour
 
     public bool CheckBought()
     {
-        print(this.transform.parent.GetChild(1).GetComponent<RawImage>().texture.name);
-        int num = int.Parse(this.transform.parent.GetChild(1).GetComponent<RawImage>().texture.name);
-        foreach (var item in ClothManager.instance.AllCloth)
+        if (this.transform.name !="ButtonTobuy")
         {
-            if (item==num)
+            int num = int.Parse(this.transform.parent.GetChild(1).GetComponent<RawImage>().texture.name);
+            foreach (var item in ClothManager.instance.AllCloth)
             {
-                BoughtDisplayed();
-                print("displayed" + num);
-                return true;
+                if (item == num)
+                {
+                    BoughtDisplayed();
+                    print("displayed" + num);
+                    return true;
+                }
             }
         }
+
 
         return false;
 

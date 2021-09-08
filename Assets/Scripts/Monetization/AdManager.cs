@@ -15,7 +15,7 @@ public class AdManager : MonoBehaviour
     private bool testMode = true;
 
     int lastNumberAd;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +38,7 @@ public class AdManager : MonoBehaviour
 
     }
 
-    
+
     public void ShowRewardedAd(int _number)
     {
         if (Advertisement.IsReady(myPlacementId))
@@ -49,7 +49,7 @@ public class AdManager : MonoBehaviour
 
             Advertisement.Show(myPlacementId, options);
         }
-        
+
     }
 
     private void HandleShowResult(ShowResult result)
@@ -64,24 +64,29 @@ public class AdManager : MonoBehaviour
                 Debug.Log("Skipped");
                 break;
             case ShowResult.Finished:
-                if (lastNumberAd==0)
+                if (lastNumberAd == 0)
                 {
                     GameManager.instance.AddCoins(500);
                 }
                 if (lastNumberAd == 1)
                 {
                     //PONERLO BONITO
-                    LabManager.instance.canvasFinale.textCoins.text = (int.Parse(LabManager.instance.canvasFinale.coins )* 2).ToString();
+                    LabManager.instance.canvasFinale.textCoins.text = (int.Parse(LabManager.instance.canvasFinale.coins) * 2).ToString();
                 }
                 if (lastNumberAd == 2)
                 {
                     //PONERLO BONITO
-                    PedestriansManager.instance.canvasFinale.textCoins.text = (int.Parse(LabManager.instance.canvasFinale.coins )* 2).ToString();
-                } 
+                    PedestriansManager.instance.canvasFinale.textCoins.text = (int.Parse(LabManager.instance.canvasFinale.coins) * 2).ToString();
+                }
                 if (lastNumberAd == 3)
                 {
                     //PONERLO BONITO
-                    AccessControlManager.instance.canvasFinale.textCoins.text = (int.Parse(LabManager.instance.canvasFinale.coins )* 2).ToString();
+                    AccessControlManager.instance.canvasFinale.textCoins.text = (int.Parse(LabManager.instance.canvasFinale.coins) * 2).ToString();
+                }
+                if (lastNumberAd == 4)
+                {
+                    GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage - 10, 0, 100);
+                    GameManager.instance.vsControl.PercentageUI();
                 }
                 break;
             default:
@@ -105,7 +110,7 @@ public class AdManager : MonoBehaviour
         
     }*/
 
-   
+
 
 
 
