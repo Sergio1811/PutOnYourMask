@@ -77,7 +77,14 @@ public class MenuController : MonoBehaviour
 
 
             tiendaDivisas = GameObject.Find("TiendaDivisas");
+            m_DropdownAnimation = GameObject.Find("DropDown").GetComponent<Animation>();
+            m_DropdownAnimation.gameObject.transform.parent.gameObject.SetActive(false);
             catalogo = GameObject.Find("Catalogo");
+            m_DropdownAnimation.gameObject.GetComponent<Button>().onClick.AddListener(delegate {
+                OpenCloth();
+            });
+                
+            
             tiendaDivisas.SetActive(false);
             catalogo.SetActive(false);
         }

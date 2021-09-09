@@ -86,6 +86,8 @@ public class AdManager : MonoBehaviour
                 if (lastNumberAd == 4)
                 {
                     GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage - 10, 0, 100);
+                    PlayerPrefs.SetInt("Virus", (int)GameManager.instance.virusPercentage);
+
                     GameManager.instance.vsControl.PercentageUI();
                 }
                 break;

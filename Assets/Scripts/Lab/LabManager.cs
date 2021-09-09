@@ -227,12 +227,16 @@ public class LabManager : MonoBehaviour
             canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
             canvasFinale.finalPercentage = (GameManager.instance.virusPercentage - 20).ToString();
             GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage - 20, 0, 100);
+            PlayerPrefs.SetInt("Virus", (int)GameManager.instance.virusPercentage);
+
         }
         else
         {
             canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
             canvasFinale.finalPercentage = (GameManager.instance.virusPercentage + 20).ToString();
             GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage + 20, 0, 100);
+            PlayerPrefs.SetInt("Virus", (int)GameManager.instance.virusPercentage);
+
         }
         canvasFinale.coins = finalCoins.ToString();
         GameManager.instance.AddCoins(finalCoins);

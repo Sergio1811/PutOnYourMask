@@ -459,6 +459,8 @@ public class AccessControlManager : MonoBehaviour
             canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
             canvasFinale.finalPercentage = (GameManager.instance.virusPercentage + 20).ToString();
             GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage + 20, 0, 100);
+            PlayerPrefs.SetInt("Virus", (int)GameManager.instance.virusPercentage);
+
         }
         else if (howManyPassed < 5)
         {
@@ -466,6 +468,8 @@ public class AccessControlManager : MonoBehaviour
             canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
             canvasFinale.finalPercentage = (GameManager.instance.virusPercentage - 20).ToString();
             GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage - 20, 0, 100);
+            PlayerPrefs.SetInt("Virus", (int)GameManager.instance.virusPercentage);
+
         }
         else
         {
@@ -494,6 +498,8 @@ public class AccessControlManager : MonoBehaviour
             canvasFinale.iniPercentage = GameManager.instance.virusPercentage.ToString();
             canvasFinale.finalPercentage = (GameManager.instance.virusPercentage - 20).ToString();
             GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage - 20, 0, 100);
+            PlayerPrefs.SetInt("Virus", (int)GameManager.instance.virusPercentage);
+
         }
 
         canvasFinale.coins = finalCoins.ToString();

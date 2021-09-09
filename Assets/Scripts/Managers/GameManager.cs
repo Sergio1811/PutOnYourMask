@@ -185,6 +185,8 @@ public class GameManager : MonoBehaviour
         go.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(delegate
         {
             virusPercentage = Mathf.Clamp(virusPercentage + 20, 0, 100);
+            PlayerPrefs.SetInt("Virus", (int)GameManager.instance.virusPercentage);
+
             vsControl.PercentageUI();
             go.GetComponent<Animation>().Play();
             VSFX.instance.PlayAudio(VSFX.instance.flipPageSound);

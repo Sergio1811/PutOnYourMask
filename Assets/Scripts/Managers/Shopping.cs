@@ -76,6 +76,8 @@ public class Shopping : MonoBehaviour
                 {
                     GameManager.instance.AddCoins(-price);
                     GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage - vaccPerc, 0, 100);
+                    PlayerPrefs.SetInt("Virus", (int)GameManager.instance.virusPercentage);
+
                     GameManager.instance.vsControl.PercentageUI();
                     Destroy(GOBuy);                    
                 });

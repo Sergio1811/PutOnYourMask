@@ -27,6 +27,7 @@ public class TimeController : MonoBehaviour
 
     void Awake()
     {
+
         if (instance == null)
         {
             instance = this;
@@ -49,6 +50,8 @@ public class TimeController : MonoBehaviour
         {
             currentSecondsInSession = 0;
             GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage + 10, 0, 100);
+            PlayerPrefs.SetInt("Virus", (int)GameManager.instance.virusPercentage);
+
             GameManager.instance.vsControl.PercentageUI();
         }
 
@@ -71,8 +74,8 @@ public class TimeController : MonoBehaviour
             Debug.Log(www.downloadHandler.text);
             todaysDates = www.downloadHandler.text;
             string[] words = todaysDates.Split('/');
-            Debug.Log("The previous date is : " + words[0]);
-            Debug.Log("The previous time is : " + words[1]);
+            Debug.Log("The new date is : " + words[0]);
+            Debug.Log("The new time is : " + words[1]);
 
             _currentDate = words[0];
             _currentTime = words[1];
@@ -133,7 +136,9 @@ public class TimeController : MonoBehaviour
         TimeSpan travelTime = arrival - departure;
 
         print((int)travelTime.TotalSeconds / 600 + "%");
+        GameManager.instance.virusPercentage = PlayerPrefs.GetInt("Virus");
         GameManager.instance.virusPercentage = Mathf.Clamp(GameManager.instance.virusPercentage + ((int)travelTime.TotalSeconds / 600) * 10, 0, 100);
+        PlayerPrefs.SetInt("Virus", (int)GameManager.instance.virusPercentage);
         GameManager.instance.vsControl.PercentageUI();
 
         currentSecondsInSession = (int)travelTime.TotalSeconds % 600;
