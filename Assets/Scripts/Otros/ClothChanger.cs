@@ -20,8 +20,7 @@ public class ClothChanger : MonoBehaviour
 
     public Vector3 tempPosM;
     void Start()
-    {
-        
+    {      
         player.animator.Add(Instantiate(GameManager.instance.headGO, parent.transform).GetComponent<Animator>());
         player.animator.Add(Instantiate(GameManager.instance.shirtGO, parent.transform).GetComponent<Animator>());
         player.animator.Add(Instantiate(GameManager.instance.pantsGO, parent.transform).GetComponent<Animator>());

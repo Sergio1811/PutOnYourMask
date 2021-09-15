@@ -15,12 +15,15 @@ public class CharsPPMovement : MonoBehaviour
 
     private void Start()
     {
-        //clothManager.RandomCloth();
+        clothManager.RandomCloth();
     }
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            clothManager.RandomCloth();
+        }
         GetObjects();
 
         if (AccessControlManager.instance.currentState == AccessControlManager.GameState.Play)

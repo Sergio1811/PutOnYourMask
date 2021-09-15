@@ -40,11 +40,11 @@ public class ClothManager : MonoBehaviour
         {
             if (File.Exists(Application.persistentDataPath + "/data.dat"))
             {
-                //LoadData();
+                LoadData();
             }
             else
             {
-                //SaveData();
+                SaveData();
             }
             instance = this;
         }
