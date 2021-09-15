@@ -43,7 +43,7 @@ public class TermometroController : MonoBehaviour
         {
             if (hit.collider.CompareTag("CharsHead"))//Detect therm in char head
             {
-                print("chars");
+
                 if (!measured)//If not finished add time and slider
                 {
                     currentTimeMeasuring += Time.deltaTime;

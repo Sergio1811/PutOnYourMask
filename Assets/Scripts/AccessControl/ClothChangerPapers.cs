@@ -1,13 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using UnityEngine.SceneManagement;
 
-public class ClothManager : MonoBehaviour
+public class ClothChangerPapers : MonoBehaviour
 {
-    public static ClothManager instance;
-
     public List<int> AllCloth;
 
     public GameObject[] heads;
@@ -34,58 +30,39 @@ public class ClothManager : MonoBehaviour
 
     public GameObject animCabeza;
     public GameObject currentCabeza;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            if (File.Exists(Application.persistentDataPath + "/data.dat"))
-            {
-                //LoadData();
-            }
-            else
-            {
-                //SaveData();
-            }
-            instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-    }
+
 
     private void Start()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 1)
+        AllCloth = ClothManager.instance.AllCloth;
+        MenuController.instance.currentCloth = MenuController.Clothing.Shirt;
+        ChoseCloth(PlayerPrefs.GetInt("Shirt"));
+        MenuController.instance.currentCloth = MenuController.Clothing.Pants;
+        ChoseCloth(PlayerPrefs.GetInt("Pants"));
+        MenuController.instance.currentCloth = MenuController.Clothing.Shoes;
+        ChoseCloth(PlayerPrefs.GetInt("Shoes"));
+        MenuController.instance.currentCloth = MenuController.Clothing.Head;
+        ChoseCloth(PlayerPrefs.GetInt("Head"));
+        MenuController.instance.currentCloth = MenuController.Clothing.Mask;
+        ChoseCloth(PlayerPrefs.GetInt("Mask"));
+
+        MenuController.instance.maskChar = currentMaskGO;
+
+        if (!MenuController.instance.maskOn)
         {
-            MenuController.instance.currentCloth = MenuController.Clothing.Shirt;
-            ChoseCloth(PlayerPrefs.GetInt("Shirt"));
-            MenuController.instance.currentCloth = MenuController.Clothing.Pants;
-            ChoseCloth(PlayerPrefs.GetInt("Pants"));
-            MenuController.instance.currentCloth = MenuController.Clothing.Shoes;
-            ChoseCloth(PlayerPrefs.GetInt("Shoes"));
-            MenuController.instance.currentCloth = MenuController.Clothing.Head;
-            ChoseCloth(PlayerPrefs.GetInt("Head"));
-            MenuController.instance.currentCloth = MenuController.Clothing.Mask;
-            ChoseCloth(PlayerPrefs.GetInt("Mask"));
-
-            MenuController.instance.maskChar = currentMaskGO;
-
-            if (!MenuController.instance.maskOn)
-            {
-                currentMaskGO.SetActive(false);
-            }
-
-            MenuController.instance.currentCloth = MenuController.Clothing.Head;
-            if (PlayerPrefs.GetInt("Pijama") == 1)
-            {
-                ActivateDisfraz();
-            }
-            else
-            {
-                DeactivateDisfraz();
-            }
+            currentMaskGO.SetActive(false);
         }
+
+        MenuController.instance.currentCloth = MenuController.Clothing.Head;
+        if (PlayerPrefs.GetInt("Pijama") == 1)
+        {
+            ActivateDisfraz();
+        }
+        else
+        {
+            DeactivateDisfraz();
+        }
+
 
     }
     /*
@@ -614,15 +591,5 @@ public class ClothManager : MonoBehaviour
         }
     }
 
-    public void SaveData()
-    {
-        SaveSystem.SavePlayer(this);
-    }
-
-    public void LoadData()
-    {
-        Data data = SaveSystem.LoadData();
-
-        AllCloth = new List<int>(data.ropa);
-    }
+ 
 }

@@ -1597,6 +1597,131 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &734636066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734636068}
+  - component: {fileID: 734636067}
+  m_Layer: 0
+  m_Name: ClothManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &734636067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734636066}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4797e2c31af2eda43ae1419aded85302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllCloth: 01000000020000000d0000001100000031000000370000003d000000570000004f00000050000000
+  heads:
+  - {fileID: 2914884836281610526, guid: 61e35e360c7c85749b15dd5129b4ac1d, type: 3}
+  - {fileID: 7127800413138128774, guid: 3bf7c8c3818e2b04bb35a04e4814cad7, type: 3}
+  - {fileID: 307737177230236356, guid: 0c835465c4e9845478c8586a53ea1476, type: 3}
+  - {fileID: 7796727208380440729, guid: 0b56531133d1e4a44a3607be2bea9845, type: 3}
+  - {fileID: 452942831379567225, guid: 7aa72efaea27aac4e984d68b3b5fbdfe, type: 3}
+  - {fileID: 1847360489846992698, guid: 57021445dd4831b47b8c4ca90233e6d2, type: 3}
+  - {fileID: 1158183666298949551, guid: a09d1185e57de984da9014ac75456160, type: 3}
+  - {fileID: 1135214968923323128, guid: 092a0cb21e8bc54449d997f6d40a5aa9, type: 3}
+  - {fileID: 4134632824883237932, guid: 53c675599933d404f8ed470e392f7dac, type: 3}
+  - {fileID: 2914109900311736795, guid: ca5628e57b556624e93718ee401ed191, type: 3}
+  - {fileID: 625200236467879678, guid: 7ad0ad11a23fcf745b43160cb76e28ee, type: 3}
+  - {fileID: 6600538250966941924, guid: e6a05ae6af7e4964cadba677e1f40185, type: 3}
+  - {fileID: 3490007707020717319, guid: 118e05cc62d278347b7096600f4a7a37, type: 3}
+  - {fileID: 8232041799804486799, guid: 0514bd79c7ebaff4bbb9fe253275b087, type: 3}
+  - {fileID: 452381197925788151, guid: aee2e28bad84e7346a4a5f6bf1d28b8b, type: 3}
+  - {fileID: 3504377995625109805, guid: 7754c14248a8ab742aca50a53d4d2a4d, type: 3}
+  - {fileID: 6107574798375777812, guid: af5ae420a28335146ba0cfdabe599e71, type: 3}
+  - {fileID: 3527108470047436502, guid: edb3916d8966f1946b2f0b5144c4d65c, type: 3}
+  - {fileID: 4262153558147456746, guid: bb6d5df126f58584ba927913f8ef9c51, type: 3}
+  - {fileID: 8211213395641426247, guid: 38a767424dde65a4a9a3583ae3ee66d7, type: 3}
+  - {fileID: 693528818775669746, guid: 478d0f398c612ab4db4f41c7f1dd154f, type: 3}
+  - {fileID: 4319821973195016230, guid: 1564adcb90f52834db94c4fef5d45d42, type: 3}
+  - {fileID: 8249255782302207094, guid: 265ac048a29fe9c49970a26078e6bf28, type: 3}
+  - {fileID: 4067757251056291864, guid: 9096bcfb3a54c4c45be079d053703273, type: 3}
+  - {fileID: 7879243029122602725, guid: 85350487c1094a143b26527275b1979a, type: 3}
+  - {fileID: 3109480602836410636, guid: 7c3976ce94a41d94ea85d9b800478f4b, type: 3}
+  - {fileID: 4993828494470020057, guid: 4535c155e1a0b7e41a5da0a6a9869d4b, type: 3}
+  shirts:
+  - {fileID: 6296978380178539776, guid: 8a045d793ce0ba346ae89274394ff476, type: 3}
+  - {fileID: 3043681231987346221, guid: 873ba72cb4286044a92b7d2c46423952, type: 3}
+  - {fileID: 7143808286915892890, guid: 5edbe0804498f5a49b43ca0cc1193d70, type: 3}
+  - {fileID: 1487771388382843235, guid: 8e476ca1f5faab940b8f31fd0457c85d, type: 3}
+  - {fileID: 8062883996373915486, guid: d88338a3e07049243bb9f7125326d04b, type: 3}
+  - {fileID: 5721776364257471640, guid: d29d20ae8946bfa429c923056009cd2a, type: 3}
+  - {fileID: 1663399321002194747, guid: 7db0248e2a1fa0e41809941aa815b3c1, type: 3}
+  - {fileID: 3333027182320358435, guid: 6531a5e7aaf0035499b2bb7eb4a85331, type: 3}
+  - {fileID: 8808599443266637978, guid: c2a1e598a89f82943ae331b1e629e75c, type: 3}
+  - {fileID: 2478451443370805088, guid: 71f2b495b82bf5a4a9655ec2031328ab, type: 3}
+  - {fileID: 2367259978444688372, guid: bb98d03c58552bb43abb3bc7ef621161, type: 3}
+  - {fileID: 8120014023221543690, guid: bc9c6654e19ebe4499b33419ffdf9c25, type: 3}
+  pants:
+  - {fileID: 5985555594600282970, guid: cbd6283c72b3fab499a4c150d9b180ac, type: 3}
+  - {fileID: 5244100453398222006, guid: 3dc93abed5f381345a1bb45b55982725, type: 3}
+  - {fileID: 3412291630128678292, guid: be2757a046a37f546afaafb1bd0dd32d, type: 3}
+  - {fileID: 6358340446218379763, guid: 8f1f8c95b18448c41b7742a8ddd447ca, type: 3}
+  - {fileID: 3263411362923888713, guid: 01d78ad5ad5d5e04ba3fcf616e851dd6, type: 3}
+  - {fileID: 4978345179342865914, guid: 4f898d15528a78a438e9794236e77dc7, type: 3}
+  - {fileID: 7988079352358232167, guid: acf7457aef765f24f83349835af1d8fa, type: 3}
+  - {fileID: 7440873901987027801, guid: 017361a2703afce4bb8798e8370b3bb4, type: 3}
+  - {fileID: 8843874202604455606, guid: 9876036b7d6d1724abd8d0e2cfa90895, type: 3}
+  - {fileID: 222619668262547872, guid: 1a84739d718633241973fd35c902f78b, type: 3}
+  - {fileID: 180836955254656795, guid: d453c9f61f0eeaa459de503ed8f52e2c, type: 3}
+  - {fileID: 6802929431690524731, guid: 824cb9d517e696448924f4ecd6233b4c, type: 3}
+  masks:
+  - {fileID: 4049874467290043854, guid: b63073b110258054dae5c8dee14d261e, type: 3}
+  - {fileID: 5627652792716204981, guid: 4a8813fed01276046ba1305b34e96295, type: 3}
+  - {fileID: 3678146452056185090, guid: 36d6a1042ff203d4f95f2692eff8d425, type: 3}
+  - {fileID: 2104638351020816733, guid: e452de460bbe3f54d83cb59eac0de1ee, type: 3}
+  - {fileID: 2889077353979996321, guid: 65f476e2610522641b0b72e1e548431f, type: 3}
+  - {fileID: 7471606470204392807, guid: 00d5d7376247f4642b08ada78caac357, type: 3}
+  shoes:
+  - {fileID: 1285012533220918824, guid: 66429746afa69d24bae49ff5a40e53c9, type: 3}
+  - {fileID: 6719899983583406288, guid: 8bf93903dfeb5574e8e100ede921b4b8, type: 3}
+  - {fileID: 1023576953494338896, guid: ab6f2a4bd69dcfc4c9598c594787a6c6, type: 3}
+  - {fileID: 2456865538881675612, guid: 778c9f3d3876cd24495e177689fbeeac, type: 3}
+  - {fileID: 4119938288511505794, guid: 0dc824c1dd458d447be40659ebdada21, type: 3}
+  - {fileID: 5331602783299513317, guid: b8aad0bc01d24bc4089490dfad15e0b6, type: 3}
+  - {fileID: 8135439418231217566, guid: 10384ed1c3d9b5847b0fdb33879c525b, type: 3}
+  - {fileID: 2888567015436828643, guid: 65a8a6f6c07d469469778d25a8249958, type: 3}
+  currentHeadGO: {fileID: 0}
+  currentShirtGO: {fileID: 0}
+  currentPantsGO: {fileID: 0}
+  currentShoesGO: {fileID: 0}
+  currentMaskGO: {fileID: 0}
+  disfrazGO: {fileID: 0}
+  parent: {fileID: 0}
+  maskParent: {fileID: 0}
+  animCabeza: {fileID: 1010939414770895031, guid: 1121c8b9e95b7684e999ff8fd3f1a1a1,
+    type: 3}
+  currentCabeza: {fileID: 0}
+--- !u!4 &734636068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734636066}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.2169633, y: 2.0782714, z: 4.87076}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &780798639 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4372200726420738538, guid: 090140c9b495eee43beaa2a72756ced3,

@@ -11,13 +11,11 @@ public class CharsPPMovement : MonoBehaviour
     public List<Animator> animator;
     public RuntimeAnimatorController animatorController;
     public CarasControl faceControl;
-    public ClothManager clothManager;
+    public ClothChangerPapers clothManager;
 
     private void Start()
     {
-        clothManager.RandomCloth();
-
-
+        //clothManager.RandomCloth();
     }
 
     void Update()
@@ -38,7 +36,6 @@ public class CharsPPMovement : MonoBehaviour
                         {
                             item.SetBool("Walking", true);
                         }
-
                     }
                     this.transform.position = Vector3.MoveTowards(this.transform.position, waypoint.position, speed * Time.deltaTime);
                 }

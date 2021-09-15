@@ -798,7 +798,7 @@ MonoBehaviour:
   parentMask: {fileID: 0}
   animator: {fileID: 9100000, guid: 2c34ab6014e8e044b83cc52070572a34, type: 2}
   player: {fileID: 451654511}
-  tempPosM: {x: 0, y: 0.036, z: 0.021}
+  tempPosM: {x: 0.0048, y: 0.0424, z: 0.0294}
 --- !u!136 &451654514
 CapsuleCollider:
   m_ObjectHideFlags: 0
