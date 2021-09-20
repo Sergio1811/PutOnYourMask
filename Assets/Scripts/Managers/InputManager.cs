@@ -187,6 +187,10 @@ public class InputManager : MonoBehaviour
 
             if (returnToPos)
             {
+                if (dragOriginalPosition == Vector3.zero)
+                {
+                    dragOriginalPosition = objectToDrag.transform.position;
+                }
                 objectToDrag.transform.position = dragOriginalPosition;
             }
         }
@@ -236,6 +240,10 @@ public class InputManager : MonoBehaviour
                     dragAndDropAllowed = false;
                     if (returnToPos)
                     {
+                        if (dragOriginalPosition == Vector3.zero)
+                        {
+                            dragOriginalPosition = objectToDrag.transform.position;
+                        }
                         objectToDrag.transform.position = dragOriginalPosition;
                     }
 

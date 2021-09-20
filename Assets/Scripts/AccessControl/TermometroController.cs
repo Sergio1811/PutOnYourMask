@@ -66,10 +66,6 @@ public class TermometroController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawRay(transform.position, Vector3.forward);
-    }
 
     public void Restart()
     {

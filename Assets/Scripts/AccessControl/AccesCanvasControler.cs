@@ -23,8 +23,7 @@ public class AccesCanvasControler : MonoBehaviour
             , "Long", "Forest", "Bridge", "Hill", "Grey", "White", "Black", "Bristol", "Chester", "Winchester", "Archer", "Bird", "Cook", "Myers", "Potter", "Rider", "Stone", "Wayne", "Bruce", "Duff", "Logan", "Scott" };
     [HideInInspector]
     public string[] spanishCitiesNames = { "MADRID"," BARCELONA","SEVILLA","BILBAO","VALENCIA","TENERIFE","PARIS","NICE","MARSEILLE","ROME","LAZIO","NAPOLI","LONDON","MANCHSETER","CARDIFF","BERLIN","MUNICH","WARSAW",
-        "HELSINKI", "MOSCOW","MASCATE","ANTANANARIVO", "CAPE TOWN", "YAMUSUKRO", "CAIRO", "YAMENA", "NAIROBI", "BOMBAY", "TOKYO", "SHANGHAI", "BANGKOK", "ASTANA", "YAKARTA", "SIDNEY", "WELLINGTON", "BUENOS AIRES",
-        "RÍO DE JANEIRO", "QUITO","CARACAS", "CIUDAD DE MÉXICO", "WASHINGTON", "NEW YORK", "LOS ÁNGELES", "MONTREAL", "REYKJAVIK", "NUUK"};
+        "HELSINKI", "MOSCOW","MASCATE","ANTANANARIVO", "CAPE TOWN", "YAMUSUKRO", "CAIRO", "YAMENA", "NAIROBI", "BOMBAY", "TOKYO", "SHANGHAI", "BANGKOK", "ASTANA", "YAKARTA", "SIDNEY", "WELLINGTON", "BUENOS AIRES","RÍO DE JANEIRO", "QUITO","CARACAS", "CIUDAD DE MÉXICO", "WASHINGTON", "NEW YORK", "LOS ÁNGELES", "MONTREAL", "REYKJAVIK", "NUUK"};
     public GameObject crossUI;
     public GameObject tickUI;
 
@@ -62,8 +61,8 @@ public class AccesCanvasControler : MonoBehaviour
 
     public string GetRandomSurname()
     {
-
-        if(rand==0)
+        rand = Random.Range(0, 2);
+        if (rand==0)
         return spanishSurnames[Random.Range(0, spanishSurnames.Length)].ToString();
         else
         return englishSurnames[Random.Range(0, englishSurnames.Length)].ToString();
