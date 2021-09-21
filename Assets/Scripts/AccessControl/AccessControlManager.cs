@@ -304,7 +304,10 @@ public class AccessControlManager : MonoBehaviour
             if (item.ToString() == "NONE")
                 break;
             else if (item.ToString() != "RealSymptom")
+            {
                 AccesCanvasControler.instance.listSymptoms.text += "- " + item.ToString() + "\n";
+            }
+
 
         }
     }

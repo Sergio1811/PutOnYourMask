@@ -40,6 +40,8 @@ public class MenuController : MonoBehaviour
 
     public GameObject tiendaDivisas;
     public GameObject catalogo;
+
+    public PermanentMainMenuInfo permaInfo;
     private void Awake()
     {
         if (instance == null)
@@ -75,16 +77,15 @@ public class MenuController : MonoBehaviour
                     break;
             }
 
-
-            tiendaDivisas = GameObject.Find("TiendaDivisas");
-            m_DropdownAnimation = GameObject.Find("DropDown").GetComponent<Animation>();
-            m_DropdownAnimation.gameObject.transform.parent.gameObject.SetActive(false);
-            catalogo = GameObject.Find("Catalogo");
-            m_DropdownAnimation.gameObject.GetComponent<Button>().onClick.AddListener(delegate {
+            permaInfo = GameObject.Find("PermanentInfo").GetComponent<PermanentMainMenuInfo>();
+            permaInfo.LoadAssets();
+            m_DropdownAnimation.gameObject.GetComponent<Button>().onClick.AddListener(delegate
+            {
                 OpenCloth();
             });
-                
-            
+
+            m_DropdownAnimation.gameObject.transform.parent.gameObject.SetActive(false);
+            //vestidor
             tiendaDivisas.SetActive(false);
             catalogo.SetActive(false);
         }
@@ -329,5 +330,5 @@ public class MenuController : MonoBehaviour
         }
     }
 
-   
+
 }
