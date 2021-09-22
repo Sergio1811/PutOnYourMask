@@ -16,6 +16,12 @@ public class CharsPPMovement : MonoBehaviour
     private void Start()
     {
         clothManager.RandomCloth();
+        //mask = clothManager.currentMaskGO;
+        /*
+        if (!AccessControlManager.instance.currentCharMask)
+        {
+            mask.SetActive(true);
+        }*/
     }
 
     void Update()

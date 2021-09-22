@@ -102,4 +102,5 @@ public class AccesCanvasControler : MonoBehaviour
         Destroy(temporal);
         allText.SetActive(true);
     }
+
 }

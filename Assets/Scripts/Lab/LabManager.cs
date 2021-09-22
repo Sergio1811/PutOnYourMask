@@ -7,7 +7,7 @@ using TMPro;
 public class LabManager : MonoBehaviour
 {
     public enum GameState { Stopped, Play, Finish };
-    public GameState currentState = GameState.Play;
+    public GameState currentState = GameState.Stopped;
     public static LabManager instance;
 
     public GameObject substanceOne;
@@ -243,5 +243,10 @@ public class LabManager : MonoBehaviour
         
 
         canvasFinal.SetActive(true);
+    }
+
+    public void PauseGame()
+    {
+        currentState = GameState.Stopped;
     }
 }

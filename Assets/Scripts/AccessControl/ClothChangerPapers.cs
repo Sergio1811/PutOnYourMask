@@ -48,6 +48,8 @@ public class ClothChangerPapers : MonoBehaviour
 
         MenuController.instance.maskChar = currentMaskGO;
 
+
+        StartCoroutine(timerMaskOff());
         if (!MenuController.instance.maskOn)
         {
             currentMaskGO.SetActive(false);
@@ -64,6 +66,19 @@ public class ClothChangerPapers : MonoBehaviour
         }
 
 
+    }
+
+    IEnumerator timerMaskOff()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (!AccessControlManager.instance.currentCharMask)
+        {
+            currentMaskGO.SetActive(false);
+        }
+        else
+        {
+            currentMaskGO.SetActive(true);
+        }
     }
     /*
     IEnumerator ResetAnimations()

@@ -7,7 +7,7 @@ using TMPro;
 public class AccessControlManager : MonoBehaviour
 {
     public enum GameState { Stopped, Play, Finish };
-    public GameState currentState = GameState.Play;
+    public GameState currentState = GameState.Stopped;
     public static AccessControlManager instance;
 
     public GameObject Termometro;
@@ -20,7 +20,7 @@ public class AccessControlManager : MonoBehaviour
     public Canvas myCanvas;
 
     public string[] symptoms = new string[] { "Tos seca", "Dolor de pecho", "Cansancio", "Dificultad para respirar " };
-    public enum allSymptoms { DolorGarganta, Anginas, Diarrea, Conjuntivitis, Migraña, MBoce, ErupcionesCutaneas, DolorPiernas, Influencer, PerdidaVision, MolestiasCervicales, EBoy, Negacionista, Cirrosis, Celiaco, Vegano, Diabetes, TerraPlanista, NONE, RealSymptom };
+    public enum allSymptoms { DolorGarganta, Anginas, Diarrea, Conjuntivitis, Migraña, ErupcionesCutaneas, Artritis, Influencer, PerdidaVision, MolestiasCervicales, eBoy, Negacionista, Cirrosis, Celiaco, Vegano, Diabetes, Terraplanista, NONE, RealSymptom };
     List<allSymptoms> currentRandomCharSymptoms = new List<allSymptoms>();
     [Range(0.0f, 1.0f)] public float ratioNoSymp; //Probability to have a symptom
 
@@ -245,7 +245,10 @@ public class AccessControlManager : MonoBehaviour
         currentCharMask = Random.value > (1 - maskProbability);
         if (!currentCharMask)
         {
-            currentChar.GetComponent<CharsPPMovement>().mask.SetActive(false);
+            /*if (currentChar.GetComponent<ClothChangerPapers>().currentMaskGO!=null)
+            {
+                currentChar.GetComponent<ClothChangerPapers>().currentMaskGO.SetActive(true);
+            }*/
             if (currentCharCanPass)
             {
                 maskIsOnlyProblem = true;
@@ -334,7 +337,7 @@ public class AccessControlManager : MonoBehaviour
         string tempString = l_Symptoms[rnd];
         l_Symptoms.RemoveAt(rnd);
 
-        AccesCanvasControler.instance.listSymptoms.text += "- " + tempString + "\n";
+        AccesCanvasControler.instance.listSymptoms.text += "- " + tempString + "\n";    
 
     }
 
@@ -510,6 +513,11 @@ public class AccessControlManager : MonoBehaviour
 
 
         canvasFinal.SetActive(true);
+    }
+
+    public void PauseGame()
+    {
+        currentState = GameState.Stopped;
     }
 
 }
