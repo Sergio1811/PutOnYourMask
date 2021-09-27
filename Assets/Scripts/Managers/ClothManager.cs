@@ -58,6 +58,7 @@ public class ClothManager : MonoBehaviour
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 1)
         {
+            GetCurrent();
             MenuController.instance.currentCloth = MenuController.Clothing.Shirt;
             ChoseCloth(PlayerPrefs.GetInt("Shirt"));
             MenuController.instance.currentCloth = MenuController.Clothing.Pants;
@@ -551,6 +552,16 @@ public class ClothManager : MonoBehaviour
         ResetAnimations();
     }
 
+    public void GetCurrent()
+    {
+        currentHead = PlayerPrefs.GetInt("Head");
+        currentMasks = PlayerPrefs.GetInt("Mask");
+        currentShirt = PlayerPrefs.GetInt("Shirt");
+        currentPants = PlayerPrefs.GetInt("Pants");
+        currentShoes = PlayerPrefs.GetInt("Shoes");
+
+    }
+
     public void ResetAnimations()
     {
 
@@ -610,7 +621,6 @@ public class ClothManager : MonoBehaviour
         if (!MenuController.instance.maskOn)
         {
             currentMaskGO.SetActive(false);
-
         }
     }
 

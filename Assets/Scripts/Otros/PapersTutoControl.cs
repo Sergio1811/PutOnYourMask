@@ -5,11 +5,24 @@ using UnityEngine;
 public class PapersTutoControl : MonoBehaviour
 {
     public GameObject[] tutorialCards;
+    public GameObject manoP6;
+    public GameObject manoP7_1;
+    public GameObject manoP7_2;
 
     int currentCard;
     void Start()
     {
-        tutorialCards[currentCard].SetActive(true);
+        if (PlayerPrefs.GetString(this.gameObject.name) == "Completed")
+        {
+            this.gameObject.SetActive(false);
+            AccessControlManager.instance.currentState = AccessControlManager.GameState.Play;
+        }
+        else
+        {
+            tutorialCards[currentCard].SetActive(true);
+            AccessControlManager.instance.currentState = AccessControlManager.GameState.Stopped;
+        }
+
     }
 
     // Update is called once per frame
@@ -22,14 +35,29 @@ public class PapersTutoControl : MonoBehaviour
 
             if (currentCard >= tutorialCards.Length)
             {
-                PlayerPrefs.GetString(this.gameObject.name, "Completed");
-                Destroy(this.gameObject);
+                PlayerPrefs.SetString(this.gameObject.name, "Completed");
+                this.gameObject.SetActive(false);
+                AccessControlManager.instance.currentState = AccessControlManager.GameState.Play;
+                currentCard = 0;
+                tutorialCards[currentCard].SetActive(true);
+                manoP7_1.SetActive(false);
+                manoP7_2.SetActive(false);
             }
 
             else
             {
                 tutorialCards[currentCard].SetActive(true);
-              
+
+                if (currentCard == 5)
+                {
+                    manoP6.SetActive(true);
+                }
+                else if (currentCard == 6)
+                {
+                    manoP6.SetActive(false);
+                    manoP7_1.SetActive(true);
+                    manoP7_2.SetActive(true);
+                }
             }
         }
     }

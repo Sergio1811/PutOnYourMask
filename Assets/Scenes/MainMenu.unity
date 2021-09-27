@@ -51243,7 +51243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.20175515, y: 0.75746256}
   m_AnchorMax: {x: 0.82600003, y: 0.8738437}
-  m_AnchoredPosition: {x: -18, y: 17}
+  m_AnchoredPosition: {x: -18.00003, y: 17}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1269732004
@@ -64993,6 +64993,7 @@ MonoBehaviour:
   - {fileID: 20203358}
   - {fileID: 240884156}
   MaskButton: {fileID: 3169634746930278944}
+  MaskButton2: {fileID: 3169634747269616997}
 --- !u!4 &1660688460
 Transform:
   m_ObjectHideFlags: 0
@@ -88299,7 +88300,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 3169634747269617019}
+  m_TargetGraphic: {fileID: 3169634746930278937}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -88313,17 +88314,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 917608155}
-        m_MethodName: MaskChange
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 3169634746930278943}
         m_MethodName: SetActive
@@ -88409,17 +88399,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 917608155}
-        m_MethodName: MaskChange
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 3169634746930278943}
         m_MethodName: SetActive
         m_Mode: 6
@@ -88440,7 +88419,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &3169634747269617017
 GameObject:
@@ -89507,7 +89486,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010939415438143678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.011, z: 0}
+  m_LocalPosition: {x: 0, y: -0.019, z: 0}
   m_LocalScale: {x: 1.4648, y: 1.4648, z: 1.4648}
   m_Children:
   - {fileID: 322066155886411563}

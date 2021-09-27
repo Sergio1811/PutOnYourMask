@@ -15,6 +15,7 @@ public class PermanentMainMenuInfo : MonoBehaviour
     public GameObject catalogo;
     public Button[] clothButtons;
     public Button MaskButton;
+    public Button MaskButton2;
 
     public void LoadAssets()
     {
@@ -38,6 +39,10 @@ public class PermanentMainMenuInfo : MonoBehaviour
         }
 
         MaskButton.onClick.AddListener(
+            delegate { 
+                MenuController.instance.MaskChange();
+            });
+        MaskButton2.onClick.AddListener(
             delegate { 
                 MenuController.instance.MaskChange();
             });

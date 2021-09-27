@@ -172,6 +172,8 @@ public class GameManager : MonoBehaviour
     public void AddCoins(int l_Coins)
     {
         coins += l_Coins;
+        
+        
         PlayerPrefs.SetInt("Coins", coins);
         coinsText.text = coins.ToString();
     }
