@@ -23,7 +23,10 @@ public class PermanentMainMenuInfo : MonoBehaviour
     public Button unMute;
     public Button sound;
     public Button unSound;
-
+    public Button flechaDer1;
+    public Button flechaDer2;
+    public Button flechaIzq1;
+    public Button flechaIzq2;
 
     public void LoadAssets()
     {
@@ -66,5 +69,9 @@ public class PermanentMainMenuInfo : MonoBehaviour
         unMute.onClick.AddListener(delegate { MenuController.instance.ChangeMusic(); });
         sound.onClick.AddListener(delegate { MenuController.instance.ChangeSound(); });
         unSound.onClick.AddListener(delegate { MenuController.instance.ChangeSound(); });
+        flechaDer1.onClick.AddListener(delegate { MenuController.instance.NextPageVer(); });
+        flechaDer2.onClick.AddListener(delegate { MenuController.instance.NextPageVer(); });
+        flechaIzq1.onClick.AddListener(delegate { MenuController.instance.PrevPageVer(); });
+        flechaIzq2.onClick.AddListener(delegate { MenuController.instance.PrevPageVer(); });
     }
 }

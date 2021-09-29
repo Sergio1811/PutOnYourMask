@@ -7,7 +7,7 @@ public class MainTutorial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetString(this.gameObject.name, "NotCompleted");
+       
         if (PlayerPrefs.GetString(this.gameObject.name) == "Completed")
         {
             this.gameObject.SetActive(false);
