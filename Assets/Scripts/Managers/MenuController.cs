@@ -154,6 +154,14 @@ public class MenuController : MonoBehaviour
         languageObjectArray[currentNum].SetActive(true);
         currentLanguage = languageStringArray[currentNum];
         GameManager.instance.language = currentLanguage;
+        PlayerPrefs.SetString("Language", currentLanguage.ToUpper());
+        LanguageManager.LoadLanguage();
+
+        TextTranslator[] texts = FindObjectsOfType(typeof(TextTranslator)) as TextTranslator[];
+        foreach (TextTranslator yourScriptName in texts)
+        {
+            yourScriptName.UpdateText();
+        }
     }
 
     public void ChangeSound()

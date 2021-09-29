@@ -9,7 +9,8 @@ public class TextTranslator : MonoBehaviour
     void Start()
     {
         var text = GetComponent<TextMeshProUGUI>();
-        if (text != null) { 
+        if (text != null)
+        {
             if (TextId == "ISOCode")
                 text.text = GameManager.instance.language;
             else
@@ -17,4 +18,15 @@ public class TextTranslator : MonoBehaviour
         }
     }
 
+    public void UpdateText()
+    {
+        var text = GetComponent<TextMeshProUGUI>();
+        if (text != null)
+        {
+            if (TextId == "ISOCode")
+                text.text = GameManager.instance.language;
+            else
+                text.text = LanguageManager.Fields[TextId];
+        }
+    }
 }

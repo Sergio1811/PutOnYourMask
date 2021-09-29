@@ -26,18 +26,38 @@ public static class LocaleHelper
     public static string GetSupportedLanguageCode()
     {
         SystemLanguage lang = Application.systemLanguage;
-
-        switch (lang)
+        if (PlayerPrefs.GetString("Language") == "No")
         {
-            case SystemLanguage.Spanish:
-                return ApplicationLocale.ES;
-            case SystemLanguage.Catalan:
-                return ApplicationLocale.CA;
-            case SystemLanguage.English:
-                return ApplicationLocale.EN;
-            default:
-                return GetDefaultSupportedLanguageCode();
+            switch (lang)
+            {
+                case SystemLanguage.Spanish:
+                    PlayerPrefs.SetString("Language", "ES");
+                    return ApplicationLocale.ES;
+                case SystemLanguage.Catalan:
+                    PlayerPrefs.SetString("Language", "CA");
+                    return ApplicationLocale.CA;
+                case SystemLanguage.English:
+                    PlayerPrefs.SetString("Language", "EN");
+                    return ApplicationLocale.EN;
+                default:
+                    PlayerPrefs.SetString("Language", "EN");
+                    return GetDefaultSupportedLanguageCode();
+            }
         }
+        else
+        {
+            switch (PlayerPrefs.GetString("Language"))
+            {
+                case "ES":
+                    return ApplicationLocale.ES;
+                case "CA":
+                    return ApplicationLocale.CA;
+                case "EN":
+                    return ApplicationLocale.EN;
+                default:
+                    return GetDefaultSupportedLanguageCode();
+            }
+        } 
     }
 
     public static string GetDefaultSupportedLanguageCode()
@@ -45,29 +65,29 @@ public static class LocaleHelper
         return ApplicationLocale.EN;
     }
 }
-   /*
- * Internationalization 
- * 
- * Author: Daniel Erdmann
- * 
- * 1. Add this File to you Project
- * 
- * 2. Add the language files to the folder Assets/Resources/I18n. (Filesnames: en.txt, es.txt, pt.txt, de.txt, and so on)
- *    Format: en.txt:           es.txt:
- *           =============== =================
- *           |hello=Hello  | |hello=Hola     |
- *           |world=World  | |world=Mundo    |
- *           |...          | |...            |
- *           =============== =================
- *           
- * 3. Use it! 
- *    Debug.Log(I18n.Fields["hello"] + " " + I18n.Fields["world"]); //"Hello World" or "Hola Mundo"
- * 
- * Use \n for new lines. Fallback language is "en"
- */
-class LanguageManager 
+/*
+* Internationalization 
+* 
+* Author: Daniel Erdmann
+* 
+* 1. Add this File to you Project
+* 
+* 2. Add the language files to the folder Assets/Resources/I18n. (Filesnames: en.txt, es.txt, pt.txt, de.txt, and so on)
+*    Format: en.txt:           es.txt:
+*           =============== =================
+*           |hello=Hello  | |hello=Hola     |
+*           |world=World  | |world=Mundo    |
+*           |...          | |...            |
+*           =============== =================
+*           
+* 3. Use it! 
+*    Debug.Log(I18n.Fields["hello"] + " " + I18n.Fields["world"]); //"Hello World" or "Hola Mundo"
+* 
+* Use \n for new lines. Fallback language is "en"
+*/
+class LanguageManager
 {
-   
+
     /// <summary>
     /// Text Fields
     /// Useage: Fields[key
@@ -86,7 +106,7 @@ class LanguageManager
     /// <summary>
     /// Load language files from ressources
     /// </summary>
-    private static void LoadLanguage()
+    public static void LoadLanguage()
     {
         if (Fields == null)
             Fields = new Dictionary<string, string>();

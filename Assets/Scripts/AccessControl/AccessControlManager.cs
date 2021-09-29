@@ -20,8 +20,14 @@ public class AccessControlManager : MonoBehaviour
     public Canvas myCanvas;
 
     public string[] symptoms = new string[] { "Tos seca", "Dolor de pecho", "Cansancio", "Dificultad para respirar " };
-    public enum allSymptoms { DolorGarganta, Anginas, Diarrea, Conjuntivitis, Migraña, ErupcionesCutaneas, Artritis, Influencer, PerdidaVision, MolestiasCervicales, eBoy, Negacionista, Cirrosis, Celiaco, Vegano, Diabetes, Terraplanista, NONE, RealSymptom };
-    List<allSymptoms> currentRandomCharSymptoms = new List<allSymptoms>();
+
+    public enum allSymptoms { };
+    public enum allSymptomsES { DolorGarganta, Anginas, Diarrea, Conjuntivitis, Migraña, ErupcionesCutaneas, Artritis, Influencer, PerdidaVision, MolestiasCervicales, eBoy, Negacionista, Cirrosis, Celíaco, Vegano, Diabetes, Terraplanista, NONE, RealSymptom };
+    public enum allSymptomsEN { ThroatPain, Tonsillitis, Diarrhea, Conjunctivitis, Migraine, Rashes, Arthritis, Influencer, LossOfVision, NeckPain, eBoy, Negationist, Cirrhosis, Celiac, Vegan, Diabetes, FlatEarther, NONE, RealSymptom };
+    public enum allSymptomsCA { DolorDeGarganta, Angines, Diarrea, Conjuntivitis, Migranya, Erupcions, Artritis, Influencer, PèrduaDeVisió, MolèstiesCervicals, eBoy, Negacionista, Cirrosi, Celíac, Vegà, Diabetis, Terraplanista, NONE, RealSymptom };
+    List<allSymptomsES> currentRandomCharSymptomsES = new List<allSymptomsES>();
+    List<allSymptomsEN> currentRandomCharSymptomsEN = new List<allSymptomsEN>();
+    List<allSymptomsCA> currentRandomCharSymptomsCA = new List<allSymptomsCA>();
     [Range(0.0f, 1.0f)] public float ratioNoSymp; //Probability to have a symptom
 
     public int currentCharTemp;//var de la temperatura del prox personaje
@@ -90,6 +96,7 @@ public class AccessControlManager : MonoBehaviour
         {
             maxRandomTemp += 3;
         }
+
     }
 
     // Update is called once per frame
@@ -275,9 +282,17 @@ public class AccessControlManager : MonoBehaviour
     {
         List<string> tempRealSymp = new List<string>(symptoms);
 
-        if (currentRandomCharSymptoms.Count > 0)
+        if (currentRandomCharSymptomsCA.Count > 0)
         {
-            currentRandomCharSymptoms.Clear();
+            currentRandomCharSymptomsCA.Clear();
+        }
+        if (currentRandomCharSymptomsES.Count > 0)
+        {
+            currentRandomCharSymptomsES.Clear();
+        }
+        if (currentRandomCharSymptomsEN.Count > 0)
+        {
+            currentRandomCharSymptomsEN.Clear();
         }
 
         int howManySymps = Random.Range(1, 4);
@@ -302,7 +317,7 @@ public class AccessControlManager : MonoBehaviour
             }
         }
 
-        foreach (var item in currentRandomCharSymptoms)
+        foreach (var item in currentRandomCharSymptomsEN)
         {
             if (item.ToString() == "NONE")
                 break;
@@ -310,34 +325,96 @@ public class AccessControlManager : MonoBehaviour
             {
                 AccesCanvasControler.instance.listSymptoms.text += "- " + item.ToString() + "\n";
             }
-
-
+        }
+        foreach (var item in currentRandomCharSymptomsES)
+        {
+            if (item.ToString() == "NONE")
+                break;
+            else if (item.ToString() != "RealSymptom")
+            {
+                AccesCanvasControler.instance.listSymptoms.text += "- " + item.ToString() + "\n";
+            }
+        }
+        foreach (var item in currentRandomCharSymptomsCA)
+        {
+            if (item.ToString() == "NONE")
+                break;
+            else if (item.ToString() != "RealSymptom")
+            {
+                AccesCanvasControler.instance.listSymptoms.text += "- " + item.ToString() + "\n";
+            }
         }
     }
 
     public void GetRandomSymptom()
     {
         System.Random rnd = new System.Random();
+        print("peto");
+        string lang = GameManager.instance.language.ToLower();
 
-        allSymptoms tempSymptom = (allSymptoms)rnd.Next(System.Enum.GetNames(typeof(allSymptoms)).Length);
-
-        while (tempSymptom == allSymptoms.RealSymptom || currentRandomCharSymptoms.Contains(tempSymptom))
+        switch (lang)
         {
-            rnd = new System.Random();
+            case "es":
+                allSymptomsES tempSymptom = (allSymptomsES)rnd.Next(System.Enum.GetNames(typeof(allSymptomsES)).Length);
 
-            tempSymptom = (allSymptoms)rnd.Next(System.Enum.GetNames(typeof(allSymptoms)).Length);
+                while (tempSymptom == allSymptomsES.RealSymptom || currentRandomCharSymptomsES.Contains(tempSymptom))
+                {
+                    rnd = new System.Random();
+
+                    tempSymptom = (allSymptomsES)rnd.Next(System.Enum.GetNames(typeof(allSymptomsES)).Length);
+                }
+                currentRandomCharSymptomsES.Add(tempSymptom);
+                break;
+            case "en":
+                allSymptomsEN tempSymptomEN = (allSymptomsEN)rnd.Next(System.Enum.GetNames(typeof(allSymptomsEN)).Length);
+
+                while (tempSymptomEN == allSymptomsEN.RealSymptom || currentRandomCharSymptomsEN.Contains(tempSymptomEN))
+                {
+                    rnd = new System.Random();
+
+                    tempSymptomEN = (allSymptomsEN)rnd.Next(System.Enum.GetNames(typeof(allSymptomsEN)).Length);
+                }
+                currentRandomCharSymptomsEN.Add(tempSymptomEN);
+                break;
+            case "ca":
+                allSymptomsCA tempSymptomCA = (allSymptomsCA)rnd.Next(System.Enum.GetNames(typeof(allSymptomsCA)).Length);
+
+                while (tempSymptomCA == allSymptomsCA.RealSymptom || currentRandomCharSymptomsCA.Contains(tempSymptomCA))
+                {
+                    rnd = new System.Random();
+
+                    tempSymptomCA = (allSymptomsCA)rnd.Next(System.Enum.GetNames(typeof(allSymptomsCA)).Length);
+                }
+                currentRandomCharSymptomsCA.Add(tempSymptomCA);
+                break;
+            default:
+                break;
         }
-        currentRandomCharSymptoms.Add(tempSymptom);
     }
 
     public void GetRealSymptom(List<string> l_Symptoms)
     {
-        currentRandomCharSymptoms.Add(allSymptoms.RealSymptom);
+        string lang = GameManager.instance.language.ToLower();
+
+        switch (lang)
+        {
+            case "es":
+                currentRandomCharSymptomsES.Add(allSymptomsES.RealSymptom);
+                break;
+            case "en":
+                currentRandomCharSymptomsEN.Add(allSymptomsEN.RealSymptom);
+                break;
+            case "ca":
+                currentRandomCharSymptomsCA.Add(allSymptomsCA.RealSymptom);
+                break;
+            default:
+                break;
+        }
         int rnd = Random.Range(0, l_Symptoms.Count);
         string tempString = l_Symptoms[rnd];
         l_Symptoms.RemoveAt(rnd);
 
-        AccesCanvasControler.instance.listSymptoms.text += "- " + tempString + "\n";    
+        AccesCanvasControler.instance.listSymptoms.text += "- " + tempString + "\n";
 
     }
 

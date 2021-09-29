@@ -16,6 +16,14 @@ public class PermanentMainMenuInfo : MonoBehaviour
     public Button[] clothButtons;
     public Button MaskButton;
     public Button MaskButton2;
+    public Button[] langButtons;
+    public Button rateUs;
+    public Button twitter;
+    public Button mute;
+    public Button unMute;
+    public Button sound;
+    public Button unSound;
+
 
     public void LoadAssets()
     {
@@ -46,5 +54,17 @@ public class PermanentMainMenuInfo : MonoBehaviour
             delegate { 
                 MenuController.instance.MaskChange();
             });
+
+        foreach (var item in langButtons)
+        {
+            item.onClick.AddListener(delegate { MenuController.instance.ChangeLanguage(); });
+        }
+
+        rateUs.onClick.AddListener(delegate { MenuController.instance.RateAcces(); });
+        twitter.onClick.AddListener(delegate { MenuController.instance.TwitterAcces(); });
+        mute.onClick.AddListener(delegate { MenuController.instance.ChangeMusic(); });
+        unMute.onClick.AddListener(delegate { MenuController.instance.ChangeMusic(); });
+        sound.onClick.AddListener(delegate { MenuController.instance.ChangeSound(); });
+        unSound.onClick.AddListener(delegate { MenuController.instance.ChangeSound(); });
     }
 }
