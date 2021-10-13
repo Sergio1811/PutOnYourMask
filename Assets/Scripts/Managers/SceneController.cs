@@ -8,9 +8,9 @@ public class SceneController : MonoBehaviour
     public static SceneController instance;
 
     string tetrisGameName = "TetrisPrueba";
-    string accessGameName = "PapersPleaseScene";
+    string accessGameName = "LoadingScenePapers";
     string masksGameName = "MascaretesAlCarrer";
-    string labGameName = "LabScene";
+    string labGameName = "LoadingSceneLab";
 
     private void Awake()
     {

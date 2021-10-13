@@ -29,6 +29,7 @@ public class LabTutoControl : MonoBehaviour
         }
         else
         {
+            this.gameObject.SetActive(true);
             tutorialCards[currentCard].SetActive(true);
             LabManager.instance.currentState = LabManager.GameState.Stopped;
         }
@@ -46,7 +47,7 @@ public class LabTutoControl : MonoBehaviour
 
             if (currentCard >= tutorialCards.Length)
             {
-                PlayerPrefs.GetString(this.gameObject.name, "Completed");
+                PlayerPrefs.SetString(this.gameObject.name, "Completed");
                 Completed();
             }
 

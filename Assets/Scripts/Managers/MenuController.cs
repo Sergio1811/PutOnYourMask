@@ -292,7 +292,6 @@ public class MenuController : MonoBehaviour
         if (currentPage < pages.Length)
         {
             pages[currentPage].SetActive(true);
-
         }
     }
 

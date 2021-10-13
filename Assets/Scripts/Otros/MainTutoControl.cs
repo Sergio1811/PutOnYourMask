@@ -10,7 +10,16 @@ public class MainTutoControl : MonoBehaviour
     int currentCard;
     void Start()
     {
-        tutorialCards[currentCard].SetActive(true);
+        if (PlayerPrefs.GetString(this.gameObject.name) == "Completed")
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+            tutorialCards[currentCard].SetActive(true);
+
+        }
     }
 
     // Update is called once per frame
@@ -23,7 +32,7 @@ public class MainTutoControl : MonoBehaviour
 
             if (currentCard >= tutorialCards.Length)
             {
-                PlayerPrefs.GetString(this.gameObject.name, "Completed");              
+                PlayerPrefs.SetString(this.gameObject.name, "Completed");
                 Destroy(this.gameObject);
             }
 

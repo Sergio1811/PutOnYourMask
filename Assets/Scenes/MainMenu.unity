@@ -31477,7 +31477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &755633489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42016,7 +42016,7 @@ MonoBehaviour:
   - {fileID: 158170202354075535, guid: 934d1bd6c45d92746960078981817444, type: 3}
   - {fileID: 6951021053025452422, guid: 1e74d48be03a6c548b624ccf45a1d3e1, type: 3}
   vsControl: {fileID: 0}
-  newProbability: 0.211
+  newProbability: 0.2
   onlineShopping: 0
   language: 
   headGO: {fileID: 0}
@@ -44870,7 +44870,7 @@ PrefabInstance:
     - target: {fileID: 1406252872332930961, guid: eac51dac1d0a26d4aa7f08b540147101,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000015258789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1406252872332930961, guid: eac51dac1d0a26d4aa7f08b540147101,
         type: 3}

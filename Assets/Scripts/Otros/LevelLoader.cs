@@ -9,6 +9,7 @@ public class LevelLoader : MonoBehaviour
 {
     public Slider slider;
     public TextMeshProUGUI progressText;
+    public int scene;
 
     private void Start()
     {
@@ -18,7 +19,7 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadAsynchronously()
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(1);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
         
         while (!operation.isDone)
         {

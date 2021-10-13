@@ -19,6 +19,7 @@ public class PapersTutoControl : MonoBehaviour
         }
         else
         {
+            this.gameObject.SetActive(true);
             tutorialCards[currentCard].SetActive(true);
             AccessControlManager.instance.currentState = AccessControlManager.GameState.Stopped;
         }

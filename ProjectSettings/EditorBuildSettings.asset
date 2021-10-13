@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PapersPleaseScene.unity
     guid: 5631b21d09a275f4c9795dda3d770786
+  - enabled: 1
+    path: Assets/Scenes/LoadingSceneLab.unity
+    guid: c721fd97a0f29084c99833abe5cd1a05
+  - enabled: 1
+    path: Assets/Scenes/LoadingScenePapers.unity
+    guid: 66bcb5b1506644b498f06cc59d4bccf8
   m_configObjects: {}

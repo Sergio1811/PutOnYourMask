@@ -189,7 +189,6 @@ public class AccessControlManager : MonoBehaviour
         {
             panelPostit.SetActive(true);
             VSFX.instance.PlayAudio(VSFX.instance.flipPageSound);
-
         }
     }
 
@@ -201,7 +200,6 @@ public class AccessControlManager : MonoBehaviour
             currentCharMask = false;
             int tempRnd = Random.Range(0, charsToCheck.Length - 1);
 
-
             currentChar = Instantiate(charsToCheck[tempRnd], movementPoints[0].position, charsToCheck[tempRnd].transform.rotation);
             currentChar.GetComponent<LookGameObject>().objectToLookAt = movementPoints[1].gameObject;
             currentChar.GetComponent<CharsPPMovement>().waypoint = movementPoints[1];
@@ -212,7 +210,6 @@ public class AccessControlManager : MonoBehaviour
             GetCurrentCharTemp();
 
             AccesCanvasControler.instance.ChangeName();
-
         }
     }
 
