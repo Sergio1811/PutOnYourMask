@@ -15,7 +15,8 @@ public class CharsPPMovement : MonoBehaviour
 
     private void Start()
     {
-        clothManager.RandomCloth();
+        StartCoroutine(cargaEnCooldown());
+        //clothManager.RandomCloth();
         //mask = clothManager.currentMaskGO;
         /*
         if (!AccessControlManager.instance.currentCharMask)
@@ -25,12 +26,8 @@ public class CharsPPMovement : MonoBehaviour
     }
 
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            clothManager.RandomCloth();
-        }
-        GetObjects();
+    {        
+        //GetObjects();
 
         if (AccessControlManager.instance.currentState == AccessControlManager.GameState.Play)
         {
@@ -91,5 +88,13 @@ public class CharsPPMovement : MonoBehaviour
         }
         mask = clothManager.currentMaskGO;
         faceControl = clothManager.currentCabeza.GetComponent<Cabeza>().cabeza.GetChild(1).GetComponent<CarasControl>();
+    }
+
+    public IEnumerator cargaEnCooldown()
+    {
+        yield return new WaitForSeconds(.5f);
+        clothManager.RandomCloth();
+        yield return new WaitForSeconds(.5f);
+        GetObjects();
     }
 }
