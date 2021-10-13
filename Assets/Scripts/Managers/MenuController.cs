@@ -59,7 +59,7 @@ public class MenuController : MonoBehaviour
 
     private void LoadLevel0(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 1)
+        if (scene.buildIndex == 2)
         {
 
             switch (currentLanguage)

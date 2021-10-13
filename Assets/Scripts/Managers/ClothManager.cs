@@ -56,7 +56,7 @@ public class ClothManager : MonoBehaviour
 
     private void Start()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 1)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 2)
         {
             GetCurrent();
             MenuController.instance.currentCloth = MenuController.Clothing.Shirt;

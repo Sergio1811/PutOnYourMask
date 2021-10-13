@@ -8,9 +8,9 @@ public class SceneController : MonoBehaviour
     public static SceneController instance;
 
     string tetrisGameName = "TetrisPrueba";
-    string accessGameName = "LoadingScenePapers";
+    string accessGameName = "PapersPleaseScene";
     string masksGameName = "MascaretesAlCarrer";
-    string labGameName = "LoadingSceneLab";
+    string labGameName = "LabScene";
 
     private void Awake()
     {
@@ -48,7 +48,7 @@ public class SceneController : MonoBehaviour
 
     public void ChargeMainMenu()
     {
-        SceneManager.LoadScene(0); //o 1
+        SceneManager.LoadScene(1); //o 1
 
     }
 

@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadLevel0(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 1)
+        if (scene.buildIndex == 2)
         {
             GeneratedMiniGames = false;
             vsControl = GameObject.Find("ScriptHolder").GetComponent<PercentageVirusControl>();
